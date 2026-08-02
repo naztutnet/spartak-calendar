@@ -48,24 +48,17 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260802-akhmat-spartak-rpl@spartak-calendar
-DTSTAMP:20260802T050000Z
+DTSTAMP:20260802T205000Z
+SEQUENCE:1
+LAST-MODIFIED:20260802T205000Z
 DTSTART;TZID=Europe/Moscow:20260802T203000
 DTEND;TZID=Europe/Moscow:20260802T224500
-SUMMARY:Ахмат — Спартак (РПЛ)
+SUMMARY:Ахмат 1:2 Спартак (РПЛ)
 LOCATION:Ахмат Арена\, проспект имени Х.А. Исаева\, 100\, Грозный
-DESCRIPTION:МИР Российская Премьер-Лига 2026/27\, 2-й тур. Выездной матч. Время московское.
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 2-й тур. Выездной матч. Результат: победа Спартака 2:1. Голы Спартака: Кристофер Ву — 39-я минута\, Эсекьель Барко — 90-я минута. Видеообзор: https://matchtv.ru/football/rpl/matchtvvideo_NI2349379_clip_Ahmat___Spartak_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol
+URL:https://matchtv.ru/football/rpl/matchtvvideo_NI2349379_clip_Ahmat___Spartak_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol
 STATUS:CONFIRMED
-TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT1H
-ACTION:DISPLAY
-DESCRIPTION:Матч Ахмат — Спартак начнётся через 1 час
-END:VALARM
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Матч Ахмат — Спартак начнётся через 5 минут
-END:VALARM
+TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260805-spartak-orenburg-cup@spartak-calendar

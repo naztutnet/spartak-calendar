@@ -4,8 +4,10 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 PRODID:-//naztutnet//Spartak Moscow Calendar//RU
 X-WR-CALNAME:ФК Спартак-Москва
+X-WR-CALDESC:Официальные матчи мужской команды ФК Спартак-Москва
 X-WR-TIMEZONE:Europe/Moscow
 X-PUBLISHED-TTL:PT1H
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
 BEGIN:VTIMEZONE
 TZID:Europe/Moscow
 X-LIC-LOCATION:Europe/Moscow
@@ -17,51 +19,179 @@ DTSTART:19700101T000000
 END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
+UID:20260802-akhmat-spartak-rpl@spartak-calendar
+DTSTAMP:20260802T050000Z
+DTSTART;TZID=Europe/Moscow:20260802T203000
+DTEND;TZID=Europe/Moscow:20260802T223000
+SUMMARY:Ахмат — Спартак (РПЛ)
+LOCATION:Ахмат Арена\, проспект имени Х.А. Исаева\, 100\, Грозный
+DESCRIPTION:МИР Российская Премьер-Лига 2026/27\, 2-й тур. Выездной матч. Время московское.
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Матч Ахмат — Спартак начнётся через 2 часа
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:20260805-spartak-orenburg-cup@spartak-calendar
-DTSTAMP:20260802T010000Z
+DTSTAMP:20260802T050000Z
 DTSTART;TZID=Europe/Moscow:20260805T183000
 DTEND;TZID=Europe/Moscow:20260805T203000
 SUMMARY:Спартак — Оренбург (Кубок России)
 LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
-DESCRIPTION:FONBET Кубок России 2026/27. Путь РПЛ. Группа А\, 1-й тур. Время московское. Источник: официальный сайт РФС.
+DESCRIPTION:FONBET Кубок России 2026/27. Путь РПЛ\, группа А\, 1-й тур. Домашний матч. Время московское.
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT2H
 ACTION:DISPLAY
-DESCRIPTION:Через 2 часа матч Спартак — Оренбург
+DESCRIPTION:Матч Спартак — Оренбург начнётся через 2 часа
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20260809-spartak-krasnodar-rpl@spartak-calendar
+DTSTAMP:20260802T050000Z
+DTSTART;TZID=Europe/Moscow:20260809T200000
+DTEND;TZID=Europe/Moscow:20260809T220000
+SUMMARY:Спартак — Краснодар (РПЛ)
+LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
+DESCRIPTION:МИР Российская Премьер-Лига 2026/27\, 3-й тур. Домашний матч. Время московское.
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартак — Краснодар начнётся через 2 часа
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20260816-baltika-spartak-rpl@spartak-calendar
+DTSTAMP:20260802T050000Z
+DTSTART;TZID=Europe/Moscow:20260816T193000
+DTEND;TZID=Europe/Moscow:20260816T213000
+SUMMARY:Балтика — Спартак (РПЛ)
+LOCATION:Ростех Арена\, Солнечный бульвар\, 25\, Калининград
+DESCRIPTION:МИР Российская Премьер-Лига 2026/27\, 4-й тур. Выездной матч. Время московское.
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Матч Балтика — Спартак начнётся через 2 часа
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:20260819-rubin-spartak-cup@spartak-calendar
-DTSTAMP:20260802T010000Z
+DTSTAMP:20260802T050000Z
 DTSTART;TZID=Europe/Moscow:20260819T183000
 DTEND;TZID=Europe/Moscow:20260819T203000
 SUMMARY:Рубин — Спартак (Кубок России)
 LOCATION:Ак Барс Арена\, проспект Хусаина Ямашева\, 115А\, Казань
-DESCRIPTION:FONBET Кубок России 2026/27. Путь РПЛ. Группа А\, 2-й тур. Время московское. Источник: официальный сайт РФС.
+DESCRIPTION:FONBET Кубок России 2026/27. Путь РПЛ\, группа А\, 2-й тур. Выездной матч. Время московское.
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT2H
 ACTION:DISPLAY
-DESCRIPTION:Через 2 часа матч Рубин — Спартак
+DESCRIPTION:Матч Рубин — Спартак начнётся через 2 часа
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20260823-spartak-zenit-rpl@spartak-calendar
+DTSTAMP:20260802T050000Z
+DTSTART;TZID=Europe/Moscow:20260823T200000
+DTEND;TZID=Europe/Moscow:20260823T220000
+SUMMARY:Спартак — Зенит (РПЛ)
+LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
+DESCRIPTION:МИР Российская Премьер-Лига 2026/27\, 5-й тур. Домашний матч. Время московское.
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартак — Зенит начнётся через 2 часа
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20260830-spartak-orenburg-rpl@spartak-calendar
+DTSTAMP:20260802T050000Z
+DTSTART;TZID=Europe/Moscow:20260830T173000
+DTEND;TZID=Europe/Moscow:20260830T193000
+SUMMARY:Спартак — Оренбург (РПЛ)
+LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
+DESCRIPTION:МИР Российская Премьер-Лига 2026/27\, 6-й тур. Домашний матч. Время московское.
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартак — Оренбург начнётся через 2 часа
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:20260902-spartak-rodina-cup@spartak-calendar
-DTSTAMP:20260802T010000Z
+DTSTAMP:20260802T050000Z
 DTSTART;TZID=Europe/Moscow:20260902T204500
 DTEND;TZID=Europe/Moscow:20260902T224500
 SUMMARY:Спартак — Родина (Кубок России)
 LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
-DESCRIPTION:FONBET Кубок России 2026/27. Путь РПЛ. Группа А\, 3-й тур. Время московское. Источник: официальный сайт РФС.
+DESCRIPTION:FONBET Кубок России 2026/27. Путь РПЛ\, группа А\, 3-й тур. Домашний матч. Время московское.
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT2H
 ACTION:DISPLAY
-DESCRIPTION:Через 2 часа матч Спартак — Родина
+DESCRIPTION:Матч Спартак — Родина начнётся через 2 часа
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20260906-dynamo-spartak-rpl@spartak-calendar
+DTSTAMP:20260802T050000Z
+DTSTART;TZID=Europe/Moscow:20260906T183000
+DTEND;TZID=Europe/Moscow:20260906T203000
+SUMMARY:Динамо — Спартак (РПЛ)
+LOCATION:ВТБ Арена\, Ленинградский проспект\, 36\, Москва
+DESCRIPTION:МИР Российская Премьер-Лига 2026/27\, 7-й тур. Выездной матч. Время московское.
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Матч Динамо — Спартак начнётся через 2 часа
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20260913-spartak-rostov-rpl@spartak-calendar
+DTSTAMP:20260802T050000Z
+DTSTART;TZID=Europe/Moscow:20260913T170000
+DTEND;TZID=Europe/Moscow:20260913T190000
+SUMMARY:Спартак — Ростов (РПЛ)
+LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
+DESCRIPTION:МИР Российская Премьер-Лига 2026/27\, 8-й тур. Домашний матч. Время московское.
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартак — Ростов начнётся через 2 часа
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20260916-spartak-fakel-rpl@spartak-calendar
+DTSTAMP:20260802T050000Z
+DTSTART;TZID=Europe/Moscow:20260916T183000
+DTEND;TZID=Europe/Moscow:20260916T203000
+SUMMARY:Спартак — Факел (РПЛ)
+LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
+DESCRIPTION:МИР Российская Премьер-Лига 2026/27\, 9-й тур. Домашний матч. Время московское.
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартак — Факел начнётся через 2 часа
 END:VALARM
 END:VEVENT
 END:VCALENDAR

@@ -33,6 +33,16 @@ TRIGGER:-PT2H
 ACTION:DISPLAY
 DESCRIPTION:Матч Ахмат — Спартак начнётся через 2 часа
 END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Матч Ахмат — Спартак начнётся через 1 час
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Матч Ахмат — Спартак начнётся через 5 минут
+END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:20260805-spartak-orenburg-cup@spartak-calendar
@@ -48,6 +58,16 @@ BEGIN:VALARM
 TRIGGER:-PT2H
 ACTION:DISPLAY
 DESCRIPTION:Матч Спартак — Оренбург начнётся через 2 часа
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартак — Оренбург начнётся через 1 час
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартак — Оренбург начнётся через 5 минут
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -65,6 +85,16 @@ TRIGGER:-PT2H
 ACTION:DISPLAY
 DESCRIPTION:Матч Спартак — Краснодар начнётся через 2 часа
 END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартак — Краснодар начнётся через 1 час
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартак — Краснодар начнётся через 5 минут
+END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:20260816-baltika-spartak-rpl@spartak-calendar
@@ -80,6 +110,16 @@ BEGIN:VALARM
 TRIGGER:-PT2H
 ACTION:DISPLAY
 DESCRIPTION:Матч Балтика — Спартак начнётся через 2 часа
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Матч Балтика — Спартак начнётся через 1 час
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Матч Балтика — Спартак начнётся через 5 минут
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -97,6 +137,16 @@ TRIGGER:-PT2H
 ACTION:DISPLAY
 DESCRIPTION:Матч Рубин — Спартак начнётся через 2 часа
 END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Матч Рубин — Спартак начнётся через 1 час
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Матч Рубин — Спартак начнётся через 5 минут
+END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:20260823-spartak-zenit-rpl@spartak-calendar
@@ -112,6 +162,16 @@ BEGIN:VALARM
 TRIGGER:-PT2H
 ACTION:DISPLAY
 DESCRIPTION:Матч Спартак — Зенит начнётся через 2 часа
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартак — Зенит начнётся через 1 час
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартак — Зенит начнётся через 5 минут
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -129,6 +189,16 @@ TRIGGER:-PT2H
 ACTION:DISPLAY
 DESCRIPTION:Матч Спартак — Оренбург начнётся через 2 часа
 END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартак — Оренбург начнётся через 1 час
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартак — Оренбург начнётся через 5 минут
+END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:20260902-spartak-rodina-cup@spartak-calendar
@@ -144,6 +214,16 @@ BEGIN:VALARM
 TRIGGER:-PT2H
 ACTION:DISPLAY
 DESCRIPTION:Матч Спартак — Родина начнётся через 2 часа
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартак — Родина начнётся через 1 час
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартак — Родина начнётся через 5 минут
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -161,6 +241,16 @@ TRIGGER:-PT2H
 ACTION:DISPLAY
 DESCRIPTION:Матч Динамо — Спартак начнётся через 2 часа
 END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Матч Динамо — Спартак начнётся через 1 час
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Матч Динамо — Спартак начнётся через 5 минут
+END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:20260913-spartak-rostov-rpl@spartak-calendar
@@ -177,6 +267,16 @@ TRIGGER:-PT2H
 ACTION:DISPLAY
 DESCRIPTION:Матч Спартак — Ростов начнётся через 2 часа
 END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартак — Ростов начнётся через 1 час
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартак — Ростов начнётся через 5 минут
+END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:20260916-spartak-fakel-rpl@spartak-calendar
@@ -192,6 +292,16 @@ BEGIN:VALARM
 TRIGGER:-PT2H
 ACTION:DISPLAY
 DESCRIPTION:Матч Спартак — Факел начнётся через 2 часа
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартак — Факел начнётся через 1 час
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартак — Факел начнётся через 5 минут
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT

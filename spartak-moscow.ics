@@ -29,11 +29,6 @@ DESCRIPTION:МИР Российская Премьер-Лига 2026/27\, 2-й �
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 BEGIN:VALARM
-TRIGGER:-PT2H
-ACTION:DISPLAY
-DESCRIPTION:Матч Ахмат — Спартак начнётся через 2 часа
-END:VALARM
-BEGIN:VALARM
 TRIGGER:-PT1H
 ACTION:DISPLAY
 DESCRIPTION:Матч Ахмат — Спартак начнётся через 1 час
@@ -54,11 +49,6 @@ LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, 
 DESCRIPTION:FONBET Кубок России 2026/27. Путь РПЛ\, группа А\, 1-й тур. Домашний матч. Время московское.
 STATUS:CONFIRMED
 TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT2H
-ACTION:DISPLAY
-DESCRIPTION:Матч Спартак — Оренбург начнётся через 2 часа
-END:VALARM
 BEGIN:VALARM
 TRIGGER:-PT1H
 ACTION:DISPLAY
@@ -81,11 +71,6 @@ DESCRIPTION:МИР Российская Премьер-Лига 2026/27\, 3-й �
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 BEGIN:VALARM
-TRIGGER:-PT2H
-ACTION:DISPLAY
-DESCRIPTION:Матч Спартак — Краснодар начнётся через 2 часа
-END:VALARM
-BEGIN:VALARM
 TRIGGER:-PT1H
 ACTION:DISPLAY
 DESCRIPTION:Матч Спартак — Краснодар начнётся через 1 час
@@ -106,11 +91,6 @@ LOCATION:Ростех Арена\, Солнечный бульвар\, 25\, Ка
 DESCRIPTION:МИР Российская Премьер-Лига 2026/27\, 4-й тур. Выездной матч. Время московское.
 STATUS:CONFIRMED
 TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT2H
-ACTION:DISPLAY
-DESCRIPTION:Матч Балтика — Спартак начнётся через 2 часа
-END:VALARM
 BEGIN:VALARM
 TRIGGER:-PT1H
 ACTION:DISPLAY
@@ -133,11 +113,6 @@ DESCRIPTION:FONBET Кубок России 2026/27. Путь РПЛ\, групп
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 BEGIN:VALARM
-TRIGGER:-PT2H
-ACTION:DISPLAY
-DESCRIPTION:Матч Рубин — Спартак начнётся через 2 часа
-END:VALARM
-BEGIN:VALARM
 TRIGGER:-PT1H
 ACTION:DISPLAY
 DESCRIPTION:Матч Рубин — Спартак начнётся через 1 час
@@ -158,11 +133,6 @@ LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, 
 DESCRIPTION:МИР Российская Премьер-Лига 2026/27\, 5-й тур. Домашний матч. Время московское.
 STATUS:CONFIRMED
 TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT2H
-ACTION:DISPLAY
-DESCRIPTION:Матч Спартак — Зенит начнётся через 2 часа
-END:VALARM
 BEGIN:VALARM
 TRIGGER:-PT1H
 ACTION:DISPLAY
@@ -185,11 +155,6 @@ DESCRIPTION:МИР Российская Премьер-Лига 2026/27\, 6-й �
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 BEGIN:VALARM
-TRIGGER:-PT2H
-ACTION:DISPLAY
-DESCRIPTION:Матч Спартак — Оренбург начнётся через 2 часа
-END:VALARM
-BEGIN:VALARM
 TRIGGER:-PT1H
 ACTION:DISPLAY
 DESCRIPTION:Матч Спартак — Оренбург начнётся через 1 час
@@ -210,11 +175,6 @@ LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, 
 DESCRIPTION:FONBET Кубок России 2026/27. Путь РПЛ\, группа А\, 3-й тур. Домашний матч. Время московское.
 STATUS:CONFIRMED
 TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT2H
-ACTION:DISPLAY
-DESCRIPTION:Матч Спартак — Родина начнётся через 2 часа
-END:VALARM
 BEGIN:VALARM
 TRIGGER:-PT1H
 ACTION:DISPLAY
@@ -237,11 +197,6 @@ DESCRIPTION:МИР Российская Премьер-Лига 2026/27\, 7-й �
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 BEGIN:VALARM
-TRIGGER:-PT2H
-ACTION:DISPLAY
-DESCRIPTION:Матч Динамо — Спартак начнётся через 2 часа
-END:VALARM
-BEGIN:VALARM
 TRIGGER:-PT1H
 ACTION:DISPLAY
 DESCRIPTION:Матч Динамо — Спартак начнётся через 1 час
@@ -263,11 +218,6 @@ DESCRIPTION:МИР Российская Премьер-Лига 2026/27\, 8-й �
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 BEGIN:VALARM
-TRIGGER:-PT2H
-ACTION:DISPLAY
-DESCRIPTION:Матч Спартак — Ростов начнётся через 2 часа
-END:VALARM
-BEGIN:VALARM
 TRIGGER:-PT1H
 ACTION:DISPLAY
 DESCRIPTION:Матч Спартак — Ростов начнётся через 1 час
@@ -288,11 +238,6 @@ LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, 
 DESCRIPTION:МИР Российская Премьер-Лига 2026/27\, 9-й тур. Домашний матч. Время московское.
 STATUS:CONFIRMED
 TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT2H
-ACTION:DISPLAY
-DESCRIPTION:Матч Спартак — Факел начнётся через 2 часа
-END:VALARM
 BEGIN:VALARM
 TRIGGER:-PT1H
 ACTION:DISPLAY

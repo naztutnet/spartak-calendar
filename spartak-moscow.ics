@@ -25,8 +25,8 @@ DTSTART;TZID=Europe/Moscow:20260718T193000
 DTEND;TZID=Europe/Moscow:20260718T220000
 SUMMARY:Зенит 1:1 Спартак (4:2 пен.) — Суперкубок России
 LOCATION:Совкомбанк Арена\, улица Бетанкура\, 1А\, Нижний Новгород
-DESCRIPTION:OLIMPBET Суперкубок России 2026. Финал. Выездной матч. Основное время — 1:1. Серия пенальти — 4:2. Гол Спартака: Кристофер Мартинс\, 25-я минута.
-URL:https://www.rfs.ru/news/224678
+DESCRIPTION:OLIMPBET Суперкубок России 2026. Финал. Выездной матч. Основное время — 1:1. Серия пенальти — 4:2. Гол Спартака: Кристофер Мартинс\, 25-я минута. Видеообзор: https://www.championat.com/football/article-6550316-zenit-spartak-1-1-po-penalti-3-1-obzor-matcha-video-goly-statistika-18-iyulya-2026-goda-superkubok-rossii.html
+URL:https://www.championat.com/football/article-6550316-zenit-spartak-1-1-po-penalti-3-1-obzor-matcha-video-goly-statistika-18-iyulya-2026-goda-superkubok-rossii.html
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
@@ -37,8 +37,8 @@ DTSTART;TZID=Europe/Moscow:20260725T204500
 DTEND;TZID=Europe/Moscow:20260725T230000
 SUMMARY:Спартак 3:0 Родина (РПЛ)
 LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
-DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 1-й тур. Домашний матч. Голы: Маркиньос — 24-я минута\, Кристофер Мартинс — 80-я\, Данил Пруцев — 86-я.
-URL:https://premierliga.ru/
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 1-й тур. Домашний матч. Голы: Маркиньос — 24-я минута\, Кристофер Мартинс — 80-я\, Данил Пруцев — 86-я. Видеообзор: https://rutube.ru/video/a2bcdec1ca32680bd1c8adb2ed8bad3e/
+URL:https://rutube.ru/video/a2bcdec1ca32680bd1c8adb2ed8bad3e/
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT

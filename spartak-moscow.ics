@@ -194,4 +194,268 @@ ACTION:DISPLAY
 DESCRIPTION:Матч Спартак — Факел начнётся через 2 часа
 END:VALARM
 END:VEVENT
+BEGIN:VEVENT
+UID:2026-27-rpl10@spartak-calendar
+DTSTAMP:20260802T060000Z
+DTSTART;VALUE=DATE:20261009
+DTEND;VALUE=DATE:20261013
+SUMMARY:⏳ Крылья Советов — Спартак — дата и время уточняются
+LOCATION:Место проведения уточняется
+DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 10-й тур. Выездной матч. Предварительное окно: 9–12 октября 2026. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-27-cup4@spartak-calendar
+DTSTAMP:20260802T060000Z
+DTSTART;VALUE=DATE:20261013
+DTEND;VALUE=DATE:20261016
+SUMMARY:⏳ Родина — Спартак — дата и время уточняются
+LOCATION:Место проведения уточняется
+DESCRIPTION:FONBET Кубок России 2026/27\, группа А\, 4-й тур. Выездной матч. Предварительное окно: 13–15 октября 2026. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-27-rpl11@spartak-calendar
+DTSTAMP:20260802T060000Z
+DTSTART;VALUE=DATE:20261016
+DTEND;VALUE=DATE:20261020
+SUMMARY:⏳ Спартак — Рубин — дата и время уточняются
+LOCATION:Место проведения уточняется
+DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 11-й тур. Домашний матч. Предварительное окно: 16–19 октября 2026. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-27-rpl12@spartak-calendar
+DTSTAMP:20260802T060000Z
+DTSTART;VALUE=DATE:20261023
+DTEND;VALUE=DATE:20261027
+SUMMARY:⏳ ЦСКА — Спартак — дата и время уточняются
+LOCATION:Место проведения уточняется
+DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 12-й тур. Выездной матч. Предварительное окно: 23–26 октября 2026. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-27-cup5@spartak-calendar
+DTSTAMP:20260802T060000Z
+DTSTART;VALUE=DATE:20261027
+DTEND;VALUE=DATE:20261030
+SUMMARY:⏳ Спартак — Рубин — дата и время уточняются
+LOCATION:Место проведения уточняется
+DESCRIPTION:FONBET Кубок России 2026/27\, группа А\, 5-й тур. Домашний матч. Предварительное окно: 27–29 октября 2026. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-27-rpl13@spartak-calendar
+DTSTAMP:20260802T060000Z
+DTSTART;VALUE=DATE:20261030
+DTEND;VALUE=DATE:20261103
+SUMMARY:⏳ Локомотив — Спартак — дата и время уточняются
+LOCATION:Место проведения уточняется
+DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 13-й тур. Выездной матч. Предварительное окно: 30 октября – 2 ноября 2026. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-27-rpl14@spartak-calendar
+DTSTAMP:20260802T060000Z
+DTSTART;VALUE=DATE:20261106
+DTEND;VALUE=DATE:20261109
+SUMMARY:⏳ Спартак — Акрон — дата и время уточняются
+LOCATION:Место проведения уточняется
+DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 14-й тур. Домашний матч. Предварительное окно: 6–8 ноября 2026. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-27-rpl15@spartak-calendar
+DTSTAMP:20260802T060000Z
+DTSTART;VALUE=DATE:20261120
+DTEND;VALUE=DATE:20261124
+SUMMARY:⏳ Динамо Махачкала — Спартак — дата и время уточняются
+LOCATION:Место проведения уточняется
+DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 15-й тур. Выездной матч. Предварительное окно: 20–23 ноября 2026. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-27-cup6@spartak-calendar
+DTSTAMP:20260802T060000Z
+DTSTART;VALUE=DATE:20261124
+DTEND;VALUE=DATE:20261127
+SUMMARY:⏳ Оренбург — Спартак — дата и время уточняются
+LOCATION:Место проведения уточняется
+DESCRIPTION:FONBET Кубок России 2026/27\, группа А\, 6-й тур. Выездной матч. Предварительное окно: 24–26 ноября 2026. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-27-rpl16@spartak-calendar
+DTSTAMP:20260802T060000Z
+DTSTART;VALUE=DATE:20261127
+DTEND;VALUE=DATE:20261201
+SUMMARY:⏳ Факел — Спартак — дата и время уточняются
+LOCATION:Место проведения уточняется
+DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 16-й тур. Выездной матч. Предварительное окно: 27–30 ноября 2026. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-27-rpl17@spartak-calendar
+DTSTAMP:20260802T060000Z
+DTSTART;VALUE=DATE:20261204
+DTEND;VALUE=DATE:20261208
+SUMMARY:⏳ Спартак — Динамо — дата и время уточняются
+LOCATION:Место проведения уточняется
+DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 17-й тур. Домашний матч. Предварительное окно: 4–7 декабря 2026. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-27-rpl18@spartak-calendar
+DTSTAMP:20260802T060000Z
+DTSTART;VALUE=DATE:20270226
+DTEND;VALUE=DATE:20270302
+SUMMARY:⏳ Краснодар — Спартак — дата и время уточняются
+LOCATION:Место проведения уточняется
+DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 18-й тур. Выездной матч. Предварительное окно: 26 февраля – 1 марта 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-27-rpl19@spartak-calendar
+DTSTAMP:20260802T060000Z
+DTSTART;VALUE=DATE:20270305
+DTEND;VALUE=DATE:20270309
+SUMMARY:⏳ Акрон — Спартак — дата и время уточняются
+LOCATION:Место проведения уточняется
+DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 19-й тур. Выездной матч. Предварительное окно: 5–8 марта 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-27-rpl20@spartak-calendar
+DTSTAMP:20260802T060000Z
+DTSTART;VALUE=DATE:20270312
+DTEND;VALUE=DATE:20270316
+SUMMARY:⏳ Спартак — Ахмат — дата и время уточняются
+LOCATION:Место проведения уточняется
+DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 20-й тур. Домашний матч. Предварительное окно: 12–15 марта 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-27-rpl21@spartak-calendar
+DTSTAMP:20260802T060000Z
+DTSTART;VALUE=DATE:20270319
+DTEND;VALUE=DATE:20270322
+SUMMARY:⏳ Рубин — Спартак — дата и время уточняются
+LOCATION:Место проведения уточняется
+DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 21-й тур. Выездной матч. Предварительное окно: 19–21 марта 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-27-rpl22@spartak-calendar
+DTSTAMP:20260802T060000Z
+DTSTART;VALUE=DATE:20270402
+DTEND;VALUE=DATE:20270406
+SUMMARY:⏳ Спартак — Динамо Махачкала — дата и время уточняются
+LOCATION:Место проведения уточняется
+DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 22-й тур. Домашний матч. Предварительное окно: 2–5 апреля 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-27-rpl23@spartak-calendar
+DTSTAMP:20260802T060000Z
+DTSTART;VALUE=DATE:20270409
+DTEND;VALUE=DATE:20270413
+SUMMARY:⏳ Оренбург — Спартак — дата и время уточняются
+LOCATION:Место проведения уточняется
+DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 23-й тур. Выездной матч. Предварительное окно: 9–12 апреля 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-27-rpl24@spartak-calendar
+DTSTAMP:20260802T060000Z
+DTSTART;VALUE=DATE:20270416
+DTEND;VALUE=DATE:20270420
+SUMMARY:⏳ Спартак — ЦСКА — дата и время уточняются
+LOCATION:Место проведения уточняется
+DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 24-й тур. Домашний матч. Предварительное окно: 16–19 апреля 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-27-rpl25@spartak-calendar
+DTSTAMP:20260802T060000Z
+DTSTART;VALUE=DATE:20270423
+DTEND;VALUE=DATE:20270427
+SUMMARY:⏳ Родина — Спартак — дата и время уточняются
+LOCATION:Место проведения уточняется
+DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 25-й тур. Выездной матч. Предварительное окно: 23–26 апреля 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-27-rpl26@spartak-calendar
+DTSTAMP:20260802T060000Z
+DTSTART;VALUE=DATE:20270430
+DTEND;VALUE=DATE:20270504
+SUMMARY:⏳ Спартак — Балтика — дата и время уточняются
+LOCATION:Место проведения уточняется
+DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 26-й тур. Домашний матч. Предварительное окно: 30 апреля – 3 мая 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-27-rpl27@spartak-calendar
+DTSTAMP:20260802T060000Z
+DTSTART;VALUE=DATE:20270507
+DTEND;VALUE=DATE:20270511
+SUMMARY:⏳ Спартак — Локомотив — дата и время уточняются
+LOCATION:Место проведения уточняется
+DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 27-й тур. Домашний матч. Предварительное окно: 7–10 мая 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-27-rpl28@spartak-calendar
+DTSTAMP:20260802T060000Z
+DTSTART;VALUE=DATE:20270514
+DTEND;VALUE=DATE:20270518
+SUMMARY:⏳ Зенит — Спартак — дата и время уточняются
+LOCATION:Место проведения уточняется
+DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 28-й тур. Выездной матч. Предварительное окно: 14–17 мая 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-27-rpl29@spartak-calendar
+DTSTAMP:20260802T060000Z
+DTSTART;VALUE=DATE:20270521
+DTEND;VALUE=DATE:20270525
+SUMMARY:⏳ Спартак — Крылья Советов — дата и время уточняются
+LOCATION:Место проведения уточняется
+DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 29-й тур. Домашний матч. Предварительное окно: 21–24 мая 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-27-rpl30@spartak-calendar
+DTSTAMP:20260802T060000Z
+DTSTART;VALUE=DATE:20270529
+DTEND;VALUE=DATE:20270530
+SUMMARY:⏳ Ростов — Спартак — дата и время уточняются
+LOCATION:Место проведения уточняется
+DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 30-й тур. Выездной матч. Предварительное окно: 29 мая 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+END:VEVENT
 END:VCALENDAR

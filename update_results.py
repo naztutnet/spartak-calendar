@@ -1,289 +1,302 @@
 #!/usr/bin/env python3
-"""Synchronize the Spartak Moscow subscribed calendar with current fixtures/results.
+"""Update Spartak Moscow fixtures and results in the subscribed ICS calendar.
 
-Data source: Sofascore's public JSON endpoints. Calendar changes are conservative:
-- completed results are applied immediately;
-- schedule/status changes must be observed identically twice in a row;
+Sources:
+- Championat tournament calendars for structured RPL/Cup fixtures and scores.
+- RFS Cup pages as an official confirmation layer for Cup results.
+
+Safety:
+- future schedule changes need two identical observations;
+- finished Cup results confirmed by RFS may be applied immediately;
 - existing UIDs are preserved;
-- the resulting ICS is validated before it is written.
+- the generated ICS is validated before writing.
 """
 from __future__ import annotations
 
 import hashlib
+import html
 import json
 import re
 import sys
 import time
-import urllib.parse
 import urllib.request
-import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta, timezone
+from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo
 
 ICS_PATH = Path("spartak-moscow.ics")
 STATE_PATH = Path(".github/calendar-state.json")
-TEAM_ID = 2323
+MOSCOW = ZoneInfo("Europe/Moscow")
 SEASON_START = date(2026, 7, 1)
 SEASON_END = date(2027, 6, 30)
-MOSCOW = ZoneInfo("Europe/Moscow")
-USER_AGENT = "naztutnet-spartak-calendar/2.0 (+https://github.com/naztutnet/spartak-calendar)"
-API_ROOTS = (
-    "https://api.sofascore.com/api/v1",
-    "https://www.sofascore.com/api/v1",
+
+RPL_URLS = (
+    "https://www.championat.com/football/_russiapl/tournament/7096/calendar/",
+    "https://www.championat.ru/football/_russiapl/tournament/7096/calendar/",
+)
+CUP_URLS = (
+    "https://www.championat.com/football/_russiacup/tournament/7094/calendar/",
+    "https://www.championat.ru/football/_russiacup/tournament/7094/calendar/",
+)
+RFS_CUP_PAST_URL = (
+    "https://www.rfs.ru/cup/tournament/matches?"
+    "TournamentMatchesFilter%5Bdate%5D=before"
+)
+USER_AGENT = (
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/126.0 Safari/537.36"
 )
 
-DISPLAY_NAMES = {
-    "spartak": "Спартак",
-    "orenburg": "Оренбург",
-    "rubin": "Рубин",
-    "krasnodar": "Краснодар",
-    "zenit": "Зенит",
-    "akhmat": "Ахмат",
-    "rodina": "Родина",
-    "baltika": "Балтика",
-    "dynamo": "Динамо",
-    "dynamo_makhachkala": "Динамо Махачкала",
-    "lokomotiv": "Локомотив",
-    "cska": "ЦСКА",
-    "rostov": "Ростов",
-    "akron": "Акрон",
-    "krylya": "Крылья Советов",
-    "fakel": "Факел",
+TEAM_NAMES = (
+    "Крылья Советов", "Динамо Махачкала", "Локомотив М", "Спартак М",
+    "Динамо Мх", "Динамо М", "Краснодар", "Оренбург", "Балтика",
+    "Родина", "Зенит", "Рубин", "Ростов", "Факел", "Ахмат", "Акрон", "ЦСКА",
+)
+TEAM_PATTERN = "|".join(re.escape(name) for name in sorted(TEAM_NAMES, key=len, reverse=True))
+
+CANONICAL = {
+    "Спартак М": "spartak", "Спартак": "spartak", "Оренбург": "orenburg",
+    "Рубин": "rubin", "Краснодар": "krasnodar", "Зенит": "zenit",
+    "Ахмат": "akhmat", "Родина": "rodina", "Балтика": "baltika",
+    "Динамо М": "dynamo", "Динамо": "dynamo", "Динамо Мх": "dynamo_makhachkala",
+    "Динамо Махачкала": "dynamo_makhachkala", "Локомотив М": "lokomotiv",
+    "Локомотив": "lokomotiv", "ЦСКА": "cska", "Ростов": "rostov",
+    "Акрон": "akron", "Крылья Советов": "krylya", "Факел": "fakel",
+}
+DISPLAY = {
+    "spartak": "Спартак", "orenburg": "Оренбург", "rubin": "Рубин",
+    "krasnodar": "Краснодар", "zenit": "Зенит", "akhmat": "Ахмат",
+    "rodina": "Родина", "baltika": "Балтика", "dynamo": "Динамо",
+    "dynamo_makhachkala": "Динамо Махачкала", "lokomotiv": "Локомотив",
+    "cska": "ЦСКА", "rostov": "Ростов", "akron": "Акрон",
+    "krylya": "Крылья Советов", "fakel": "Факел",
+}
+ALIASES = {
+    "spartak": ("спартак", "спартакм", "спартакмосква"),
+    "orenburg": ("оренбург",), "rubin": ("рубин",),
+    "krasnodar": ("краснодар",), "zenit": ("зенит",), "akhmat": ("ахмат",),
+    "rodina": ("родина",), "baltika": ("балтика",),
+    "dynamo_makhachkala": ("динамомх", "динамомахачкала"),
+    "dynamo": ("динамом", "динамомосква", "динамо"),
+    "lokomotiv": ("локомотив", "локомотивм"), "cska": ("цска",),
+    "rostov": ("ростов",), "akron": ("акрон",),
+    "krylya": ("крыльясоветов",), "fakel": ("факел",),
+}
+MONTHS = {
+    "января": 1, "февраля": 2, "марта": 3, "апреля": 4, "мая": 5,
+    "июня": 6, "июля": 7, "августа": 8, "сентября": 9, "октября": 10,
+    "ноября": 11, "декабря": 12,
 }
 
-ALIAS_GROUPS = {
-    "spartak": ("spartak", "spartak moscow", "fc spartak moscow", "спартак", "спартак москва"),
-    "orenburg": ("orenburg", "fc orenburg", "оренбург"),
-    "rubin": ("rubin", "rubin kazan", "рубин", "рубин казань"),
-    "krasnodar": ("krasnodar", "fc krasnodar", "краснодар"),
-    "zenit": ("zenit", "zenit st petersburg", "зенит", "зенит санкт петербург"),
-    "akhmat": ("akhmat", "akhmat grozny", "ахмат", "ахмат грозный"),
-    "rodina": ("rodina", "rodina moscow", "родина", "родина москва"),
-    "baltika": ("baltika", "baltika kaliningrad", "балтика", "балтика калининград"),
-    "dynamo_makhachkala": (
-        "dynamo makhachkala",
-        "dinamo makhachkala",
-        "динамо махачкала",
-    ),
-    "dynamo": ("dynamo moscow", "dinamo moscow", "динамо москва", "динамо"),
-    "lokomotiv": ("lokomotiv", "lokomotiv moscow", "локомотив", "локомотив москва"),
-    "cska": ("cska", "cska moscow", "цска", "цска москва"),
-    "rostov": ("rostov", "fc rostov", "ростов"),
-    "akron": ("akron", "akron tolyatti", "акрон", "акрон тольятти"),
-    "krylya": (
-        "krylya sovetov",
-        "krylya sovetov samara",
-        "крылья советов",
-        "крылья советов самара",
-    ),
-    "fakel": ("fakel", "fakel voronezh", "факел", "факел воронеж"),
-}
+
+class VisibleTextParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.parts: list[str] = []
+        self.skip_depth = 0
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag in {"script", "style", "noscript", "svg"}:
+            self.skip_depth += 1
+        elif tag in {"br", "p", "div", "tr", "td", "li", "h1", "h2", "h3", "h4"}:
+            self.parts.append(" ")
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag in {"script", "style", "noscript", "svg"} and self.skip_depth:
+            self.skip_depth -= 1
+        elif tag in {"p", "div", "tr", "td", "li", "h1", "h2", "h3", "h4"}:
+            self.parts.append(" ")
+
+    def handle_data(self, data: str) -> None:
+        if not self.skip_depth:
+            self.parts.append(data)
+
+    def text(self) -> str:
+        return re.sub(r"\s+", " ", html.unescape(" ".join(self.parts))).strip()
 
 
 def compact(value: str) -> str:
-    return re.sub(r"[^a-zа-я0-9]+", "", value.lower().replace("ё", "е"))
+    return re.sub(r"[^а-яa-z0-9]+", "", value.lower().replace("ё", "е"))
 
 
-ALIASES: dict[str, str] = {}
-for canonical, aliases in ALIAS_GROUPS.items():
-    for alias in aliases:
-        ALIASES[compact(alias)] = canonical
+def canonical_team(value: str) -> str:
+    if value in CANONICAL:
+        return CANONICAL[value]
+    key = compact(value)
+    candidates: list[tuple[int, str]] = []
+    for canonical, aliases in ALIASES.items():
+        for alias in aliases:
+            if alias and alias in key:
+                candidates.append((len(alias), canonical))
+    return max(candidates)[1] if candidates else key
 
 
-def canonical_team(name: str) -> str:
-    key = compact(name)
-    return ALIASES.get(key, key)
-
-
-def display_team(canonical: str, fallback: str) -> str:
-    return DISPLAY_NAMES.get(canonical, fallback)
-
-
-def http_json(path: str) -> dict[str, Any]:
+def fetch_text(urls: tuple[str, ...] | list[str] | str) -> tuple[str, str]:
+    if isinstance(urls, str):
+        urls = (urls,)
     errors: list[str] = []
-    for root in API_ROOTS:
-        url = root + path
+    for url in urls:
         for attempt in range(3):
             try:
-                request = urllib.request.Request(
-                    url,
-                    headers={
-                        "User-Agent": USER_AGENT,
-                        "Accept": "application/json",
-                    },
-                )
-                with urllib.request.urlopen(request, timeout=30) as response:
-                    if response.status != 200:
-                        raise RuntimeError(f"HTTP {response.status}")
-                    return json.loads(response.read().decode("utf-8"))
+                request = urllib.request.Request(url, headers={
+                    "User-Agent": USER_AGENT,
+                    "Accept": "text/html,application/xhtml+xml",
+                    "Accept-Language": "ru-RU,ru;q=0.9,en;q=0.6",
+                    "Cache-Control": "no-cache",
+                })
+                with urllib.request.urlopen(request, timeout=35) as response:
+                    raw = response.read()
+                    encoding = response.headers.get_content_charset() or "utf-8"
+                    return raw.decode(encoding, errors="replace"), response.geturl()
             except Exception as exc:
                 errors.append(f"{url}: {exc}")
                 if attempt < 2:
-                    time.sleep(2**attempt)
-    raise RuntimeError("Не удалось получить данные матчей: " + " | ".join(errors[-4:]))
+                    time.sleep(2 ** attempt)
+    raise RuntimeError("Не удалось загрузить источник: " + " | ".join(errors[-4:]))
 
 
-def fetch_team_events() -> list[dict[str, Any]]:
-    events: dict[int, dict[str, Any]] = {}
-    for direction in ("last", "next"):
-        for page in range(4):
-            payload = http_json(f"/team/{TEAM_ID}/events/{direction}/{page}")
-            page_events = payload.get("events") or []
-            for event in page_events:
-                event_id = event.get("id")
-                if isinstance(event_id, int):
-                    events[event_id] = event
-            if not payload.get("hasNextPage") and len(page_events) < 30:
-                break
-    normalized = [normalize_source_event(event) for event in events.values()]
-    return sorted((event for event in normalized if event), key=lambda item: item["start_ts"])
+def visible_text(raw_html: str) -> str:
+    parser = VisibleTextParser()
+    parser.feed(raw_html)
+    return parser.text()
 
 
-def competition_code(event: dict[str, Any]) -> str | None:
-    tournament = event.get("tournament") or {}
-    unique = tournament.get("uniqueTournament") or {}
-    text = " ".join(
-        str(value)
-        for value in (
-            tournament.get("name"),
-            tournament.get("slug"),
-            unique.get("name"),
-            unique.get("slug"),
-        )
-        if value
-    ).lower()
-    if "friendly" in text or "товарищ" in text:
-        return None
-    if "super cup" in text or "supercup" in text or "суперкуб" in text:
-        return "supercup"
-    if "cup" in text or "кубок" in text:
-        return "cup"
-    if "premier league" in text or "рпл" in text:
-        return "rpl"
-    return None
-
-
-def normalize_source_event(event: dict[str, Any]) -> dict[str, Any] | None:
-    home = event.get("homeTeam") or {}
-    away = event.get("awayTeam") or {}
-    if TEAM_ID not in {home.get("id"), away.get("id")}:
-        return None
-    comp = competition_code(event)
-    if comp is None:
-        return None
-    start_ts = event.get("startTimestamp")
-    if not isinstance(start_ts, int):
-        return None
-    start = datetime.fromtimestamp(start_ts, timezone.utc).astimezone(MOSCOW)
-    if not (SEASON_START <= start.date() <= SEASON_END):
-        return None
-
-    home_key = canonical_team(str(home.get("name") or home.get("shortName") or ""))
-    away_key = canonical_team(str(away.get("name") or away.get("shortName") or ""))
-    if "spartak" not in {home_key, away_key}:
-        return None
-
-    status = str((event.get("status") or {}).get("type") or "scheduled").lower()
-    home_score = event.get("homeScore") or {}
-    away_score = event.get("awayScore") or {}
-    score_home = home_score.get("current")
-    score_away = away_score.get("current")
-    if not isinstance(score_home, (int, float)):
-        score_home = None
-    if not isinstance(score_away, (int, float)):
-        score_away = None
-
-    venue = event.get("venue") or {}
-    city = venue.get("city") or {}
-    round_info = event.get("roundInfo") or {}
-    custom_id = event.get("customId")
-    slug = event.get("slug")
-    source_url = (
-        f"https://www.sofascore.com/{slug}/{custom_id}#id:{event['id']}"
-        if slug and custom_id
-        else f"https://www.sofascore.com/event/{event['id']}"
+def parse_championat_calendar(urls: tuple[str, ...], competition: str) -> list[dict[str, Any]]:
+    raw, resolved_url = fetch_text(urls)
+    text = visible_text(raw)
+    if "Спартак М" not in text:
+        raise RuntimeError(f"Страница {resolved_url} не содержит календарь Спартака")
+    row_pattern = re.compile(
+        rf"Тур\s+(?P<round>\d+)\s+"
+        rf"(?P<date>\d{{2}}\.\d{{2}}\.\d{{4}})\s+"
+        rf"(?P<time>\d{{2}}:\d{{2}})\s+"
+        rf"(?P<home>{TEAM_PATTERN})\s+[–—-]\s+"
+        rf"(?P<away>{TEAM_PATTERN})\s+"
+        rf"(?P<home_score>\d+|[–—-])\s*:\s*"
+        rf"(?P<away_score>\d+|[–—-])"
+        rf"(?:\s+(?P<pen_home>\d+)\s*:\s*(?P<pen_away>\d+))?"
     )
+    events: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for match in row_pattern.finditer(text):
+        home_raw, away_raw = match.group("home"), match.group("away")
+        home_key, away_key = canonical_team(home_raw), canonical_team(away_raw)
+        if "spartak" not in {home_key, away_key}:
+            continue
+        start = datetime.strptime(
+            f'{match.group("date")} {match.group("time")}', "%d.%m.%Y %H:%M"
+        ).replace(tzinfo=MOSCOW)
+        if not (SEASON_START <= start.date() <= SEASON_END):
+            continue
+        score_home, score_away = match.group("home_score"), match.group("away_score")
+        finished = score_home.isdigit() and score_away.isdigit()
+        source_id = f"championat-{competition}-r{match.group('round')}-{home_key}-{away_key}"
+        if source_id in seen:
+            continue
+        seen.add(source_id)
+        events.append({
+            "id": source_id, "start": start, "home_key": home_key, "away_key": away_key,
+            "home_name": DISPLAY.get(home_key, home_raw.replace(" М", "")),
+            "away_name": DISPLAY.get(away_key, away_raw.replace(" М", "")),
+            "competition": competition, "round": int(match.group("round")),
+            "status": "finished" if finished else "scheduled",
+            "score_home": int(score_home) if finished else None,
+            "score_away": int(score_away) if finished else None,
+            "pen_home": int(match.group("pen_home")) if match.group("pen_home") else None,
+            "pen_away": int(match.group("pen_away")) if match.group("pen_away") else None,
+            "source_url": resolved_url, "official_confirmed": False,
+        })
+    if not events:
+        raise RuntimeError(f"Не удалось распознать матчи Спартака на {resolved_url}")
+    return events
 
-    return {
-        "id": int(event["id"]),
-        "start_ts": start_ts,
-        "start": start.isoformat(),
-        "home_key": home_key,
-        "away_key": away_key,
-        "home_name": display_team(home_key, str(home.get("shortName") or home.get("name") or "")),
-        "away_name": display_team(away_key, str(away.get("shortName") or away.get("name") or "")),
-        "competition": comp,
-        "status": status,
-        "score_home": int(score_home) if score_home is not None else None,
-        "score_away": int(score_away) if score_away is not None else None,
-        "pen_home": home_score.get("penalties"),
-        "pen_away": away_score.get("penalties"),
-        "round": round_info.get("round") or round_info.get("name"),
-        "venue": venue.get("stadium", {}).get("name")
-        if isinstance(venue.get("stadium"), dict)
-        else venue.get("name"),
-        "city": city.get("name") if isinstance(city, dict) else city,
-        "source_url": source_url,
-    }
+
+def parse_rfs_cup_results() -> set[tuple[date, str, str, int, int]]:
+    try:
+        raw, _ = fetch_text(RFS_CUP_PAST_URL)
+    except Exception as exc:
+        print(f"РФС недоступен, подтверждение результатов отложено: {exc}", file=sys.stderr)
+        return set()
+    parser = VisibleTextParser()
+    parser.feed(raw)
+    tokens = [
+        re.sub(r"\s+", " ", html.unescape(token)).strip()
+        for token in parser.parts
+        if re.sub(r"\s+", " ", html.unescape(token)).strip()
+    ]
+    exact_date: date | None = None
+    results: set[tuple[date, str, str, int, int]] = set()
+    date_re = re.compile(r"^(\d{1,2})\s+(" + "|".join(MONTHS) + r")\s+(2026|2027)$", re.I)
+    score_re = re.compile(r"^(\d+)\s*:\s*(\d+)(?:\s+\d+\s*:\s*\d+)?(?:\s*ТП)?$")
+    for index, token in enumerate(tokens):
+        date_match = date_re.match(token)
+        if date_match:
+            exact_date = date(int(date_match.group(3)), MONTHS[date_match.group(2).lower()], int(date_match.group(1)))
+            continue
+        score_match = score_re.match(token)
+        if not score_match or exact_date is None or index == 0 or index + 1 >= len(tokens):
+            continue
+        home_key, away_key = canonical_team(tokens[index - 1]), canonical_team(tokens[index + 1])
+        if "spartak" not in {home_key, away_key} or home_key not in DISPLAY or away_key not in DISPLAY:
+            continue
+        results.add((exact_date, home_key, away_key, int(score_match.group(1)), int(score_match.group(2))))
+    return results
+
+
+def mark_official_cup_results(events: list[dict[str, Any]], official: set[tuple[date, str, str, int, int]]) -> None:
+    for event in events:
+        if event["competition"] != "cup" or event["status"] != "finished":
+            continue
+        signature = (event["start"].date(), event["home_key"], event["away_key"], event["score_home"], event["score_away"])
+        event["official_confirmed"] = signature in official
+        if event["official_confirmed"]:
+            event["source_url"] = RFS_CUP_PAST_URL
 
 
 def event_fingerprint(event: dict[str, Any]) -> str:
-    relevant = {
-        key: event.get(key)
-        for key in (
-            "start_ts",
-            "home_key",
-            "away_key",
-            "competition",
-            "status",
-            "score_home",
-            "score_away",
-            "pen_home",
-            "pen_away",
-            "round",
-            "venue",
-            "city",
-        )
-    }
-    payload = json.dumps(relevant, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
-    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+    payload: dict[str, Any] = {}
+    for key in ("start", "home_key", "away_key", "competition", "round", "status", "score_home", "score_away", "pen_home", "pen_away"):
+        value = event.get(key)
+        payload[key] = value.isoformat() if isinstance(value, datetime) else value
+    encoded = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(encoded.encode("utf-8")).hexdigest()
 
 
 def load_state() -> dict[str, Any]:
     if not STATE_PATH.exists():
-        return {"version": 1, "events": {}}
+        return {"version": 2, "events": {}}
     try:
         state = json.loads(STATE_PATH.read_text(encoding="utf-8"))
     except Exception:
-        return {"version": 1, "events": {}}
+        return {"version": 2, "events": {}}
     if not isinstance(state, dict) or not isinstance(state.get("events"), dict):
-        return {"version": 1, "events": {}}
+        return {"version": 2, "events": {}}
     return state
 
 
-def update_state(state: dict[str, Any], events: list[dict[str, Any]]) -> tuple[dict[str, Any], set[int]]:
+def update_state(state: dict[str, Any], events: list[dict[str, Any]]) -> tuple[dict[str, Any], set[str]]:
     entries = state.setdefault("events", {})
-    stable: set[int] = set()
+    stable: set[str] = set()
+    active_ids = {event["id"] for event in events}
+    now = datetime.now(timezone.utc)
     for event in events:
-        key = str(event["id"])
-        fingerprint = event_fingerprint(event)
-        previous = entries.get(key) or {}
-        observations = (
-            min(int(previous.get("observations", 0)) + 1, 2)
-            if previous.get("fingerprint") == fingerprint
-            else 1
-        )
-        entries[key] = {
-            "fingerprint": fingerprint,
-            "observations": observations,
-        }
-        finished = event["status"] in {"finished", "afterpenalties", "afterextra"}
-        if finished or observations >= 2:
-            stable.add(event["id"])
-    state["version"] = 1
+        source_id, fingerprint = event["id"], event_fingerprint(event)
+        previous = entries.get(source_id) or {}
+        observations = min(int(previous.get("observations", 0)) + 1, 2) if previous.get("fingerprint") == fingerprint else 1
+        entries[source_id] = {"fingerprint": fingerprint, "observations": observations, "last_seen": now.isoformat(timespec="seconds")}
+        if event.get("official_confirmed") or observations >= 2:
+            stable.add(source_id)
+    for source_id in list(entries):
+        if source_id not in active_ids and entries[source_id].get("last_seen"):
+            try:
+                if now - datetime.fromisoformat(entries[source_id]["last_seen"]) > timedelta(days=60):
+                    del entries[source_id]
+            except Exception:
+                pass
+    state["version"] = 2
     return state, stable
 
 
@@ -295,16 +308,16 @@ class ExistingEvent:
     description: str
     location: str
     url: str
-    dtstart_raw: str
-    dtend_raw: str
+    dtstart_line: str
+    dtend_line: str
+    start_date: date | None
+    end_date: date | None
     sequence: int
     status: str
     transp: str
-    source_id: int | None
+    source_id: str | None
     opponent: str | None
     competition: str | None
-    start_date: date | None
-    end_date: date | None
 
 
 def property_value(block: str, name: str, default: str = "") -> str:
@@ -313,92 +326,56 @@ def property_value(block: str, name: str, default: str = "") -> str:
 
 
 def unescape_ics(value: str) -> str:
-    return (
-        value.replace("\\n", "\n")
-        .replace("\\,", ",")
-        .replace("\\;", ";")
-        .replace("\\\\", "\\")
-    )
+    return value.replace("\\n", "\n").replace("\\,", ",").replace("\\;", ";").replace("\\\\", "\\")
 
 
 def escape_ics(value: str) -> str:
-    return (
-        value.replace("\\", "\\\\")
-        .replace("\r\n", "\n")
-        .replace("\r", "\n")
-        .replace("\n", "\\n")
-        .replace(";", "\\;")
-        .replace(",", "\\,")
-    )
+    return value.replace("\\", "\\\\").replace("\r\n", "\n").replace("\r", "\n").replace("\n", "\\n").replace(";", "\\;").replace(",", "\\,")
 
 
-def parse_date_property(raw: str) -> date | None:
-    match = re.search(r"(\d{8})", raw)
-    if not match:
-        return None
-    return datetime.strptime(match.group(1), "%Y%m%d").date()
+def parse_date_line(line: str) -> date | None:
+    match = re.search(r"(\d{8})", line)
+    return datetime.strptime(match.group(1), "%Y%m%d").date() if match else None
 
 
-def detect_competition(text: str, uid: str = "") -> str | None:
-    lowered = (text + " " + uid).lower()
-    if "supercup" in lowered or "суперкуб" in lowered:
-        return "supercup"
-    if "cup" in lowered or "кубок" in lowered:
-        return "cup"
-    if "rpl" in lowered or "рпл" in lowered or "премьер" in lowered:
-        return "rpl"
+def detect_competition(text: str, uid: str) -> str | None:
+    lowered = f"{text} {uid}".lower()
+    if "supercup" in lowered or "суперкуб" in lowered: return "supercup"
+    if "cup" in lowered or "кубок" in lowered: return "cup"
+    if "rpl" in lowered or "рпл" in lowered or "премьер" in lowered: return "rpl"
     return None
 
 
 def detect_opponent(text: str) -> str | None:
-    normalized = compact(text)
+    key = compact(text)
     candidates: list[tuple[int, str]] = []
-    for alias, canonical in ALIASES.items():
-        if canonical == "spartak":
-            continue
-        if alias and alias in normalized:
-            candidates.append((len(alias), canonical))
-    if not candidates:
-        return None
-    return max(candidates)[1]
+    for canonical, aliases in ALIASES.items():
+        if canonical == "spartak": continue
+        for alias in aliases:
+            if alias in key: candidates.append((len(alias), canonical))
+    return max(candidates)[1] if candidates else None
 
 
 def parse_existing_events(calendar_text: str) -> list[ExistingEvent]:
-    output: list[ExistingEvent] = []
+    events: list[ExistingEvent] = []
     for match in re.finditer(r"BEGIN:VEVENT\n.*?\nEND:VEVENT", calendar_text, flags=re.S):
         block = match.group(0)
         uid = property_value(block, "UID")
         summary = unescape_ics(property_value(block, "SUMMARY"))
         description = unescape_ics(property_value(block, "DESCRIPTION"))
-        source_raw = property_value(block, "X-SOURCE-ID")
-        source_match = re.search(r"sofascore-(\d+)", source_raw)
-        dtstart_match = re.search(r"^DTSTART(?:;[^:]*)?:(.*)$", block, flags=re.M)
-        dtend_match = re.search(r"^DTEND(?:;[^:]*)?:(.*)$", block, flags=re.M)
-        dtstart_raw = dtstart_match.group(0) if dtstart_match else ""
-        dtend_raw = dtend_match.group(0) if dtend_match else ""
-        start_date = parse_date_property(dtstart_raw)
-        end_date = parse_date_property(dtend_raw)
-        output.append(
-            ExistingEvent(
-                block=block,
-                uid=uid,
-                summary=summary,
-                description=description,
-                location=unescape_ics(property_value(block, "LOCATION")),
-                url=property_value(block, "URL"),
-                dtstart_raw=dtstart_raw,
-                dtend_raw=dtend_raw,
-                sequence=int(property_value(block, "SEQUENCE", "0") or 0),
-                status=property_value(block, "STATUS", "CONFIRMED"),
-                transp=property_value(block, "TRANSP", "OPAQUE"),
-                source_id=int(source_match.group(1)) if source_match else None,
-                opponent=detect_opponent(summary),
-                competition=detect_competition(summary + " " + description, uid),
-                start_date=start_date,
-                end_date=end_date,
-            )
-        )
-    return output
+        dtstart = re.search(r"^DTSTART(?:;[^:]*)?:.*$", block, flags=re.M)
+        dtend = re.search(r"^DTEND(?:;[^:]*)?:.*$", block, flags=re.M)
+        source_id = property_value(block, "X-SOURCE-ID") or None
+        events.append(ExistingEvent(
+            block=block, uid=uid, summary=summary, description=description,
+            location=unescape_ics(property_value(block, "LOCATION")), url=property_value(block, "URL"),
+            dtstart_line=dtstart.group(0) if dtstart else "", dtend_line=dtend.group(0) if dtend else "",
+            start_date=parse_date_line(dtstart.group(0) if dtstart else ""), end_date=parse_date_line(dtend.group(0) if dtend else ""),
+            sequence=int(property_value(block, "SEQUENCE", "0") or 0), status=property_value(block, "STATUS", "CONFIRMED"),
+            transp=property_value(block, "TRANSP", "OPAQUE"), source_id=source_id,
+            opponent=detect_opponent(summary), competition=detect_competition(summary + " " + description, uid),
+        ))
+    return events
 
 
 def source_opponent(event: dict[str, Any]) -> str:
@@ -407,368 +384,167 @@ def source_opponent(event: dict[str, Any]) -> str:
 
 def match_existing(source: dict[str, Any], existing: list[ExistingEvent], used: set[str]) -> ExistingEvent | None:
     for item in existing:
-        if item.uid in used:
-            continue
-        if item.source_id == source["id"]:
+        if item.uid not in used and item.source_id == source["id"]:
             return item
-
-    opponent = source_opponent(source)
-    source_date = datetime.fromtimestamp(source["start_ts"], timezone.utc).astimezone(MOSCOW).date()
+    opponent, source_date = source_opponent(source), source["start"].date()
     candidates: list[tuple[int, ExistingEvent]] = []
     for item in existing:
-        if item.uid in used:
+        if item.uid in used or item.opponent != opponent or item.competition != source["competition"] or not item.start_date:
             continue
-        if item.opponent != opponent or item.competition != source["competition"] or not item.start_date:
-            continue
-        if item.dtstart_raw.startswith("DTSTART;VALUE=DATE"):
+        if item.dtstart_line.startswith("DTSTART;VALUE=DATE"):
             end = item.end_date or item.start_date
             if item.start_date - timedelta(days=1) <= source_date <= end + timedelta(days=1):
                 candidates.append((0, item))
         else:
             distance = abs((item.start_date - source_date).days)
-            if distance <= 3:
-                candidates.append((distance, item))
+            if distance <= 5: candidates.append((distance, item))
     return min(candidates, key=lambda pair: pair[0])[1] if candidates else None
 
 
 def competition_label(code: str) -> str:
-    return {
-        "rpl": "РПЛ",
-        "cup": "Кубок России",
-        "supercup": "Суперкубок России",
-    }[code]
+    return {"rpl": "РПЛ", "cup": "Кубок России", "supercup": "Суперкубок России"}[code]
 
 
-def competition_full_name(code: str) -> str:
-    return {
-        "rpl": "Альфа-Банк Российская Премьер-Лига 2026/27",
-        "cup": "FONBET Кубок России 2026/27",
-        "supercup": "OLIMPBET Суперкубок России 2026",
-    }[code]
-
-
-def official_source(code: str) -> str:
-    return {
-        "rpl": "https://premierliga.ru/",
-        "cup": "https://www.rfs.ru/cup/tournament/matches",
-        "supercup": "https://www.rfs.ru/",
-    }[code]
+def competition_full(code: str) -> str:
+    return {"rpl": "Альфа-Банк Российская Премьер-Лига 2026/27", "cup": "FONBET Кубок России 2026/27", "supercup": "OLIMPBET Суперкубок России 2026"}[code]
 
 
 def duration_for(code: str) -> timedelta:
     return timedelta(minutes=135 if code == "rpl" else 150)
 
 
+def media_lines(description: str) -> list[str]:
+    output: list[str] = []
+    for label in ("Видеообзор", "Обзор", "Полный матч", "Полная запись"):
+        for match in re.finditer(rf"{label}:\s*(https?://\S+)", description):
+            line = f"{label}: {match.group(1).rstrip('.,;')}"
+            if line not in output: output.append(line)
+    return output
+
+
 def result_phrase(event: dict[str, Any]) -> str:
-    home = event["score_home"]
-    away = event["score_away"]
-    if home is None or away is None:
-        return ""
-    spartak_home = event["home_key"] == "spartak"
-    spartak_score = home if spartak_home else away
-    opponent_score = away if spartak_home else home
-    if spartak_score > opponent_score:
-        outcome = "победа Спартака"
-    elif spartak_score < opponent_score:
-        outcome = "поражение Спартака"
-    else:
-        outcome = "ничья"
+    home_score, away_score = event["score_home"], event["score_away"]
+    spartak_score = home_score if event["home_key"] == "spartak" else away_score
+    opponent_score = away_score if event["home_key"] == "spartak" else home_score
+    outcome = "победа Спартака" if spartak_score > opponent_score else "поражение Спартака" if spartak_score < opponent_score else "ничья"
     return f"Результат: {outcome} {spartak_score}:{opponent_score}."
 
 
-def existing_media_lines(description: str) -> list[str]:
-    found: list[str] = []
-    for label in ("Видеообзор", "Обзор", "Полный матч", "Полная запись"):
-        for match in re.finditer(rf"{label}:\s*(https?://\S+)", description):
-            url = match.group(1).rstrip(".,;")
-            line = f"{label}: {url}"
-            if line not in found:
-                found.append(line)
-    return found
-
-
-def strip_generated_sources(description: str) -> str:
-    cleaned = re.sub(
-        r"\s*Источник расписания/результата:\s*https?://\S+",
-        "",
-        description,
-    )
-    cleaned = re.sub(
-        r"\s*Официальный турнирный источник:\s*https?://\S+",
-        "",
-        cleaned,
-    )
-    return re.sub(r"\s+", " ", cleaned).strip()
-
-
-def find_matchtv_media(event: dict[str, Any]) -> list[str]:
-    if event["status"] not in {"finished", "afterpenalties", "afterextra"}:
-        return []
-    home, away = event["home_name"], event["away_name"]
-    query = f'site:matchtv.ru/football "{home}" "{away}"'
-    url = "https://www.bing.com/search?format=rss&q=" + urllib.parse.quote(query)
-    try:
-        request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-        with urllib.request.urlopen(request, timeout=15) as response:
-            root = ET.fromstring(response.read())
-    except Exception as exc:
-        print(f"Поиск видео пропущен: {exc}", file=sys.stderr)
-        return []
-
-    review = None
-    full = None
-    for item in root.findall(".//item"):
-        title = (item.findtext("title") or "").lower()
-        link = item.findtext("link") or ""
-        host = urllib.parse.urlparse(link).hostname or ""
-        if host not in {"matchtv.ru", "www.matchtv.ru"}:
-            continue
-        if not review and "_clip_" in link and ("гол" in title or "момент" in title or "обзор" in title):
-            review = link
-        if not full and ("_translation_" in link or "полный матч" in title or "полная трансляция" in title):
-            full = link
-    lines = []
-    if review:
-        lines.append("Видеообзор: " + review)
-    if full:
-        lines.append("Полный матч: " + full)
-    return lines
-
-
-def desired_fields(source: dict[str, Any], old: ExistingEvent | None) -> dict[str, Any]:
-    start = datetime.fromtimestamp(source["start_ts"], timezone.utc).astimezone(MOSCOW)
-    end = start + duration_for(source["competition"])
-    finished = source["status"] in {"finished", "afterpenalties", "afterextra"}
-    score_known = source["score_home"] is not None and source["score_away"] is not None
-
-    if finished and score_known:
-        summary = (
-            f'{source["home_name"]} {source["score_home"]}:{source["score_away"]} '
-            f'{source["away_name"]} ({competition_label(source["competition"])})'
-        )
-        if source.get("pen_home") is not None and source.get("pen_away") is not None:
-            summary += f' ({source["pen_home"]}:{source["pen_away"]} пен.)'
+def desired_fields(event: dict[str, Any], old: ExistingEvent | None) -> dict[str, Any]:
+    start, finished = event["start"], event["status"] == "finished"
+    end = start + duration_for(event["competition"])
+    if finished:
+        summary = f'{event["home_name"]} {event["score_home"]}:{event["score_away"]} {event["away_name"]} ({competition_label(event["competition"])})'
+        if event["pen_home"] is not None and event["pen_away"] is not None:
+            summary += f' ({event["pen_home"]}:{event["pen_away"]} пен.)'
     else:
-        prefix = "⏳ " if source["status"] in {"postponed", "canceled", "cancelled"} else ""
-        summary = (
-            f'{prefix}{source["home_name"]} — {source["away_name"]} '
-            f'({competition_label(source["competition"])})'
-        )
-
-    relation = "Домашний матч." if source["home_key"] == "spartak" else "Выездной матч."
-    media = existing_media_lines(old.description) if old else []
-
-    if old:
-        description = strip_generated_sources(old.description)
-        description = description.replace(" Время московское.", "").replace("Время московское.", "")
-        description = re.sub(r"\s+", " ", description).strip()
-    else:
-        description_parts = [competition_full_name(source["competition"]) + "."]
-        if source.get("round"):
-            description_parts.append(f'Тур/этап: {source["round"]}.')
-        description_parts.append(relation)
-        description = " ".join(description_parts)
-
-    if finished and score_known:
-        result = result_phrase(source)
-        if re.search(r"Результат:[^.]*\.", description):
-            description = re.sub(r"Результат:[^.]*\.", result, description, count=1)
-        elif result not in description:
-            description = (description + " " + result).strip()
-    elif "Время московское." not in description:
-        description = (description + " Время московское.").strip()
-
-    if finished and not media:
-        media = find_matchtv_media(source)
-    for line in media:
-        if line not in description:
-            description = (description + " " + line).strip()
-
-    source_line = f'Источник расписания/результата: {source["source_url"]}'
-    official_line = f'Официальный турнирный источник: {official_source(source["competition"])}'
-    description = f"{description} {source_line} {official_line}".strip()
-
-    venue_parts = [part for part in (source.get("venue"), source.get("city")) if part]
-    source_location = ", ".join(dict.fromkeys(venue_parts))
-    if old and old.location and "уточняется" not in old.location.lower():
-        location = old.location
-    else:
-        location = source_location or (old.location if old else "") or "Место проведения уточняется"
-
-    media_url = ""
-    for line in media:
-        match = re.search(r"https?://\S+", line)
-        if match:
-            media_url = match.group(0).rstrip(".,;")
-            break
-    if old and old.url:
-        url = old.url
-    else:
-        url = media_url or source["source_url"]
-
-    status = "TENTATIVE" if source["status"] in {"postponed", "canceled", "cancelled"} else "CONFIRMED"
-    alarms = not finished and status == "CONFIRMED" and start > datetime.now(MOSCOW)
+        summary = f'{event["home_name"]} — {event["away_name"]} ({competition_label(event["competition"])})'
+    relation = "Домашний матч." if event["home_key"] == "spartak" else "Выездной матч."
+    base = f'{competition_full(event["competition"])}, {event["round"]}-й тур. {relation}'
+    base += " " + result_phrase(event) if finished else " Время московское."
+    existing_media = media_lines(old.description) if old else []
+    for line in existing_media: base += " " + line
+    base += f' Источник: {event["source_url"]}'
+    if old and old.location and "уточняется" not in old.location.lower(): location = old.location
+    elif event["home_key"] == "spartak": location = "Лукойл Арена, Волоколамское шоссе, 69, Москва"
+    else: location = old.location if old and old.location else "Место проведения уточняется"
+    url = old.url if old and old.url else event["source_url"]
+    if finished and existing_media:
+        media_match = re.search(r"https?://\S+", existing_media[0])
+        if media_match: url = media_match.group(0).rstrip(".,;")
     return {
-        "summary": summary,
-        "description": description,
-        "location": location,
-        "url": url,
+        "summary": summary, "description": base, "location": location, "url": url,
         "dtstart": f"DTSTART;TZID=Europe/Moscow:{start.strftime('%Y%m%dT%H%M%S')}",
         "dtend": f"DTEND;TZID=Europe/Moscow:{end.strftime('%Y%m%dT%H%M%S')}",
-        "status": status,
-        "transp": "TRANSPARENT" if finished else "OPAQUE",
-        "alarms": alarms,
-        "source_id": source["id"],
+        "status": "CONFIRMED", "transp": "TRANSPARENT" if finished else "OPAQUE",
+        "alarms": not finished and start > datetime.now(MOSCOW), "source_id": event["id"],
     }
 
 
-def semantic_signature_from_existing(item: ExistingEvent) -> dict[str, Any]:
-    return {
-        "summary": item.summary,
-        "description": item.description,
-        "location": item.location,
-        "url": item.url,
-        "dtstart": item.dtstart_raw,
-        "dtend": item.dtend_raw,
-        "status": item.status,
-        "transp": item.transp,
-        "alarms": "BEGIN:VALARM" in item.block,
-        "source_id": item.source_id,
-    }
+def existing_signature(item: ExistingEvent) -> dict[str, Any]:
+    return {"summary": item.summary, "description": item.description, "location": item.location, "url": item.url,
+            "dtstart": item.dtstart_line, "dtend": item.dtend_line, "status": item.status, "transp": item.transp,
+            "alarms": "BEGIN:VALARM" in item.block, "source_id": item.source_id}
 
 
 def render_event(uid: str, sequence: int, fields: dict[str, Any], stamp: str) -> str:
-    lines = [
-        "BEGIN:VEVENT",
-        f"UID:{uid}",
-        f"DTSTAMP:{stamp}",
-        f"SEQUENCE:{sequence}",
-        f"LAST-MODIFIED:{stamp}",
-        fields["dtstart"],
-        fields["dtend"],
-        "SUMMARY:" + escape_ics(fields["summary"]),
-        "LOCATION:" + escape_ics(fields["location"]),
-        "DESCRIPTION:" + escape_ics(fields["description"]),
-        "URL:" + fields["url"],
-        f'X-SOURCE-ID:sofascore-{fields["source_id"]}',
-        "STATUS:" + fields["status"],
-        "TRANSP:" + fields["transp"],
-    ]
+    lines = ["BEGIN:VEVENT", f"UID:{uid}", f"DTSTAMP:{stamp}", f"SEQUENCE:{sequence}", f"LAST-MODIFIED:{stamp}",
+             fields["dtstart"], fields["dtend"], "SUMMARY:" + escape_ics(fields["summary"]),
+             "LOCATION:" + escape_ics(fields["location"]), "DESCRIPTION:" + escape_ics(fields["description"]),
+             "URL:" + fields["url"], "X-SOURCE-ID:" + fields["source_id"], "STATUS:" + fields["status"],
+             "TRANSP:" + fields["transp"]]
     if fields["alarms"]:
-        lines.extend(
-            [
-                "BEGIN:VALARM",
-                "TRIGGER:-PT1H",
-                "ACTION:DISPLAY",
-                "DESCRIPTION:Матч Спартака начнётся через 1 час",
-                "END:VALARM",
-                "BEGIN:VALARM",
-                "TRIGGER:-PT5M",
-                "ACTION:DISPLAY",
-                "DESCRIPTION:Матч Спартака начнётся через 5 минут",
-                "END:VALARM",
-            ]
-        )
+        lines.extend(["BEGIN:VALARM", "TRIGGER:-PT1H", "ACTION:DISPLAY", "DESCRIPTION:Матч Спартака начнётся через 1 час", "END:VALARM",
+                      "BEGIN:VALARM", "TRIGGER:-PT5M", "ACTION:DISPLAY", "DESCRIPTION:Матч Спартака начнётся через 5 минут", "END:VALARM"])
     lines.append("END:VEVENT")
     return "\n".join(lines)
 
 
-def generate_uid(source: dict[str, Any]) -> str:
-    start = datetime.fromtimestamp(source["start_ts"], timezone.utc).astimezone(MOSCOW)
-    opponent = source_opponent(source).replace("_", "-")
-    return f'{start.strftime("%Y%m%d")}-spartak-{opponent}-{source["competition"]}@spartak-calendar'
+def new_uid(event: dict[str, Any]) -> str:
+    return f'{event["start"].strftime("%Y%m%d")}-spartak-{source_opponent(event).replace("_", "-")}-{event["competition"]}@spartak-calendar'
 
 
-def apply_events(
-    original: str,
-    existing: list[ExistingEvent],
-    source_events: list[dict[str, Any]],
-    stable_ids: set[int],
-) -> tuple[str, int]:
-    replacements: dict[str, str] = {}
-    additions: list[str] = []
+def apply_events(original: str, existing: list[ExistingEvent], events: list[dict[str, Any]], stable_ids: set[str]) -> tuple[str, int]:
     used: set[str] = set()
-    changed_count = 0
+    replacements: list[tuple[str, str]] = []
+    additions: list[str] = []
+    changed = 0
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-
-    for source in source_events:
-        if source["id"] not in stable_ids:
-            continue
-        old = match_existing(source, existing, used)
-        if old:
-            used.add(old.uid)
-        fields = desired_fields(source, old)
-        if old and semantic_signature_from_existing(old) == fields:
-            continue
-
-        uid = old.uid if old else generate_uid(source)
-        sequence = (old.sequence + 1) if old else 0
-        rendered = render_event(uid, sequence, fields, stamp)
-        if old:
-            replacements[old.block] = rendered
-        else:
-            additions.append(rendered)
-        changed_count += 1
-
+    for event in sorted(events, key=lambda item: item["start"]):
+        if event["id"] not in stable_ids: continue
+        old = match_existing(event, existing, used)
+        if old: used.add(old.uid)
+        fields = desired_fields(event, old)
+        if old and existing_signature(old) == fields: continue
+        block = render_event(old.uid if old else new_uid(event), old.sequence + 1 if old else 0, fields, stamp)
+        replacements.append((old.block, block)) if old else additions.append(block)
+        changed += 1
     updated = original
-    for old_block, new_block in replacements.items():
-        updated = updated.replace(old_block, new_block, 1)
-    if additions:
-        insertion = "\n".join(additions) + "\n"
-        updated = updated.replace("END:VCALENDAR", insertion + "END:VCALENDAR")
-    return updated, changed_count
+    for old_block, new_block in replacements: updated = updated.replace(old_block, new_block, 1)
+    if additions: updated = updated.replace("END:VCALENDAR", "\n".join(additions) + "\nEND:VCALENDAR")
+    return updated, changed
 
 
 def validate_calendar(text: str) -> None:
     if not text.startswith("BEGIN:VCALENDAR") or not text.rstrip().endswith("END:VCALENDAR"):
         raise ValueError("Некорректные границы VCALENDAR")
     if text.count("BEGIN:VEVENT") != text.count("END:VEVENT"):
-        raise ValueError("Несовпадающее количество BEGIN:VEVENT и END:VEVENT")
+        raise ValueError("Количество BEGIN:VEVENT и END:VEVENT не совпадает")
     events = parse_existing_events(text)
-    uids = [event.uid for event in events]
-    if any(not uid for uid in uids):
-        raise ValueError("Найдено событие без UID")
+    uids = [item.uid for item in events]
+    if any(not uid for uid in uids): raise ValueError("Найдено событие без UID")
     duplicates = sorted({uid for uid in uids if uids.count(uid) > 1})
-    if duplicates:
-        raise ValueError("Дублирующиеся UID: " + ", ".join(duplicates))
-    source_ids = [event.source_id for event in events if event.source_id is not None]
+    if duplicates: raise ValueError("Дублирующиеся UID: " + ", ".join(duplicates))
+    source_ids = [item.source_id for item in events if item.source_id]
     duplicate_sources = sorted({sid for sid in source_ids if source_ids.count(sid) > 1})
-    if duplicate_sources:
-        raise ValueError("Дублирующиеся X-SOURCE-ID: " + ", ".join(map(str, duplicate_sources)))
-    for event in events:
-        if not event.summary or not event.dtstart_raw:
-            raise ValueError(f"Событие {event.uid} не содержит SUMMARY или DTSTART")
+    if duplicate_sources: raise ValueError("Дублирующиеся X-SOURCE-ID: " + ", ".join(duplicate_sources))
+    for item in events:
+        if not item.summary or not item.dtstart_line: raise ValueError(f"Событие {item.uid} без SUMMARY или DTSTART")
 
 
 def main() -> int:
-    if not ICS_PATH.exists():
-        raise FileNotFoundError(f"Не найден {ICS_PATH}")
-    source_events = fetch_team_events()
-    if not source_events:
-        raise RuntimeError("Источник вернул пустой список матчей Спартака")
-
-    state_before = load_state()
-    state_after, stable_ids = update_state(state_before, source_events)
-
+    if not ICS_PATH.exists(): raise FileNotFoundError(f"Не найден {ICS_PATH}")
+    rpl = parse_championat_calendar(RPL_URLS, "rpl")
+    cup = parse_championat_calendar(CUP_URLS, "cup")
+    official_cup = parse_rfs_cup_results()
+    mark_official_cup_results(cup, official_cup)
+    events = rpl + cup
+    if len(rpl) < 20: raise RuntimeError(f"Слишком мало матчей РПЛ: {len(rpl)}")
+    if len(cup) < 4: raise RuntimeError(f"Слишком мало матчей Кубка: {len(cup)}")
+    state, stable_ids = update_state(load_state(), events)
     original = ICS_PATH.read_text(encoding="utf-8").replace("\r\n", "\n")
-    existing = parse_existing_events(original)
-    updated, changed_count = apply_events(original, existing, source_events, stable_ids)
+    updated, changed = apply_events(original, parse_existing_events(original), events, stable_ids)
     validate_calendar(updated)
-
     STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
-    state_text = json.dumps(state_after, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
-    previous_state_text = STATE_PATH.read_text(encoding="utf-8") if STATE_PATH.exists() else ""
-    if state_text != previous_state_text:
-        STATE_PATH.write_text(state_text, encoding="utf-8")
-
-    if updated != original:
-        ICS_PATH.write_text(updated, encoding="utf-8")
-
-    staged = sum(1 for event in source_events if event["id"] not in stable_ids)
-    print(f"Получено матчей: {len(source_events)}")
-    print(f"Стабильных данных: {len(stable_ids)}")
-    print(f"Ожидают второй проверки: {staged}")
-    print(f"Обновлено событий календаря: {changed_count}")
+    state_text = json.dumps(state, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+    previous_state = STATE_PATH.read_text(encoding="utf-8") if STATE_PATH.exists() else ""
+    if state_text != previous_state: STATE_PATH.write_text(state_text, encoding="utf-8")
+    if updated != original: ICS_PATH.write_text(updated, encoding="utf-8")
+    print(f"Матчей РПЛ: {len(rpl)}")
+    print(f"Матчей Кубка: {len(cup)}")
+    print(f"Результатов Кубка подтверждено РФС: {sum(1 for e in cup if e.get('official_confirmed'))}")
+    print(f"Ожидают второй одинаковой проверки: {len(events) - len(stable_ids)}")
+    print(f"Изменено событий календаря: {changed}")
     return 0
 
 

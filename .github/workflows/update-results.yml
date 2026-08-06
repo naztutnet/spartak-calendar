@@ -24,7 +24,7 @@ concurrency:
 jobs:
   update:
     name: Check fixtures and results
-    runs-on: ${{ github.event_name == 'pull_request' && 'windows-latest' || 'ubuntu-latest' }}
+    runs-on: ubuntu-slim
     timeout-minutes: 10
 
     steps:

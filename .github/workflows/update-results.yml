@@ -128,3 +128,5 @@ jobs:
                 body
               });
             }
+
+# Bootstrap push after installing the permanent workflow.

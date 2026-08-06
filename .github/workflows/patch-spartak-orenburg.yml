@@ -1,0 +1,63 @@
+name: Patch Spartak vs Orenburg result
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/patch-spartak-orenburg.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch-calendar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Update completed match and remove this workflow
+        shell: bash
+        run: |
+          python - <<'PY'
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          path = Path("spartak-moscow.ics")
+          text = path.read_text(encoding="utf-8")
+          uid = "UID:20260805-spartak-orenburg-cup@spartak-calendar"
+
+          uid_pos = text.index(uid)
+          event_start = text.rfind("BEGIN:VEVENT\n", 0, uid_pos)
+          event_end = text.index("END:VEVENT", uid_pos) + len("END:VEVENT")
+          stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+
+          replacement = f"""BEGIN:VEVENT
+          UID:20260805-spartak-orenburg-cup@spartak-calendar
+          DTSTAMP:{stamp}
+          SEQUENCE:1
+          LAST-MODIFIED:{stamp}
+          DTSTART;TZID=Europe/Moscow:20260805T183000
+          DTEND;TZID=Europe/Moscow:20260805T210000
+          SUMMARY:Спартак 5:1 Оренбург (Кубок России)
+          LOCATION:Лукойл Арена\\, Волоколамское шоссе\\, 69\\, Москва
+          DESCRIPTION:FONBET Кубок России 2026/27. Путь РПЛ\\, группа А\\, 1-й тур. Домашний матч. Результат: победа Спартака 5:1. Страница матча: https://www.championat.ru/football/_russiacup/tournament/7094/match/1330696/
+          URL:https://www.championat.ru/football/_russiacup/tournament/7094/match/1330696/
+          STATUS:CONFIRMED
+          TRANSP:TRANSPARENT
+          END:VEVENT"""
+          replacement = "\n".join(line.strip() for line in replacement.splitlines())
+
+          updated = text[:event_start] + replacement + text[event_end:]
+          path.write_text(updated, encoding="utf-8")
+          PY
+
+          rm -f .github/workflows/patch-spartak-orenburg.yml
+          git config user.name "spartak-calendar-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add spartak-moscow.ics .github/workflows/patch-spartak-orenburg.yml
+          git commit -m "Update Spartak 5-1 Orenburg result"
+          git push origin HEAD:main

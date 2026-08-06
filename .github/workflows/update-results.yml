@@ -19,12 +19,12 @@ permissions:
 
 concurrency:
   group: update-spartak-calendar-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   update:
     name: Check fixtures and results
-    runs-on: ubuntu-latest
+    runs-on: ${{ github.event_name == 'pull_request' && 'macos-latest' || 'ubuntu-latest' }}
     timeout-minutes: 10
 
     steps:

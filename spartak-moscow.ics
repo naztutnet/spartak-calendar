@@ -34,14 +34,14 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260725-spartak-rodina-rpl@spartak-calendar
-DTSTAMP:20260808T211000Z
-SEQUENCE:3
-LAST-MODIFIED:20260808T211000Z
+DTSTAMP:20260808T214945Z
+SEQUENCE:4
+LAST-MODIFIED:20260808T214945Z
 DTSTART;TZID=Europe/Moscow:20260725T204500
 DTEND;TZID=Europe/Moscow:20260725T230000
 SUMMARY:Спартак 3:0 Родина (РПЛ)
 LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
-DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 1-й тур. Домашний матч. Результат: победа Спартака 3:0. Голы Спартака: Маркиньос\, Кристофер Мартинс\, Данил Пруцев. Видеообзор: https://rutube.ru/video/a2bcdec1ca32680bd1c8adb2ed8bad3e/ Официальный протокол: https://premierliga.ru/matches/16242/
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 1-й тур. Домашний матч. Результат: победа Спартака 3:0. Видеообзор: https://rutube.ru/video/a2bcdec1ca32680bd1c8adb2ed8bad3e/ Источник: https://www.championat.com/football/_russiapl/tournament/7096/calendar/
 URL:https://rutube.ru/video/a2bcdec1ca32680bd1c8adb2ed8bad3e/
 X-SOURCE-ID:championat-rpl-r1-spartak-rodina
 STATUS:CONFIRMED
@@ -49,14 +49,14 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260802-akhmat-spartak-rpl@spartak-calendar
-DTSTAMP:20260808T211000Z
-SEQUENCE:3
-LAST-MODIFIED:20260808T211000Z
+DTSTAMP:20260808T214945Z
+SEQUENCE:4
+LAST-MODIFIED:20260808T214945Z
 DTSTART;TZID=Europe/Moscow:20260802T203000
 DTEND;TZID=Europe/Moscow:20260802T224500
 SUMMARY:Ахмат 1:2 Спартак (РПЛ)
 LOCATION:Ахмат Арена\, проспект имени Х.А. Исаева\, 100\, Грозный
-DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 2-й тур. Выездной матч. Результат: победа Спартака 2:1. Голы Спартака: Кристофер Ву (39')\, Эсекьель Барко (90+1'). Видеообзор: https://matchtv.ru/football/rpl/matchtvvideo_NI2349379_clip_Ahmat___Spartak_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol Официальный протокол: https://premierliga.ru/matches/16253/
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 2-й тур. Выездной матч. Результат: победа Спартака 2:1. Видеообзор: https://matchtv.ru/football/rpl/matchtvvideo_NI2349379_clip_Ahmat___Spartak_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol Источник: https://www.championat.com/football/_russiapl/tournament/7096/calendar/
 URL:https://matchtv.ru/football/rpl/matchtvvideo_NI2349379_clip_Ahmat___Spartak_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol
 X-SOURCE-ID:championat-rpl-r2-akhmat-spartak
 STATUS:CONFIRMED
@@ -64,14 +64,14 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260805-spartak-orenburg-cup@spartak-calendar
-DTSTAMP:20260808T211000Z
-SEQUENCE:3
-LAST-MODIFIED:20260808T211000Z
+DTSTAMP:20260808T214945Z
+SEQUENCE:4
+LAST-MODIFIED:20260808T214945Z
 DTSTART;TZID=Europe/Moscow:20260805T183000
 DTEND;TZID=Europe/Moscow:20260805T210000
 SUMMARY:Спартак 5:1 Оренбург (Кубок России)
 LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
-DESCRIPTION:FONBET Кубок России 2026/27\, Путь РПЛ\, группа А\, 1-й тур. Домашний матч. Результат: победа Спартака 5:1. Голы Спартака: Пабло Солари (26')\, Манфред Угальде (33' пен.\, 52')\, Наиль Умяров (79')\, Павел Полех (84'). Видеообзор: https://vksport.vkvideo.ru/video-202493653_456244491 Официальный протокол: https://www.rfs.ru/cup/tournament/match/57175?TournamentMatchesFilter%5BtournamentId%5D=260
+DESCRIPTION:FONBET Кубок России 2026/27\, 1-й тур. Домашний матч. Результат: победа Спартака 5:1. Видеообзор: https://vksport.vkvideo.ru/video-202493653_456244491 Источник: https://www.championat.com/football/_russiacup/tournament/7094/calendar/
 URL:https://vksport.vkvideo.ru/video-202493653_456244491
 X-SOURCE-ID:championat-cup-r1-spartak-orenburg
 STATUS:CONFIRMED

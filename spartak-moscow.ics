@@ -20,15 +20,15 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:20260718-zenit-spartak-supercup@spartak-calendar
-DTSTAMP:20260802T104000Z
-SEQUENCE:1
-LAST-MODIFIED:20260802T104000Z
+DTSTAMP:20260808T210307Z
+SEQUENCE:4
+LAST-MODIFIED:20260808T210307Z
 DTSTART;TZID=Europe/Moscow:20260718T193000
 DTEND;TZID=Europe/Moscow:20260718T220000
 SUMMARY:Зенит 1:1 Спартак (4:2 пен.) — Суперкубок России
 LOCATION:Совкомбанк Арена\, улица Бетанкура\, 1А\, Нижний Новгород
-DESCRIPTION:OLIMPBET Суперкубок России 2026. Финал. Выездной матч. Основное время — 1:1. Серия пенальти — 4:2. Гол Спартака: Кристофер Мартинс\, 25-я минута. Видеообзор: https://www.championat.com/football/article-6550316-zenit-spartak-1-1-po-penalti-3-1-obzor-matcha-video-goly-statistika-18-iyulya-2026-goda-superkubok-rossii.html
-URL:https://www.championat.com/football/article-6550316-zenit-spartak-1-1-po-penalti-3-1-obzor-matcha-video-goly-statistika-18-iyulya-2026-goda-superkubok-rossii.html
+DESCRIPTION:FONBET Кубок России 2026/27\, Путь РПЛ\, группа А\, 1-й тур. Домашний матч. Результат: победа Спартака 5:1. Голы Спартака: Пабло Солари (26')\, Манфред Угальде (33' пен.\, 52')\, Наиль Умяров (79')\, Павел Полех (84'). Видеообзор: https://vksport.vkvideo.ru/video-202493653_456244491 Официальный протокол: https://www.rfs.ru/cup/tournament/match/57175?TournamentMatchesFilter%5BtournamentId%5D=260
+URL:https://vksport.vkvideo.ru/video-202493653_456244491
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT

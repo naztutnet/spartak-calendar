@@ -422,6 +422,22 @@ def media_lines(description: str) -> list[str]:
     return output
 
 
+
+def preserved_detail_lines(description: str) -> list[str]:
+    """Keep verified match metadata that schedule sources do not provide."""
+    output: list[str] = []
+    patterns = (
+        r"Голы Спартака:\s*.*?(?=\s+(?:Видеообзор|Обзор|Полный матч|Полная запись|Официальный протокол|Источник):|$)",
+        r"Официальный протокол:\s*https?://\S+",
+    )
+    for pattern in patterns:
+        match = re.search(pattern, description)
+        if match:
+            line = match.group(0).rstrip(".,;")
+            if line not in output:
+                output.append(line)
+    return output
+
 def result_phrase(event: dict[str, Any]) -> str:
     home_score, away_score = event["score_home"], event["score_away"]
     spartak_score = home_score if event["home_key"] == "spartak" else away_score
@@ -442,7 +458,9 @@ def desired_fields(event: dict[str, Any], old: ExistingEvent | None) -> dict[str
     relation = "Домашний матч." if event["home_key"] == "spartak" else "Выездной матч."
     base = f'{competition_full(event["competition"])}, {event["round"]}-й тур. {relation}'
     base += " " + result_phrase(event) if finished else " Время московское."
+    existing_details = preserved_detail_lines(old.description) if old else []
     existing_media = media_lines(old.description) if old else []
+    for line in existing_details: base += " " + line
     for line in existing_media: base += " " + line
     base += f' Источник: {event["source_url"]}'
     if old and old.location and "уточняется" not in old.location.lower(): location = old.location

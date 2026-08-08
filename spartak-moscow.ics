@@ -20,28 +20,28 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:20260718-zenit-spartak-supercup@spartak-calendar
-DTSTAMP:20260808T210307Z
-SEQUENCE:4
-LAST-MODIFIED:20260808T210307Z
+DTSTAMP:20260808T211000Z
+SEQUENCE:5
+LAST-MODIFIED:20260808T211000Z
 DTSTART;TZID=Europe/Moscow:20260718T193000
 DTEND;TZID=Europe/Moscow:20260718T220000
 SUMMARY:Зенит 1:1 Спартак (4:2 пен.) — Суперкубок России
 LOCATION:Совкомбанк Арена\, улица Бетанкура\, 1А\, Нижний Новгород
-DESCRIPTION:FONBET Кубок России 2026/27\, Путь РПЛ\, группа А\, 1-й тур. Домашний матч. Результат: победа Спартака 5:1. Голы Спартака: Пабло Солари (26')\, Манфред Угальде (33' пен.\, 52')\, Наиль Умяров (79')\, Павел Полех (84'). Видеообзор: https://vksport.vkvideo.ru/video-202493653_456244491 Официальный протокол: https://www.rfs.ru/cup/tournament/match/57175?TournamentMatchesFilter%5BtournamentId%5D=260
-URL:https://vksport.vkvideo.ru/video-202493653_456244491
+DESCRIPTION:OLIMPBET Суперкубок России 2026. Финал. Выездной матч. Основное время — 1:1. Серия пенальти — 4:2. Гол Спартака: Кристофер Мартинс\, 25-я минута. Видеообзор: https://www.championat.com/football/article-6550316-zenit-spartak-1-1-po-penalti-3-1-obzor-matcha-video-goly-statistika-18-iyulya-2026-goda-superkubok-rossii.html
+URL:https://www.championat.com/football/article-6550316-zenit-spartak-1-1-po-penalti-3-1-obzor-matcha-video-goly-statistika-18-iyulya-2026-goda-superkubok-rossii.html
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260725-spartak-rodina-rpl@spartak-calendar
-DTSTAMP:20260807T061631Z
-SEQUENCE:2
-LAST-MODIFIED:20260807T061631Z
+DTSTAMP:20260808T211000Z
+SEQUENCE:3
+LAST-MODIFIED:20260808T211000Z
 DTSTART;TZID=Europe/Moscow:20260725T204500
 DTEND;TZID=Europe/Moscow:20260725T230000
 SUMMARY:Спартак 3:0 Родина (РПЛ)
 LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
-DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 1-й тур. Домашний матч. Результат: победа Спартака 3:0. Видеообзор: https://rutube.ru/video/a2bcdec1ca32680bd1c8adb2ed8bad3e/ Источник: https://www.championat.com/football/_russiapl/tournament/7096/calendar/
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 1-й тур. Домашний матч. Результат: победа Спартака 3:0. Голы Спартака: Маркиньос\, Кристофер Мартинс\, Данил Пруцев. Видеообзор: https://rutube.ru/video/a2bcdec1ca32680bd1c8adb2ed8bad3e/ Официальный протокол: https://premierliga.ru/matches/16242/
 URL:https://rutube.ru/video/a2bcdec1ca32680bd1c8adb2ed8bad3e/
 X-SOURCE-ID:championat-rpl-r1-spartak-rodina
 STATUS:CONFIRMED
@@ -49,14 +49,14 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260802-akhmat-spartak-rpl@spartak-calendar
-DTSTAMP:20260807T061631Z
-SEQUENCE:2
-LAST-MODIFIED:20260807T061631Z
+DTSTAMP:20260808T211000Z
+SEQUENCE:3
+LAST-MODIFIED:20260808T211000Z
 DTSTART;TZID=Europe/Moscow:20260802T203000
 DTEND;TZID=Europe/Moscow:20260802T224500
 SUMMARY:Ахмат 1:2 Спартак (РПЛ)
 LOCATION:Ахмат Арена\, проспект имени Х.А. Исаева\, 100\, Грозный
-DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 2-й тур. Выездной матч. Результат: победа Спартака 2:1. Видеообзор: https://matchtv.ru/football/rpl/matchtvvideo_NI2349379_clip_Ahmat___Spartak_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol Источник: https://www.championat.com/football/_russiapl/tournament/7096/calendar/
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 2-й тур. Выездной матч. Результат: победа Спартака 2:1. Голы Спартака: Кристофер Ву (39')\, Эсекьель Барко (90+1'). Видеообзор: https://matchtv.ru/football/rpl/matchtvvideo_NI2349379_clip_Ahmat___Spartak_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol Официальный протокол: https://premierliga.ru/matches/16253/
 URL:https://matchtv.ru/football/rpl/matchtvvideo_NI2349379_clip_Ahmat___Spartak_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol
 X-SOURCE-ID:championat-rpl-r2-akhmat-spartak
 STATUS:CONFIRMED
@@ -64,15 +64,15 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260805-spartak-orenburg-cup@spartak-calendar
-DTSTAMP:20260807T061631Z
-SEQUENCE:2
-LAST-MODIFIED:20260807T061631Z
+DTSTAMP:20260808T211000Z
+SEQUENCE:3
+LAST-MODIFIED:20260808T211000Z
 DTSTART;TZID=Europe/Moscow:20260805T183000
 DTEND;TZID=Europe/Moscow:20260805T210000
 SUMMARY:Спартак 5:1 Оренбург (Кубок России)
 LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
-DESCRIPTION:FONBET Кубок России 2026/27\, 1-й тур. Домашний матч. Результат: победа Спартака 5:1. Источник: https://www.championat.com/football/_russiacup/tournament/7094/calendar/
-URL:https://www.championat.ru/football/_russiacup/tournament/7094/match/1330696/
+DESCRIPTION:FONBET Кубок России 2026/27\, Путь РПЛ\, группа А\, 1-й тур. Домашний матч. Результат: победа Спартака 5:1. Голы Спартака: Пабло Солари (26')\, Манфред Угальде (33' пен.\, 52')\, Наиль Умяров (79')\, Павел Полех (84'). Видеообзор: https://vksport.vkvideo.ru/video-202493653_456244491 Официальный протокол: https://www.rfs.ru/cup/tournament/match/57175?TournamentMatchesFilter%5BtournamentId%5D=260
+URL:https://vksport.vkvideo.ru/video-202493653_456244491
 X-SOURCE-ID:championat-cup-r1-spartak-orenburg
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT

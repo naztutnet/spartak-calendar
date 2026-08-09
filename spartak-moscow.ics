@@ -79,14 +79,14 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260809-spartak-krasnodar-rpl@spartak-calendar
-DTSTAMP:20260809T210508Z
-SEQUENCE:5
-LAST-MODIFIED:20260809T210508Z
+DTSTAMP:20260809T210704Z
+SEQUENCE:6
+LAST-MODIFIED:20260809T210704Z
 DTSTART;TZID=Europe/Moscow:20260809T200000
 DTEND;TZID=Europe/Moscow:20260809T221500
 SUMMARY:Спартак 1:2 Краснодар (РПЛ)
 LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
-DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 3-й тур. Домашний матч. Результат: поражение Спартака 1:2. Гол Спартака: Манфред Угальде (2'). Официальный протокол: https://premierliga.ru/matches/16258/ Видеообзор: https://matchtv.ru/football/rpl/matchtvvideo_NI2351860_clip_Spartak___Krasnodar_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol Источник: https://spartak.com/media/news/af2d3c0f-c003-4b21-9315-16344d294ed3
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 3-й тур. Домашний матч. Результат: поражение Спартака 1:2. Официальный протокол: https://premierliga.ru/matches/16258/ Видеообзор: https://matchtv.ru/football/rpl/matchtvvideo_NI2351860_clip_Spartak___Krasnodar_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol Источник: https://www.championat.com/football/_russiapl/tournament/7096/calendar/
 URL:https://matchtv.ru/football/rpl/matchtvvideo_NI2351860_clip_Spartak___Krasnodar_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol
 X-SOURCE-ID:championat-rpl-r3-spartak-krasnodar
 STATUS:CONFIRMED

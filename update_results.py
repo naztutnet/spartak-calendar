@@ -460,7 +460,7 @@ def preserved_detail_lines(description: str) -> list[str]:
     """Keep verified match metadata that schedule sources do not provide."""
     output: list[str] = []
     patterns = (
-        r"Голы Спартака:\s*.*?(?=\s+(?:Видеообзор|Обзор|Полный матч|Полная запись|Официальный протокол|Источник):|$)",
+        r"Гол(?:ы)? Спартака:\s*.*?(?=\s+(?:Видеообзор|Обзор|Полный матч|Полная запись|Официальный протокол|Источник):|$)",
         r"Официальный протокол:\s*https?://\S+",
     )
     for pattern in patterns:

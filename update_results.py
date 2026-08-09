@@ -33,6 +33,39 @@ MOSCOW = ZoneInfo("Europe/Moscow")
 SEASON_START = date(2026, 7, 1)
 SEASON_END = date(2027, 6, 30)
 
+# Official league/federation publications provide only round windows for these
+# fixtures.  Never promote third-party placeholder dates/times to CONFIRMED.
+TENTATIVE_WINDOWS: dict[tuple[str, int], tuple[date, date, str]] = {
+    ("rpl", 10): (date(2026, 10, 9), date(2026, 10, 13), "9–12 октября 2026"),
+    ("rpl", 11): (date(2026, 10, 16), date(2026, 10, 20), "16–19 октября 2026"),
+    ("rpl", 12): (date(2026, 10, 23), date(2026, 10, 27), "23–26 октября 2026"),
+    ("rpl", 13): (date(2026, 10, 30), date(2026, 11, 3), "30 октября – 2 ноября 2026"),
+    ("rpl", 14): (date(2026, 11, 6), date(2026, 11, 9), "6–8 ноября 2026"),
+    ("rpl", 15): (date(2026, 11, 20), date(2026, 11, 24), "20–23 ноября 2026"),
+    ("rpl", 16): (date(2026, 11, 27), date(2026, 12, 1), "27–30 ноября 2026"),
+    ("rpl", 17): (date(2026, 12, 4), date(2026, 12, 8), "4–7 декабря 2026"),
+    ("rpl", 18): (date(2027, 2, 26), date(2027, 3, 2), "26 февраля – 1 марта 2027"),
+    ("rpl", 19): (date(2027, 3, 5), date(2027, 3, 9), "5–8 марта 2027"),
+    ("rpl", 20): (date(2027, 3, 12), date(2027, 3, 16), "12–15 марта 2027"),
+    ("rpl", 21): (date(2027, 3, 19), date(2027, 3, 22), "19–21 марта 2027"),
+    ("rpl", 22): (date(2027, 4, 2), date(2027, 4, 6), "2–5 апреля 2027"),
+    ("rpl", 23): (date(2027, 4, 9), date(2027, 4, 13), "9–12 апреля 2027"),
+    ("rpl", 24): (date(2027, 4, 16), date(2027, 4, 20), "16–19 апреля 2027"),
+    ("rpl", 25): (date(2027, 4, 23), date(2027, 4, 27), "23–26 апреля 2027"),
+    ("rpl", 26): (date(2027, 4, 30), date(2027, 5, 4), "30 апреля – 3 мая 2027"),
+    ("rpl", 27): (date(2027, 5, 7), date(2027, 5, 11), "7–10 мая 2027"),
+    ("rpl", 28): (date(2027, 5, 14), date(2027, 5, 18), "14–17 мая 2027"),
+    ("rpl", 29): (date(2027, 5, 21), date(2027, 5, 25), "21–24 мая 2027"),
+    ("rpl", 30): (date(2027, 5, 29), date(2027, 5, 30), "29 мая 2027"),
+    ("cup", 4): (date(2026, 10, 13), date(2026, 10, 16), "13–15 октября 2026"),
+    ("cup", 5): (date(2026, 10, 27), date(2026, 10, 30), "27–29 октября 2026"),
+    ("cup", 6): (date(2026, 11, 24), date(2026, 11, 27), "24–26 ноября 2026"),
+}
+OFFICIAL_SCHEDULE_URLS = {
+    "rpl": "https://premierliga.ru/news/33625/",
+    "cup": "https://www.rfs.ru/cup/tournament/matches",
+}
+
 RPL_URLS = (
     "https://www.championat.com/football/_russiapl/tournament/7096/calendar/",
     "https://www.championat.ru/football/_russiapl/tournament/7096/calendar/",
@@ -448,6 +481,30 @@ def result_phrase(event: dict[str, Any]) -> str:
 
 def desired_fields(event: dict[str, Any], old: ExistingEvent | None) -> dict[str, Any]:
     start, finished = event["start"], event["status"] == "finished"
+    round_number = int(event["round"])
+    tentative_window = TENTATIVE_WINDOWS.get((event["competition"], round_number)) if not finished else None
+    if tentative_window:
+        window_start, window_end, window_label = tentative_window
+        relation = "Домашний матч." if event["home_key"] == "spartak" else "Выездной матч."
+        summary = f'⏳ {event["home_name"]} — {event["away_name"]} ({competition_label(event["competition"])})'
+        source_url = OFFICIAL_SCHEDULE_URLS[event["competition"]]
+        description = (
+            f'{competition_full(event["competition"])}, {round_number}-й тур. {relation} '
+            f'Дата и время не подтверждены. Предварительное окно тура: {window_label}. '
+            f'Место проведения уточняется. Источник: {source_url}'
+        )
+        return {
+            "summary": summary,
+            "description": description,
+            "location": "Место проведения уточняется",
+            "url": source_url,
+            "dtstart": f"DTSTART;VALUE=DATE:{window_start.strftime('%Y%m%d')}",
+            "dtend": f"DTEND;VALUE=DATE:{window_end.strftime('%Y%m%d')}",
+            "status": "TENTATIVE",
+            "transp": "TRANSPARENT",
+            "alarms": False,
+            "source_id": event["id"],
+        }
     end = start + duration_for(event["competition"])
     if finished:
         summary = f'{event["home_name"]} {event["score_home"]}:{event["score_away"]} {event["away_name"]} ({competition_label(event["competition"])})'

@@ -94,18 +94,18 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260816-baltika-spartak-rpl@spartak-calendar
-DTSTAMP:20260816T165950Z
-SEQUENCE:3
-LAST-MODIFIED:20260816T165950Z
+DTSTAMP:20260816T194854Z
+SEQUENCE:4
+LAST-MODIFIED:20260816T194854Z
 DTSTART;TZID=Europe/Moscow:20260816T193000
 DTEND;TZID=Europe/Moscow:20260816T214500
-SUMMARY:Балтика — Спартак (РПЛ)
+SUMMARY:Балтика 1:2 Спартак (РПЛ)
 LOCATION:Ростех Арена\, Солнечный бульвар\, 25\, Калининград
-DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 4-й тур. Выездной матч. Время московское. Источник: https://www.championat.com/football/_russiapl/tournament/7096/calendar/
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 4-й тур. Выездной матч. Результат: победа Спартака 2:1. Источник: https://www.championat.com/football/_russiapl/tournament/7096/calendar/
 URL:https://www.championat.com/football/_russiapl/tournament/7096/calendar/
 X-SOURCE-ID:championat-rpl-r4-baltika-spartak
 STATUS:CONFIRMED
-TRANSP:OPAQUE
+TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260819-rubin-spartak-cup@spartak-calendar

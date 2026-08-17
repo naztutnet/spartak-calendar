@@ -2,182 +2,182 @@
   "events": {
     "championat-cup-r1-spartak-orenburg": {
       "fingerprint": "bd85d1601f61aa2731d0c1f971b8facd2b9854b582f745fdf3ff73e372c76e27",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-cup-r2-rubin-spartak": {
       "fingerprint": "b40ea7a6f75cb2b1c81ffad1095b3b0e54440df06b73fa3c22d4b9697c45e2af",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-cup-r3-spartak-rodina": {
       "fingerprint": "394a22fa729e26cab5b65eeb8f052f13405d19aa2bd5f706c49cda8e37f9cb3c",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-cup-r4-rodina-spartak": {
       "fingerprint": "7d38657ef57d64fdb8730527824fffcffed88e28b0af474cd24ed4350f23c3d1",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-cup-r5-spartak-rubin": {
       "fingerprint": "59586240c18eb632ef301eff1dd6af63167df98e673e84a718d96816bcc86b7d",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-cup-r6-orenburg-spartak": {
       "fingerprint": "22d0c3622dbddb8976afc873865a4cbec53e174aa81d026aab3835d7f366ea18",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r1-spartak-rodina": {
       "fingerprint": "08f60a049805a34d790149d367bc5455d4a6b5a5aabe00a8752bda4bbc52a873",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r10-krylya-spartak": {
       "fingerprint": "397cd9ca5d47093b4cefc739175e06194bb7c0fba4d0c58ae0fa191b9acd1f10",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r11-spartak-rubin": {
       "fingerprint": "ef5413daa82f0a27398a62097c4c7a94b1d54004b142bcdc6d1b9fa2ffb3a573",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r12-cska-spartak": {
       "fingerprint": "8d8500fdc81719fa0b0b120ec0ad650ee1741897fd21f0d2859b221efebbde37",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r13-lokomotiv-spartak": {
       "fingerprint": "3a164eb1009ec387ef96fcf160b9e2c769060b5207bb3c153b951c699489a9c9",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r14-spartak-akron": {
       "fingerprint": "ec0009feee92eca2c70b4b57431115710c20d6a196f8911ab99d5eab56b90f4d",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r15-dynamo_makhachkala-spartak": {
       "fingerprint": "740f9110bbeb7050bfda99515bc6e31cd10dda494b009925b7504f78b305688d",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r16-fakel-spartak": {
       "fingerprint": "e0a2e962d7a591b79c6295a489b681a30ccaddadad7c9c572343f44fd4a389ff",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r17-spartak-dynamo": {
       "fingerprint": "11b1098c0e14fd798667d6123fee1df57df1aedb4d8793546ff9f0055a339af0",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r18-krasnodar-spartak": {
       "fingerprint": "4ef9bd30cc1524e4933890ae2a76a5f41674575e26f1a1f8f51eea94733423de",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r19-akron-spartak": {
       "fingerprint": "42b28599a826a11efaf8773fad3591f101114168ba55dd9b65a98c5124683d2e",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r2-akhmat-spartak": {
       "fingerprint": "634fafa8c46a937311fcd95813948a0d6f4273cb82264d4f03191e332b0ce91a",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r20-spartak-akhmat": {
       "fingerprint": "2bdd66df79e1b4f966fa4400d011ec40f92bd552901aafb121d57ce27807f251",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r21-rubin-spartak": {
       "fingerprint": "cb6bf7ec0c43bcbcbd11ecb3290133b5d1a72240848c7bb30cf514ce13217893",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r22-spartak-dynamo_makhachkala": {
       "fingerprint": "bc5c87626d2a9d4f6e7b8aeff1e139b6c70a507a9577c95645478475380ff781",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r23-orenburg-spartak": {
       "fingerprint": "c5ad344fbf4f30f5255bfd64580ad3f17030ed5a7a3ac09e0fef19468f46cdae",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r24-spartak-cska": {
       "fingerprint": "dff8d0a14947044a1af755997acc532f2fbeca1a8d6b17914b53737e92848ac1",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r25-rodina-spartak": {
       "fingerprint": "95333824d7e9bbf48321fdd26b79242a1a3c2065e75da5ff766c3b60a8e35c2f",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r26-spartak-baltika": {
       "fingerprint": "e1202be48c06b66179706f8f165c9bc56b95c0a3407ef512c5bab5e96fa13782",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r27-spartak-lokomotiv": {
       "fingerprint": "bb84780c8e1463cdc0f863630598bcc6d18d4cb391dcc73f39d2c00537e4f8c5",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r28-zenit-spartak": {
       "fingerprint": "4ce377a137861e70712e07cba834c05b786c7273e35674b30715bd3488bed888",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r29-spartak-krylya": {
       "fingerprint": "c47d6717ac1bfd606097018a09153601a26721179e5ec01439de45ac681daabe",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r3-spartak-krasnodar": {
       "fingerprint": "1301164d19f40af795c3351743d34ef3172c873e94fa0e9885eb34ccf497a3ae",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r30-rostov-spartak": {
       "fingerprint": "739b328a6efa5aab31639d6cbb4cd6a1d293f80b1d9206ac601039e8c8073dff",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r4-baltika-spartak": {
       "fingerprint": "5d3e1fcb74a6f03ac9c4443f9df0b5fca3e94a216db7f596b30b6217ef4c56d8",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r5-spartak-zenit": {
       "fingerprint": "887faca056dfb182b7bd1c13b967808fd54c117b3c9d827ca0927d442b14bf21",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r6-spartak-orenburg": {
       "fingerprint": "fd6c749e6115fa451ec8e2bc4b7b26df3c79ac49986c0cf9200d4a614817e62e",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r7-dynamo-spartak": {
       "fingerprint": "5a9968719e1af63a73d2152520c520bd392160b3a2e3a25b67c28979ed4ce34f",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r8-spartak-rostov": {
       "fingerprint": "0fb2861cb1f0cc5cd077f280c031872773c1c77d7f5602aaefe1005fe0ead833",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     },
     "championat-rpl-r9-spartak-fakel": {
       "fingerprint": "1ed152c0d472b82a13ba2a443105c5bbeb445ad5ffc15ab26b3dc40008c875d5",
-      "last_seen": "2026-08-17T22:59:28+00:00",
+      "last_seen": "2026-08-17T23:56:26+00:00",
       "observations": 2
     }
   },

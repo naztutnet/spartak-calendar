@@ -94,15 +94,15 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260816-baltika-spartak-rpl@spartak-calendar
-DTSTAMP:20260816T194854Z
-SEQUENCE:4
-LAST-MODIFIED:20260816T194854Z
+DTSTAMP:20260817T110529Z
+SEQUENCE:5
+LAST-MODIFIED:20260817T110529Z
 DTSTART;TZID=Europe/Moscow:20260816T193000
 DTEND;TZID=Europe/Moscow:20260816T214500
 SUMMARY:Балтика 1:2 Спартак (РПЛ)
 LOCATION:Ростех Арена\, Солнечный бульвар\, 25\, Калининград
-DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 4-й тур. Выездной матч. Результат: победа Спартака 2:1. Источник: https://www.championat.com/football/_russiapl/tournament/7096/calendar/
-URL:https://www.championat.com/football/_russiapl/tournament/7096/calendar/
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 4-й тур. Выездной матч. Победа «Спартака» — 2:1. Голы «Спартака»: Манфред Угальде и Пабло Солари. Официальный отчёт «Спартака»: https://spartak.com/media/news/1b84216b-6128-47ef-a7a0-e07be8a796ae Видеообзор «Матч ТВ»: https://matchtv.ru/football/rpl/matchtvvideo_NI2354598_clip_Baltika___Spartak_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol
+URL:https://matchtv.ru/football/rpl/matchtvvideo_NI2354598_clip_Baltika___Spartak_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol
 X-SOURCE-ID:championat-rpl-r4-baltika-spartak
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT

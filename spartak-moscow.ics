@@ -109,14 +109,14 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260819-rubin-spartak-cup@spartak-calendar
-DTSTAMP:20260819T225835Z
-SEQUENCE:4
-LAST-MODIFIED:20260819T225835Z
+DTSTAMP:20260819T225929Z
+SEQUENCE:5
+LAST-MODIFIED:20260819T225929Z
 DTSTART;TZID=Europe/Moscow:20260819T183000
 DTEND;TZID=Europe/Moscow:20260819T210000
-SUMMARY:Рубин 1:1 Спартак (5:3 пен.) — Кубок России
+SUMMARY:Рубин 1:1 Спартак (Кубок России) (5:3 пен.)
 LOCATION:Ак Барс Арена\, проспект Хусаина Ямашева\, 115А\, Казань
-DESCRIPTION:FONBET Кубок России 2026/27\, Путь РПЛ\, группа А\, 2-й тур. Выездной матч. Результат: поражение Спартака в серии пенальти 3:5 после ничьей 1:1 в основное время. Гол Спартака: Манфред Угальде (62'). Официальный протокол: https://www.rfs.ru/cup/tournament/match/57178 Отчёт Спартака: https://spartak.com/media/news/8d120641-40b3-441a-bd15-50cf97006cb1 Видеообзор: https://matchtv.ru/football/rossija/kubok_rossii/matchtvvideo_NI2355823_clip_Rubin___Spartak_Goly_i_luchshije_momenty_video_FONBET_Kubok_Rossii_po_futbolu_sezona_2026_2027_gg_Futbol
+DESCRIPTION:FONBET Кубок России 2026/27\, 2-й тур. Выездной матч. Результат: ничья 1:1. Гол Спартака: Манфред Угальде (62') Официальный протокол: https://www.rfs.ru/cup/tournament/match/57178 Видеообзор: https://matchtv.ru/football/rossija/kubok_rossii/matchtvvideo_NI2355823_clip_Rubin___Spartak_Goly_i_luchshije_momenty_video_FONBET_Kubok_Rossii_po_futbolu_sezona_2026_2027_gg_Futbol Источник: https://www.championat.com/football/_russiacup/tournament/7094/calendar/
 URL:https://matchtv.ru/football/rossija/kubok_rossii/matchtvvideo_NI2355823_clip_Rubin___Spartak_Goly_i_luchshije_momenty_video_FONBET_Kubok_Rossii_po_futbolu_sezona_2026_2027_gg_Futbol
 X-SOURCE-ID:championat-cup-r2-rubin-spartak
 STATUS:CONFIRMED

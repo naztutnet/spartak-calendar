@@ -103,3 +103,5 @@ jobs:
             git push origin HEAD:main
           fi
           exit 1
+
+# Verification PR: execute updater without publishing calendar changes.

@@ -66,6 +66,22 @@ OFFICIAL_SCHEDULE_URLS = {
     "cup": "https://www.rfs.ru/cup/tournament/matches",
 }
 
+# Exact fixtures published by the competition organizers and Spartak.
+# These overrides prevent placeholder round windows from replacing confirmed data.
+OFFICIAL_CONFIRMED_FIXTURES: dict[tuple[str, int], dict[str, Any]] = {
+    ("rpl", 10): {"start": datetime(2026, 10, 10, 17, 30, tzinfo=MOSCOW), "location": "Солидарность Самара Арена, Самара", "url": "https://premierliga.ru/news/33856/"},
+    ("cup", 4): {"start": datetime(2026, 10, 15, 20, 45, tzinfo=MOSCOW), "location": "Арена Химки, Химки", "url": "https://www.rfs.ru/cup/news/224851"},
+    ("rpl", 11): {"start": datetime(2026, 10, 18, 18, 30, tzinfo=MOSCOW), "location": "Лукойл Арена, Москва", "url": "https://premierliga.ru/news/33856/"},
+    ("rpl", 12): {"start": datetime(2026, 10, 25, 16, 0, tzinfo=MOSCOW), "location": "ВЭБ Арена, Москва", "url": "https://premierliga.ru/news/33856/"},
+    ("cup", 5): {"start": datetime(2026, 10, 28, 20, 30, tzinfo=MOSCOW), "location": "Лукойл Арена, Москва", "url": "https://www.rfs.ru/cup/news/224851"},
+    ("rpl", 13): {"start": datetime(2026, 11, 1, 19, 45, tzinfo=MOSCOW), "location": "РЖД Арена, Москва", "url": "https://premierliga.ru/news/33856/"},
+    ("rpl", 14): {"start": datetime(2026, 11, 8, 16, 15, tzinfo=MOSCOW), "location": "Лукойл Арена, Москва", "url": "https://premierliga.ru/news/33856/"},
+    ("rpl", 15): {"start": datetime(2026, 11, 22, 16, 30, tzinfo=MOSCOW), "location": "Анжи Арена, Каспийск", "url": "https://premierliga.ru/news/33856/"},
+    ("cup", 6): {"start": datetime(2026, 11, 26, 17, 0, tzinfo=MOSCOW), "location": "Газовик, Оренбург", "url": "https://www.rfs.ru/cup/news/224851"},
+    ("rpl", 16): {"start": datetime(2026, 11, 30, 19, 30, tzinfo=MOSCOW), "location": "Факел, Воронеж", "url": "https://premierliga.ru/news/33856/"},
+    ("rpl", 17): {"start": datetime(2026, 12, 6, 17, 0, tzinfo=MOSCOW), "location": "Лукойл Арена, Москва", "url": "https://premierliga.ru/news/33856/"},
+}
+
 RPL_URLS = (
     "https://www.championat.com/football/_russiapl/tournament/7096/calendar/",
     "https://www.championat.ru/football/_russiapl/tournament/7096/calendar/",
@@ -492,7 +508,11 @@ def result_phrase(event: dict[str, Any]) -> str:
 def desired_fields(event: dict[str, Any], old: ExistingEvent | None) -> dict[str, Any]:
     start, finished = event["start"], event["status"] == "finished"
     round_number = int(event["round"])
-    tentative_window = TENTATIVE_WINDOWS.get((event["competition"], round_number)) if not finished else None
+    official_fixture = OFFICIAL_CONFIRMED_FIXTURES.get((event["competition"], round_number)) if not finished else None
+    if official_fixture:
+        start = official_fixture["start"]
+        event = {**event, "start": start, "source_url": official_fixture["url"]}
+    tentative_window = TENTATIVE_WINDOWS.get((event["competition"], round_number)) if not finished and not official_fixture else None
     if tentative_window:
         window_start, window_end, window_label = tentative_window
         relation = "Домашний матч." if event["home_key"] == "spartak" else "Выездной матч."
@@ -523,17 +543,21 @@ def desired_fields(event: dict[str, Any], old: ExistingEvent | None) -> dict[str
     else:
         summary = f'{event["home_name"]} — {event["away_name"]} ({competition_label(event["competition"])})'
     relation = "Домашний матч." if event["home_key"] == "spartak" else "Выездной матч."
-    base = f'{competition_full(event["competition"])}, {event["round"]}-й тур. {relation}'
+    if official_fixture and event["competition"] == "cup":
+        base = f'{competition_full(event["competition"])}, Путь РПЛ, группа A, {event["round"]}-й тур. {relation}'
+    else:
+        base = f'{competition_full(event["competition"])}, {event["round"]}-й тур. {relation}'
     base += " " + result_phrase(event) if finished else " Время московское."
     existing_details = preserved_detail_lines(old.description) if old else []
     existing_media = media_lines(old.description) if old else []
     for line in existing_details: base += " " + line
     for line in existing_media: base += " " + line
     base += f' Источник: {event["source_url"]}'
-    if old and old.location and "уточняется" not in old.location.lower(): location = old.location
+    if official_fixture: location = official_fixture["location"]
+    elif old and old.location and "уточняется" not in old.location.lower(): location = old.location
     elif event["home_key"] == "spartak": location = "Лукойл Арена, Волоколамское шоссе, 69, Москва"
     else: location = old.location if old and old.location else "Место проведения уточняется"
-    url = old.url if old and old.url else event["source_url"]
+    url = official_fixture["url"] if official_fixture else old.url if old and old.url else event["source_url"]
     if finished and existing_media:
         media_match = re.search(r"https?://\S+", existing_media[0])
         if media_match: url = media_match.group(0).rstrip(".,;")

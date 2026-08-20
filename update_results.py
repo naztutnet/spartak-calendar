@@ -460,8 +460,9 @@ def preserved_detail_lines(description: str) -> list[str]:
     """Keep verified match metadata that schedule sources do not provide."""
     output: list[str] = []
     patterns = (
-        r"Гол(?:ы)? Спартака:\s*.*?(?=\s+(?:Видеообзор|Обзор|Полный матч|Полная запись|Официальный протокол|Источник):|$)",
+        r"Гол(?:ы)? Спартака:\s*.*?(?=\s+(?:Видеообзор|Обзор|Полный матч|Полная запись|Официальный протокол|Отчёт Спартака|Источник):|$)",
         r"Официальный протокол:\s*https?://\S+",
+        r"Отчёт Спартака:\s*https?://\S+",
     )
     for pattern in patterns:
         match = re.search(pattern, description)
@@ -473,11 +474,20 @@ def preserved_detail_lines(description: str) -> list[str]:
 
 def result_phrase(event: dict[str, Any]) -> str:
     home_score, away_score = event["score_home"], event["score_away"]
-    spartak_score = home_score if event["home_key"] == "spartak" else away_score
-    opponent_score = away_score if event["home_key"] == "spartak" else home_score
+    spartak_is_home = event["home_key"] == "spartak"
+    spartak_score = home_score if spartak_is_home else away_score
+    opponent_score = away_score if spartak_is_home else home_score
+    pen_home, pen_away = event.get("pen_home"), event.get("pen_away")
+    if pen_home is not None and pen_away is not None:
+        spartak_pen = pen_home if spartak_is_home else pen_away
+        opponent_pen = pen_away if spartak_is_home else pen_home
+        outcome = "победа Спартака" if spartak_pen > opponent_pen else "поражение Спартака"
+        return (
+            f"Результат: {outcome} в серии пенальти {spartak_pen}:{opponent_pen} "
+            f"после ничьей {spartak_score}:{opponent_score} в основное время."
+        )
     outcome = "победа Спартака" if spartak_score > opponent_score else "поражение Спартака" if spartak_score < opponent_score else "ничья"
     return f"Результат: {outcome} {spartak_score}:{opponent_score}."
-
 
 def desired_fields(event: dict[str, Any], old: ExistingEvent | None) -> dict[str, Any]:
     start, finished = event["start"], event["status"] == "finished"

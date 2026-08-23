@@ -124,14 +124,14 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260823-spartak-zenit-rpl@spartak-calendar
-DTSTAMP:20260823T210451Z
-SEQUENCE:6
-LAST-MODIFIED:20260823T210451Z
+DTSTAMP:20260823T225644Z
+SEQUENCE:7
+LAST-MODIFIED:20260823T225644Z
 DTSTART;TZID=Europe/Moscow:20260823T200000
 DTEND;TZID=Europe/Moscow:20260823T221500
 SUMMARY:Спартак 2:0 Зенит (РПЛ)
 LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
-DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 5-й тур. Домашний матч. Результат: победа Спартака 2:0. Гол Спартака: Роман Зобнин\, 38-я минута. Автогол: Вильмар Барриос\, 12-я минута Официальный протокол: https://premierliga.ru/matches/16274/ Видеообзор: https://matchtv.ru/football/rpl/matchtvvideo_NI2357252_clip_Spartak___Zenit_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol Источник: https://www.championat.com/football/_russiapl/tournament/7096/calendar/
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 5-й тур. Домашний матч. Результат: победа Спартака 2:0. Голы Спартака: Манфред Угальде\, 12-я минута; Роман Зобнин\, 38-я минута. Официальный протокол: https://premierliga.ru/matches/16274/ Отчёт РПЛ: https://premierliga.ru/news/33882/ Видеообзор: https://matchtv.ru/football/rpl/matchtvvideo_NI2357252_clip_Spartak___Zenit_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol
 URL:https://matchtv.ru/football/rpl/matchtvvideo_NI2357252_clip_Spartak___Zenit_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol
 X-SOURCE-ID:championat-rpl-r5-spartak-zenit
 STATUS:CONFIRMED

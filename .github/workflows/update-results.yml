@@ -24,7 +24,7 @@ concurrency:
 jobs:
   update:
     name: Check fixtures and results
-    runs-on: ubuntu-slim
+    runs-on: ubuntu-latest
     timeout-minutes: 10
 
     steps:

@@ -20,9 +20,9 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:20260718-zenit-spartak-supercup@spartak-calendar
-DTSTAMP:20260802T104000Z
-SEQUENCE:1
-LAST-MODIFIED:20260802T104000Z
+DTSTAMP:20260808T211000Z
+SEQUENCE:5
+LAST-MODIFIED:20260808T211000Z
 DTSTART;TZID=Europe/Moscow:20260718T193000
 DTEND;TZID=Europe/Moscow:20260718T220000
 SUMMARY:Зенит 1:1 Спартак (4:2 пен.) — Суперкубок России
@@ -34,510 +34,701 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260725-spartak-rodina-rpl@spartak-calendar
-DTSTAMP:20260802T104000Z
-SEQUENCE:1
-LAST-MODIFIED:20260802T104000Z
+DTSTAMP:20260808T230829Z
+SEQUENCE:6
+LAST-MODIFIED:20260808T230829Z
 DTSTART;TZID=Europe/Moscow:20260725T204500
 DTEND;TZID=Europe/Moscow:20260725T230000
 SUMMARY:Спартак 3:0 Родина (РПЛ)
 LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
-DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 1-й тур. Домашний матч. Голы: Маркиньос — 24-я минута\, Кристофер Мартинс — 80-я\, Данил Пруцев — 86-я. Видеообзор: https://rutube.ru/video/a2bcdec1ca32680bd1c8adb2ed8bad3e/
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 1-й тур. Домашний матч. Результат: победа Спартака 3:0. Голы Спартака: Маркиньос\, Кристофер Мартинс\, Данил Пруцев Официальный протокол: https://premierliga.ru/matches/16242/ Видеообзор: https://rutube.ru/video/a2bcdec1ca32680bd1c8adb2ed8bad3e/ Источник: https://www.championat.com/football/_russiapl/tournament/7096/calendar/
 URL:https://rutube.ru/video/a2bcdec1ca32680bd1c8adb2ed8bad3e/
+X-SOURCE-ID:championat-rpl-r1-spartak-rodina
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260802-akhmat-spartak-rpl@spartak-calendar
-DTSTAMP:20260802T205000Z
-SEQUENCE:1
-LAST-MODIFIED:20260802T205000Z
+DTSTAMP:20260808T230829Z
+SEQUENCE:6
+LAST-MODIFIED:20260808T230829Z
 DTSTART;TZID=Europe/Moscow:20260802T203000
 DTEND;TZID=Europe/Moscow:20260802T224500
 SUMMARY:Ахмат 1:2 Спартак (РПЛ)
 LOCATION:Ахмат Арена\, проспект имени Х.А. Исаева\, 100\, Грозный
-DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 2-й тур. Выездной матч. Результат: победа Спартака 2:1. Голы Спартака: Кристофер Ву — 39-я минута\, Эсекьель Барко — 90-я минута. Видеообзор: https://matchtv.ru/football/rpl/matchtvvideo_NI2349379_clip_Ahmat___Spartak_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 2-й тур. Выездной матч. Результат: победа Спартака 2:1. Голы Спартака: Кристофер Ву (39')\, Эсекьель Барко (90+1') Официальный протокол: https://premierliga.ru/matches/16253/ Видеообзор: https://matchtv.ru/football/rpl/matchtvvideo_NI2349379_clip_Ahmat___Spartak_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol Источник: https://www.championat.com/football/_russiapl/tournament/7096/calendar/
 URL:https://matchtv.ru/football/rpl/matchtvvideo_NI2349379_clip_Ahmat___Spartak_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol
+X-SOURCE-ID:championat-rpl-r2-akhmat-spartak
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260805-spartak-orenburg-cup@spartak-calendar
-DTSTAMP:20260806T152402Z
-SEQUENCE:1
-LAST-MODIFIED:20260806T152402Z
+DTSTAMP:20260808T230829Z
+SEQUENCE:6
+LAST-MODIFIED:20260808T230829Z
 DTSTART;TZID=Europe/Moscow:20260805T183000
 DTEND;TZID=Europe/Moscow:20260805T210000
 SUMMARY:Спартак 5:1 Оренбург (Кубок России)
 LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
-DESCRIPTION:FONBET Кубок России 2026/27. Путь РПЛ\, группа А\, 1-й тур. Домашний матч. Результат: победа Спартака 5:1. Страница матча: https://www.championat.ru/football/_russiacup/tournament/7094/match/1330696/
-URL:https://www.championat.ru/football/_russiacup/tournament/7094/match/1330696/
+DESCRIPTION:FONBET Кубок России 2026/27\, 1-й тур. Домашний матч. Результат: победа Спартака 5:1. Голы Спартака: Пабло Солари (26')\, Манфред Угальде (33' пен.\, 52')\, Наиль Умяров (79')\, Павел Полех (84') Официальный протокол: https://www.rfs.ru/cup/tournament/match/57175?TournamentMatchesFilter%5BtournamentId%5D=260 Видеообзор: https://vksport.vkvideo.ru/video-202493653_456244491 Источник: https://www.championat.com/football/_russiacup/tournament/7094/calendar/
+URL:https://vksport.vkvideo.ru/video-202493653_456244491
+X-SOURCE-ID:championat-cup-r1-spartak-orenburg
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260809-spartak-krasnodar-rpl@spartak-calendar
-DTSTAMP:20260803T004500Z
-SEQUENCE:2
-LAST-MODIFIED:20260803T004500Z
+DTSTAMP:20260809T230606Z
+SEQUENCE:8
+LAST-MODIFIED:20260809T230606Z
 DTSTART;TZID=Europe/Moscow:20260809T200000
 DTEND;TZID=Europe/Moscow:20260809T221500
-SUMMARY:Спартак — Краснодар (РПЛ)
+SUMMARY:Спартак 1:2 Краснодар (РПЛ)
 LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
-DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 3-й тур. Домашний матч. Время московское.
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 3-й тур. Домашний матч. Результат: поражение Спартака 1:2. Гол Спартака: Манфред Угальде (2') Официальный протокол: https://premierliga.ru/matches/16258/ Видеообзор: https://matchtv.ru/football/rpl/matchtvvideo_NI2351860_clip_Spartak___Krasnodar_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol Источник: https://www.championat.com/football/_russiapl/tournament/7096/calendar/
+URL:https://matchtv.ru/football/rpl/matchtvvideo_NI2351860_clip_Spartak___Krasnodar_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol
+X-SOURCE-ID:championat-rpl-r3-spartak-krasnodar
 STATUS:CONFIRMED
-TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT1H
-ACTION:DISPLAY
-DESCRIPTION:Матч Спартак — Краснодар начнётся через 1 час
-END:VALARM
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Матч Спартак — Краснодар начнётся через 5 минут
-END:VALARM
+TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260816-baltika-spartak-rpl@spartak-calendar
-DTSTAMP:20260803T064500Z
-SEQUENCE:1
-LAST-MODIFIED:20260803T064500Z
+DTSTAMP:20260817T125755Z
+SEQUENCE:8
+LAST-MODIFIED:20260817T125755Z
 DTSTART;TZID=Europe/Moscow:20260816T193000
 DTEND;TZID=Europe/Moscow:20260816T214500
-SUMMARY:Балтика — Спартак (РПЛ)
+SUMMARY:Балтика 1:2 Спартак (РПЛ)
 LOCATION:Ростех Арена\, Солнечный бульвар\, 25\, Калининград
-DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 4-й тур. Выездной матч. Время московское.
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 4-й тур. Выездной матч. Результат: победа Спартака 2:1. Голы Спартака: Манфред Угальде и Пабло Солари Официальный протокол: https://premierliga.ru/matches/16267/ Видеообзор: https://matchtv.ru/football/rpl/matchtvvideo_NI2354598_clip_Baltika___Spartak_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol Источник: https://www.championat.com/football/_russiapl/tournament/7096/calendar/
+URL:https://matchtv.ru/football/rpl/matchtvvideo_NI2354598_clip_Baltika___Spartak_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol
+X-SOURCE-ID:championat-rpl-r4-baltika-spartak
 STATUS:CONFIRMED
-TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT1H
-ACTION:DISPLAY
-DESCRIPTION:Матч Балтика — Спартак начнётся через 1 час
-END:VALARM
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Матч Балтика — Спартак начнётся через 5 минут
-END:VALARM
+TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260819-rubin-spartak-cup@spartak-calendar
-DTSTAMP:20260802T050000Z
+DTSTAMP:20260820T005420Z
+SEQUENCE:6
+LAST-MODIFIED:20260820T005420Z
 DTSTART;TZID=Europe/Moscow:20260819T183000
 DTEND;TZID=Europe/Moscow:20260819T210000
-SUMMARY:Рубин — Спартак (Кубок России)
+SUMMARY:Рубин 1:1 Спартак (Кубок России) (5:3 пен.)
 LOCATION:Ак Барс Арена\, проспект Хусаина Ямашева\, 115А\, Казань
-DESCRIPTION:FONBET Кубок России 2026/27. Путь РПЛ\, группа А\, 2-й тур. Выездной матч. Время московское.
+DESCRIPTION:FONBET Кубок России 2026/27\, 2-й тур. Выездной матч. Результат: поражение Спартака в серии пенальти 3:5 после ничьей 1:1 в основное время. Гол Спартака: Манфред Угальде (62') Официальный протокол: https://www.rfs.ru/cup/tournament/match/57178 Отчёт Спартака: https://spartak.com/media/news/8d120641-40b3-441a-bd15-50cf97006cb1 Видеообзор: https://matchtv.ru/football/rossija/kubok_rossii/matchtvvideo_NI2355823_clip_Rubin___Spartak_Goly_i_luchshije_momenty_video_FONBET_Kubok_Rossii_po_futbolu_sezona_2026_2027_gg_Futbol Источник: https://www.championat.com/football/_russiacup/tournament/7094/calendar/
+URL:https://matchtv.ru/football/rossija/kubok_rossii/matchtvvideo_NI2355823_clip_Rubin___Spartak_Goly_i_luchshije_momenty_video_FONBET_Kubok_Rossii_po_futbolu_sezona_2026_2027_gg_Futbol
+X-SOURCE-ID:championat-cup-r2-rubin-spartak
 STATUS:CONFIRMED
-TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT1H
-ACTION:DISPLAY
-DESCRIPTION:Матч Рубин — Спартак начнётся через 1 час
-END:VALARM
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Матч Рубин — Спартак начнётся через 5 минут
-END:VALARM
+TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260823-spartak-zenit-rpl@spartak-calendar
-DTSTAMP:20260803T064500Z
-SEQUENCE:1
-LAST-MODIFIED:20260803T064500Z
+DTSTAMP:20260824T010215Z
+SEQUENCE:10
+LAST-MODIFIED:20260824T010215Z
 DTSTART;TZID=Europe/Moscow:20260823T200000
 DTEND;TZID=Europe/Moscow:20260823T221500
-SUMMARY:Спартак — Зенит (РПЛ)
+SUMMARY:Спартак 2:0 Зенит (РПЛ)
 LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
-DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 5-й тур. Домашний матч. Время московское.
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 5-й тур. Домашний матч. Результат: победа Спартака 2:0. Гол Спартака: Роман Зобнин\, 38-я минута. Автогол: Вильмар Барриос\, 12-я минута Официальный протокол: https://premierliga.ru/matches/16274/ Отчёт Спартака: https://spartak.com/media/news/aa59c291-bb73-45ce-834e-23be7d809e58 Видеообзор: https://matchtv.ru/football/rpl/matchtvvideo_NI2357252_clip_Spartak___Zenit_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol Источник: https://www.championat.com/football/_russiapl/tournament/7096/calendar/
+URL:https://matchtv.ru/football/rpl/matchtvvideo_NI2357252_clip_Spartak___Zenit_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol
+X-SOURCE-ID:championat-rpl-r5-spartak-zenit
 STATUS:CONFIRMED
-TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT1H
-ACTION:DISPLAY
-DESCRIPTION:Матч Спартак — Зенит начнётся через 1 час
-END:VALARM
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Матч Спартак — Зенит начнётся через 5 минут
-END:VALARM
+TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260830-spartak-orenburg-rpl@spartak-calendar
-DTSTAMP:20260803T064500Z
-SEQUENCE:1
-LAST-MODIFIED:20260803T064500Z
+DTSTAMP:20260807T061631Z
+SEQUENCE:2
+LAST-MODIFIED:20260807T061631Z
 DTSTART;TZID=Europe/Moscow:20260830T173000
 DTEND;TZID=Europe/Moscow:20260830T194500
 SUMMARY:Спартак — Оренбург (РПЛ)
 LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
-DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 6-й тур. Домашний матч. Время московское.
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 6-й тур. Домашний матч. Время московское. Источник: https://www.championat.com/football/_russiapl/tournament/7096/calendar/
+URL:https://www.championat.com/football/_russiapl/tournament/7096/calendar/
+X-SOURCE-ID:championat-rpl-r6-spartak-orenburg
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT1H
 ACTION:DISPLAY
-DESCRIPTION:Матч Спартак — Оренбург начнётся через 1 час
+DESCRIPTION:Матч Спартака начнётся через 1 час
 END:VALARM
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
-DESCRIPTION:Матч Спартак — Оренбург начнётся через 5 минут
+DESCRIPTION:Матч Спартака начнётся через 5 минут
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:20260902-spartak-rodina-cup@spartak-calendar
-DTSTAMP:20260802T050000Z
+DTSTAMP:20260807T061631Z
+SEQUENCE:1
+LAST-MODIFIED:20260807T061631Z
 DTSTART;TZID=Europe/Moscow:20260902T204500
 DTEND;TZID=Europe/Moscow:20260902T231500
 SUMMARY:Спартак — Родина (Кубок России)
 LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
-DESCRIPTION:FONBET Кубок России 2026/27. Путь РПЛ\, группа А\, 3-й тур. Домашний матч. Время московское.
+DESCRIPTION:FONBET Кубок России 2026/27\, 3-й тур. Домашний матч. Время московское. Источник: https://www.championat.com/football/_russiacup/tournament/7094/calendar/
+URL:https://www.championat.com/football/_russiacup/tournament/7094/calendar/
+X-SOURCE-ID:championat-cup-r3-spartak-rodina
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT1H
 ACTION:DISPLAY
-DESCRIPTION:Матч Спартак — Родина начнётся через 1 час
+DESCRIPTION:Матч Спартака начнётся через 1 час
 END:VALARM
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
-DESCRIPTION:Матч Спартак — Родина начнётся через 5 минут
+DESCRIPTION:Матч Спартака начнётся через 5 минут
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:20260906-dynamo-spartak-rpl@spartak-calendar
-DTSTAMP:20260803T064500Z
-SEQUENCE:1
-LAST-MODIFIED:20260803T064500Z
+DTSTAMP:20260807T061631Z
+SEQUENCE:2
+LAST-MODIFIED:20260807T061631Z
 DTSTART;TZID=Europe/Moscow:20260906T183000
 DTEND;TZID=Europe/Moscow:20260906T204500
 SUMMARY:Динамо — Спартак (РПЛ)
 LOCATION:ВТБ Арена\, Ленинградский проспект\, 36\, Москва
-DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 7-й тур. Выездной матч. Время московское.
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 7-й тур. Выездной матч. Время московское. Источник: https://www.championat.com/football/_russiapl/tournament/7096/calendar/
+URL:https://www.championat.com/football/_russiapl/tournament/7096/calendar/
+X-SOURCE-ID:championat-rpl-r7-dynamo-spartak
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT1H
 ACTION:DISPLAY
-DESCRIPTION:Матч Динамо — Спартак начнётся через 1 час
+DESCRIPTION:Матч Спартака начнётся через 1 час
 END:VALARM
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
-DESCRIPTION:Матч Динамо — Спартак начнётся через 5 минут
+DESCRIPTION:Матч Спартака начнётся через 5 минут
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:20260913-spartak-rostov-rpl@spartak-calendar
-DTSTAMP:20260803T064500Z
-SEQUENCE:1
-LAST-MODIFIED:20260803T064500Z
+DTSTAMP:20260807T061631Z
+SEQUENCE:2
+LAST-MODIFIED:20260807T061631Z
 DTSTART;TZID=Europe/Moscow:20260913T170000
 DTEND;TZID=Europe/Moscow:20260913T191500
 SUMMARY:Спартак — Ростов (РПЛ)
 LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
-DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 8-й тур. Домашний матч. Время московское.
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 8-й тур. Домашний матч. Время московское. Источник: https://www.championat.com/football/_russiapl/tournament/7096/calendar/
+URL:https://www.championat.com/football/_russiapl/tournament/7096/calendar/
+X-SOURCE-ID:championat-rpl-r8-spartak-rostov
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT1H
 ACTION:DISPLAY
-DESCRIPTION:Матч Спартак — Ростов начнётся через 1 час
+DESCRIPTION:Матч Спартака начнётся через 1 час
 END:VALARM
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
-DESCRIPTION:Матч Спартак — Ростов начнётся через 5 минут
+DESCRIPTION:Матч Спартака начнётся через 5 минут
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:20260916-spartak-fakel-rpl@spartak-calendar
-DTSTAMP:20260803T064500Z
-SEQUENCE:1
-LAST-MODIFIED:20260803T064500Z
+DTSTAMP:20260807T061631Z
+SEQUENCE:2
+LAST-MODIFIED:20260807T061631Z
 DTSTART;TZID=Europe/Moscow:20260916T183000
 DTEND;TZID=Europe/Moscow:20260916T204500
 SUMMARY:Спартак — Факел (РПЛ)
 LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
-DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 9-й тур. Домашний матч. Время московское.
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 9-й тур. Домашний матч. Время московское. Источник: https://www.championat.com/football/_russiapl/tournament/7096/calendar/
+URL:https://www.championat.com/football/_russiapl/tournament/7096/calendar/
+X-SOURCE-ID:championat-rpl-r9-spartak-fakel
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT1H
 ACTION:DISPLAY
-DESCRIPTION:Матч Спартак — Факел начнётся через 1 час
+DESCRIPTION:Матч Спартака начнётся через 1 час
 END:VALARM
 BEGIN:VALARM
 TRIGGER:-PT5M
 ACTION:DISPLAY
-DESCRIPTION:Матч Спартак — Факел начнётся через 5 минут
+DESCRIPTION:Матч Спартака начнётся через 5 минут
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-rpl10@spartak-calendar
-DTSTAMP:20260802T060000Z
-DTSTART;VALUE=DATE:20261009
-DTEND;VALUE=DATE:20261013
-SUMMARY:⏳ Крылья Советов — Спартак — дата и время уточняются
-LOCATION:Место проведения уточняется
-DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 10-й тур. Выездной матч. Предварительное окно: 9–12 октября 2026. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
-STATUS:TENTATIVE
-TRANSP:TRANSPARENT
+DTSTAMP:20260820T065405Z
+SEQUENCE:8
+LAST-MODIFIED:20260820T065405Z
+DTSTART;TZID=Europe/Moscow:20261010T173000
+DTEND;TZID=Europe/Moscow:20261010T194500
+SUMMARY:Крылья Советов — Спартак (РПЛ)
+LOCATION:Солидарность Самара Арена\, Самара
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 10-й тур. Выездной матч. Время московское. Источник: https://premierliga.ru/news/33856/
+URL:https://premierliga.ru/news/33856/
+X-SOURCE-ID:championat-rpl-r10-krylya-spartak
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартака начнётся через 1 час
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартака начнётся через 5 минут
+END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-cup4@spartak-calendar
-DTSTAMP:20260802T060000Z
-DTSTART;VALUE=DATE:20261013
-DTEND;VALUE=DATE:20261016
-SUMMARY:⏳ Родина — Спартак — дата и время уточняются
-LOCATION:Место проведения уточняется
-DESCRIPTION:FONBET Кубок России 2026/27\, группа А\, 4-й тур. Выездной матч. Предварительное окно: 13–15 октября 2026. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
-STATUS:TENTATIVE
-TRANSP:TRANSPARENT
+DTSTAMP:20260820T065405Z
+SEQUENCE:8
+LAST-MODIFIED:20260820T065405Z
+DTSTART;TZID=Europe/Moscow:20261015T204500
+DTEND;TZID=Europe/Moscow:20261015T231500
+SUMMARY:Родина — Спартак (Кубок России)
+LOCATION:Арена Химки\, Химки
+DESCRIPTION:FONBET Кубок России 2026/27\, Путь РПЛ\, группа A\, 4-й тур. Выездной матч. Время московское. Источник: https://www.rfs.ru/cup/news/224851
+URL:https://www.rfs.ru/cup/news/224851
+X-SOURCE-ID:championat-cup-r4-rodina-spartak
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартака начнётся через 1 час
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартака начнётся через 5 минут
+END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-rpl11@spartak-calendar
-DTSTAMP:20260802T060000Z
-DTSTART;VALUE=DATE:20261016
-DTEND;VALUE=DATE:20261020
-SUMMARY:⏳ Спартак — Рубин — дата и время уточняются
-LOCATION:Место проведения уточняется
-DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 11-й тур. Домашний матч. Предварительное окно: 16–19 октября 2026. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
-STATUS:TENTATIVE
-TRANSP:TRANSPARENT
+DTSTAMP:20260820T065405Z
+SEQUENCE:8
+LAST-MODIFIED:20260820T065405Z
+DTSTART;TZID=Europe/Moscow:20261018T183000
+DTEND;TZID=Europe/Moscow:20261018T204500
+SUMMARY:Спартак — Рубин (РПЛ)
+LOCATION:Лукойл Арена\, Москва
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 11-й тур. Домашний матч. Время московское. Источник: https://premierliga.ru/news/33856/
+URL:https://premierliga.ru/news/33856/
+X-SOURCE-ID:championat-rpl-r11-spartak-rubin
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартака начнётся через 1 час
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартака начнётся через 5 минут
+END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-rpl12@spartak-calendar
-DTSTAMP:20260802T060000Z
-DTSTART;VALUE=DATE:20261023
-DTEND;VALUE=DATE:20261027
-SUMMARY:⏳ ЦСКА — Спартак — дата и время уточняются
-LOCATION:Место проведения уточняется
-DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 12-й тур. Выездной матч. Предварительное окно: 23–26 октября 2026. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
-STATUS:TENTATIVE
-TRANSP:TRANSPARENT
+DTSTAMP:20260820T065405Z
+SEQUENCE:8
+LAST-MODIFIED:20260820T065405Z
+DTSTART;TZID=Europe/Moscow:20261025T160000
+DTEND;TZID=Europe/Moscow:20261025T181500
+SUMMARY:ЦСКА — Спартак (РПЛ)
+LOCATION:ВЭБ Арена\, Москва
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 12-й тур. Выездной матч. Время московское. Источник: https://premierliga.ru/news/33856/
+URL:https://premierliga.ru/news/33856/
+X-SOURCE-ID:championat-rpl-r12-cska-spartak
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартака начнётся через 1 час
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартака начнётся через 5 минут
+END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-cup5@spartak-calendar
-DTSTAMP:20260802T060000Z
-DTSTART;VALUE=DATE:20261027
-DTEND;VALUE=DATE:20261030
-SUMMARY:⏳ Спартак — Рубин — дата и время уточняются
-LOCATION:Место проведения уточняется
-DESCRIPTION:FONBET Кубок России 2026/27\, группа А\, 5-й тур. Домашний матч. Предварительное окно: 27–29 октября 2026. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
-STATUS:TENTATIVE
-TRANSP:TRANSPARENT
+DTSTAMP:20260820T065405Z
+SEQUENCE:8
+LAST-MODIFIED:20260820T065405Z
+DTSTART;TZID=Europe/Moscow:20261028T203000
+DTEND;TZID=Europe/Moscow:20261028T230000
+SUMMARY:Спартак — Рубин (Кубок России)
+LOCATION:Лукойл Арена\, Москва
+DESCRIPTION:FONBET Кубок России 2026/27\, Путь РПЛ\, группа A\, 5-й тур. Домашний матч. Время московское. Источник: https://www.rfs.ru/cup/news/224851
+URL:https://www.rfs.ru/cup/news/224851
+X-SOURCE-ID:championat-cup-r5-spartak-rubin
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартака начнётся через 1 час
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартака начнётся через 5 минут
+END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-rpl13@spartak-calendar
-DTSTAMP:20260802T060000Z
-DTSTART;VALUE=DATE:20261030
-DTEND;VALUE=DATE:20261103
-SUMMARY:⏳ Локомотив — Спартак — дата и время уточняются
-LOCATION:Место проведения уточняется
-DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 13-й тур. Выездной матч. Предварительное окно: 30 октября – 2 ноября 2026. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
-STATUS:TENTATIVE
-TRANSP:TRANSPARENT
+DTSTAMP:20260820T065405Z
+SEQUENCE:8
+LAST-MODIFIED:20260820T065405Z
+DTSTART;TZID=Europe/Moscow:20261101T194500
+DTEND;TZID=Europe/Moscow:20261101T220000
+SUMMARY:Локомотив — Спартак (РПЛ)
+LOCATION:РЖД Арена\, Москва
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 13-й тур. Выездной матч. Время московское. Источник: https://premierliga.ru/news/33856/
+URL:https://premierliga.ru/news/33856/
+X-SOURCE-ID:championat-rpl-r13-lokomotiv-spartak
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартака начнётся через 1 час
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартака начнётся через 5 минут
+END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-rpl14@spartak-calendar
-DTSTAMP:20260802T060000Z
-DTSTART;VALUE=DATE:20261106
-DTEND;VALUE=DATE:20261109
-SUMMARY:⏳ Спартак — Акрон — дата и время уточняются
-LOCATION:Место проведения уточняется
-DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 14-й тур. Домашний матч. Предварительное окно: 6–8 ноября 2026. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
-STATUS:TENTATIVE
-TRANSP:TRANSPARENT
+DTSTAMP:20260820T065405Z
+SEQUENCE:8
+LAST-MODIFIED:20260820T065405Z
+DTSTART;TZID=Europe/Moscow:20261108T161500
+DTEND;TZID=Europe/Moscow:20261108T183000
+SUMMARY:Спартак — Акрон (РПЛ)
+LOCATION:Лукойл Арена\, Москва
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 14-й тур. Домашний матч. Время московское. Источник: https://premierliga.ru/news/33856/
+URL:https://premierliga.ru/news/33856/
+X-SOURCE-ID:championat-rpl-r14-spartak-akron
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартака начнётся через 1 час
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартака начнётся через 5 минут
+END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-rpl15@spartak-calendar
-DTSTAMP:20260802T060000Z
-DTSTART;VALUE=DATE:20261120
-DTEND;VALUE=DATE:20261124
-SUMMARY:⏳ Динамо Махачкала — Спартак — дата и время уточняются
-LOCATION:Место проведения уточняется
-DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 15-й тур. Выездной матч. Предварительное окно: 20–23 ноября 2026. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
-STATUS:TENTATIVE
-TRANSP:TRANSPARENT
+DTSTAMP:20260820T065405Z
+SEQUENCE:8
+LAST-MODIFIED:20260820T065405Z
+DTSTART;TZID=Europe/Moscow:20261122T163000
+DTEND;TZID=Europe/Moscow:20261122T184500
+SUMMARY:Динамо Махачкала — Спартак (РПЛ)
+LOCATION:Анжи Арена\, Каспийск
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 15-й тур. Выездной матч. Время московское. Источник: https://premierliga.ru/news/33856/
+URL:https://premierliga.ru/news/33856/
+X-SOURCE-ID:championat-rpl-r15-dynamo_makhachkala-spartak
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартака начнётся через 1 час
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартака начнётся через 5 минут
+END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-cup6@spartak-calendar
-DTSTAMP:20260802T060000Z
-DTSTART;VALUE=DATE:20261124
-DTEND;VALUE=DATE:20261127
-SUMMARY:⏳ Оренбург — Спартак — дата и время уточняются
-LOCATION:Место проведения уточняется
-DESCRIPTION:FONBET Кубок России 2026/27\, группа А\, 6-й тур. Выездной матч. Предварительное окно: 24–26 ноября 2026. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
-STATUS:TENTATIVE
-TRANSP:TRANSPARENT
+DTSTAMP:20260820T065405Z
+SEQUENCE:8
+LAST-MODIFIED:20260820T065405Z
+DTSTART;TZID=Europe/Moscow:20261126T170000
+DTEND;TZID=Europe/Moscow:20261126T193000
+SUMMARY:Оренбург — Спартак (Кубок России)
+LOCATION:Газовик\, Оренбург
+DESCRIPTION:FONBET Кубок России 2026/27\, Путь РПЛ\, группа A\, 6-й тур. Выездной матч. Время московское. Источник: https://www.rfs.ru/cup/news/224851
+URL:https://www.rfs.ru/cup/news/224851
+X-SOURCE-ID:championat-cup-r6-orenburg-spartak
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартака начнётся через 1 час
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартака начнётся через 5 минут
+END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-rpl16@spartak-calendar
-DTSTAMP:20260802T060000Z
-DTSTART;VALUE=DATE:20261127
-DTEND;VALUE=DATE:20261201
-SUMMARY:⏳ Факел — Спартак — дата и время уточняются
-LOCATION:Место проведения уточняется
-DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 16-й тур. Выездной матч. Предварительное окно: 27–30 ноября 2026. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
-STATUS:TENTATIVE
-TRANSP:TRANSPARENT
+DTSTAMP:20260820T065405Z
+SEQUENCE:8
+LAST-MODIFIED:20260820T065405Z
+DTSTART;TZID=Europe/Moscow:20261130T193000
+DTEND;TZID=Europe/Moscow:20261130T214500
+SUMMARY:Факел — Спартак (РПЛ)
+LOCATION:Факел\, Воронеж
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 16-й тур. Выездной матч. Время московское. Источник: https://premierliga.ru/news/33856/
+URL:https://premierliga.ru/news/33856/
+X-SOURCE-ID:championat-rpl-r16-fakel-spartak
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартака начнётся через 1 час
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартака начнётся через 5 минут
+END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-rpl17@spartak-calendar
-DTSTAMP:20260802T060000Z
-DTSTART;VALUE=DATE:20261204
-DTEND;VALUE=DATE:20261208
-SUMMARY:⏳ Спартак — Динамо — дата и время уточняются
-LOCATION:Место проведения уточняется
-DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 17-й тур. Домашний матч. Предварительное окно: 4–7 декабря 2026. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
-STATUS:TENTATIVE
-TRANSP:TRANSPARENT
+DTSTAMP:20260820T065405Z
+SEQUENCE:8
+LAST-MODIFIED:20260820T065405Z
+DTSTART;TZID=Europe/Moscow:20261206T170000
+DTEND;TZID=Europe/Moscow:20261206T191500
+SUMMARY:Спартак — Динамо (РПЛ)
+LOCATION:Лукойл Арена\, Москва
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 17-й тур. Домашний матч. Время московское. Источник: https://premierliga.ru/news/33856/
+URL:https://premierliga.ru/news/33856/
+X-SOURCE-ID:championat-rpl-r17-spartak-dynamo
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартака начнётся через 1 час
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Матч Спартака начнётся через 5 минут
+END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-rpl18@spartak-calendar
-DTSTAMP:20260802T060000Z
+DTSTAMP:20260809T030800Z
+SEQUENCE:4
+LAST-MODIFIED:20260809T030800Z
 DTSTART;VALUE=DATE:20270226
 DTEND;VALUE=DATE:20270302
-SUMMARY:⏳ Краснодар — Спартак — дата и время уточняются
+SUMMARY:⏳ Краснодар — Спартак (РПЛ)
 LOCATION:Место проведения уточняется
-DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 18-й тур. Выездной матч. Предварительное окно: 26 февраля – 1 марта 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 18-й тур. Выездной матч. Дата и время не подтверждены. Предварительное окно тура: 26 февраля – 1 марта 2027. Место проведения уточняется. Источник: https://premierliga.ru/news/33625/
+URL:https://premierliga.ru/news/33625/
+X-SOURCE-ID:championat-rpl-r18-krasnodar-spartak
 STATUS:TENTATIVE
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-rpl19@spartak-calendar
-DTSTAMP:20260802T060000Z
+DTSTAMP:20260809T030800Z
+SEQUENCE:4
+LAST-MODIFIED:20260809T030800Z
 DTSTART;VALUE=DATE:20270305
 DTEND;VALUE=DATE:20270309
-SUMMARY:⏳ Акрон — Спартак — дата и время уточняются
+SUMMARY:⏳ Акрон — Спартак (РПЛ)
 LOCATION:Место проведения уточняется
-DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 19-й тур. Выездной матч. Предварительное окно: 5–8 марта 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 19-й тур. Выездной матч. Дата и время не подтверждены. Предварительное окно тура: 5–8 марта 2027. Место проведения уточняется. Источник: https://premierliga.ru/news/33625/
+URL:https://premierliga.ru/news/33625/
+X-SOURCE-ID:championat-rpl-r19-akron-spartak
 STATUS:TENTATIVE
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-rpl20@spartak-calendar
-DTSTAMP:20260802T060000Z
+DTSTAMP:20260809T030800Z
+SEQUENCE:4
+LAST-MODIFIED:20260809T030800Z
 DTSTART;VALUE=DATE:20270312
 DTEND;VALUE=DATE:20270316
-SUMMARY:⏳ Спартак — Ахмат — дата и время уточняются
+SUMMARY:⏳ Спартак — Ахмат (РПЛ)
 LOCATION:Место проведения уточняется
-DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 20-й тур. Домашний матч. Предварительное окно: 12–15 марта 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 20-й тур. Домашний матч. Дата и время не подтверждены. Предварительное окно тура: 12–15 марта 2027. Место проведения уточняется. Источник: https://premierliga.ru/news/33625/
+URL:https://premierliga.ru/news/33625/
+X-SOURCE-ID:championat-rpl-r20-spartak-akhmat
 STATUS:TENTATIVE
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-rpl21@spartak-calendar
-DTSTAMP:20260802T060000Z
+DTSTAMP:20260809T030800Z
+SEQUENCE:4
+LAST-MODIFIED:20260809T030800Z
 DTSTART;VALUE=DATE:20270319
 DTEND;VALUE=DATE:20270322
-SUMMARY:⏳ Рубин — Спартак — дата и время уточняются
+SUMMARY:⏳ Рубин — Спартак (РПЛ)
 LOCATION:Место проведения уточняется
-DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 21-й тур. Выездной матч. Предварительное окно: 19–21 марта 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 21-й тур. Выездной матч. Дата и время не подтверждены. Предварительное окно тура: 19–21 марта 2027. Место проведения уточняется. Источник: https://premierliga.ru/news/33625/
+URL:https://premierliga.ru/news/33625/
+X-SOURCE-ID:championat-rpl-r21-rubin-spartak
 STATUS:TENTATIVE
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-rpl22@spartak-calendar
-DTSTAMP:20260802T060000Z
+DTSTAMP:20260809T030800Z
+SEQUENCE:4
+LAST-MODIFIED:20260809T030800Z
 DTSTART;VALUE=DATE:20270402
 DTEND;VALUE=DATE:20270406
-SUMMARY:⏳ Спартак — Динамо Махачкала — дата и время уточняются
+SUMMARY:⏳ Спартак — Динамо Махачкала (РПЛ)
 LOCATION:Место проведения уточняется
-DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 22-й тур. Домашний матч. Предварительное окно: 2–5 апреля 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 22-й тур. Домашний матч. Дата и время не подтверждены. Предварительное окно тура: 2–5 апреля 2027. Место проведения уточняется. Источник: https://premierliga.ru/news/33625/
+URL:https://premierliga.ru/news/33625/
+X-SOURCE-ID:championat-rpl-r22-spartak-dynamo_makhachkala
 STATUS:TENTATIVE
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-rpl23@spartak-calendar
-DTSTAMP:20260802T060000Z
+DTSTAMP:20260809T030800Z
+SEQUENCE:4
+LAST-MODIFIED:20260809T030800Z
 DTSTART;VALUE=DATE:20270409
 DTEND;VALUE=DATE:20270413
-SUMMARY:⏳ Оренбург — Спартак — дата и время уточняются
+SUMMARY:⏳ Оренбург — Спартак (РПЛ)
 LOCATION:Место проведения уточняется
-DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 23-й тур. Выездной матч. Предварительное окно: 9–12 апреля 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 23-й тур. Выездной матч. Дата и время не подтверждены. Предварительное окно тура: 9–12 апреля 2027. Место проведения уточняется. Источник: https://premierliga.ru/news/33625/
+URL:https://premierliga.ru/news/33625/
+X-SOURCE-ID:championat-rpl-r23-orenburg-spartak
 STATUS:TENTATIVE
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-rpl24@spartak-calendar
-DTSTAMP:20260802T060000Z
+DTSTAMP:20260809T030800Z
+SEQUENCE:4
+LAST-MODIFIED:20260809T030800Z
 DTSTART;VALUE=DATE:20270416
 DTEND;VALUE=DATE:20270420
-SUMMARY:⏳ Спартак — ЦСКА — дата и время уточняются
+SUMMARY:⏳ Спартак — ЦСКА (РПЛ)
 LOCATION:Место проведения уточняется
-DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 24-й тур. Домашний матч. Предварительное окно: 16–19 апреля 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 24-й тур. Домашний матч. Дата и время не подтверждены. Предварительное окно тура: 16–19 апреля 2027. Место проведения уточняется. Источник: https://premierliga.ru/news/33625/
+URL:https://premierliga.ru/news/33625/
+X-SOURCE-ID:championat-rpl-r24-spartak-cska
 STATUS:TENTATIVE
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-rpl25@spartak-calendar
-DTSTAMP:20260802T060000Z
+DTSTAMP:20260809T030800Z
+SEQUENCE:4
+LAST-MODIFIED:20260809T030800Z
 DTSTART;VALUE=DATE:20270423
 DTEND;VALUE=DATE:20270427
-SUMMARY:⏳ Родина — Спартак — дата и время уточняются
+SUMMARY:⏳ Родина — Спартак (РПЛ)
 LOCATION:Место проведения уточняется
-DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 25-й тур. Выездной матч. Предварительное окно: 23–26 апреля 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 25-й тур. Выездной матч. Дата и время не подтверждены. Предварительное окно тура: 23–26 апреля 2027. Место проведения уточняется. Источник: https://premierliga.ru/news/33625/
+URL:https://premierliga.ru/news/33625/
+X-SOURCE-ID:championat-rpl-r25-rodina-spartak
 STATUS:TENTATIVE
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-rpl26@spartak-calendar
-DTSTAMP:20260802T060000Z
+DTSTAMP:20260809T030800Z
+SEQUENCE:4
+LAST-MODIFIED:20260809T030800Z
 DTSTART;VALUE=DATE:20270430
 DTEND;VALUE=DATE:20270504
-SUMMARY:⏳ Спартак — Балтика — дата и время уточняются
+SUMMARY:⏳ Спартак — Балтика (РПЛ)
 LOCATION:Место проведения уточняется
-DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 26-й тур. Домашний матч. Предварительное окно: 30 апреля – 3 мая 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 26-й тур. Домашний матч. Дата и время не подтверждены. Предварительное окно тура: 30 апреля – 3 мая 2027. Место проведения уточняется. Источник: https://premierliga.ru/news/33625/
+URL:https://premierliga.ru/news/33625/
+X-SOURCE-ID:championat-rpl-r26-spartak-baltika
 STATUS:TENTATIVE
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-rpl27@spartak-calendar
-DTSTAMP:20260802T060000Z
+DTSTAMP:20260809T030800Z
+SEQUENCE:4
+LAST-MODIFIED:20260809T030800Z
 DTSTART;VALUE=DATE:20270507
 DTEND;VALUE=DATE:20270511
-SUMMARY:⏳ Спартак — Локомотив — дата и время уточняются
+SUMMARY:⏳ Спартак — Локомотив (РПЛ)
 LOCATION:Место проведения уточняется
-DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 27-й тур. Домашний матч. Предварительное окно: 7–10 мая 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 27-й тур. Домашний матч. Дата и время не подтверждены. Предварительное окно тура: 7–10 мая 2027. Место проведения уточняется. Источник: https://premierliga.ru/news/33625/
+URL:https://premierliga.ru/news/33625/
+X-SOURCE-ID:championat-rpl-r27-spartak-lokomotiv
 STATUS:TENTATIVE
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-rpl28@spartak-calendar
-DTSTAMP:20260802T060000Z
+DTSTAMP:20260809T030800Z
+SEQUENCE:4
+LAST-MODIFIED:20260809T030800Z
 DTSTART;VALUE=DATE:20270514
 DTEND;VALUE=DATE:20270518
-SUMMARY:⏳ Зенит — Спартак — дата и время уточняются
+SUMMARY:⏳ Зенит — Спартак (РПЛ)
 LOCATION:Место проведения уточняется
-DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 28-й тур. Выездной матч. Предварительное окно: 14–17 мая 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 28-й тур. Выездной матч. Дата и время не подтверждены. Предварительное окно тура: 14–17 мая 2027. Место проведения уточняется. Источник: https://premierliga.ru/news/33625/
+URL:https://premierliga.ru/news/33625/
+X-SOURCE-ID:championat-rpl-r28-zenit-spartak
 STATUS:TENTATIVE
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-rpl29@spartak-calendar
-DTSTAMP:20260802T060000Z
+DTSTAMP:20260809T030800Z
+SEQUENCE:4
+LAST-MODIFIED:20260809T030800Z
 DTSTART;VALUE=DATE:20270521
 DTEND;VALUE=DATE:20270525
-SUMMARY:⏳ Спартак — Крылья Советов — дата и время уточняются
+SUMMARY:⏳ Спартак — Крылья Советов (РПЛ)
 LOCATION:Место проведения уточняется
-DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 29-й тур. Домашний матч. Предварительное окно: 21–24 мая 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 29-й тур. Домашний матч. Дата и время не подтверждены. Предварительное окно тура: 21–24 мая 2027. Место проведения уточняется. Источник: https://premierliga.ru/news/33625/
+URL:https://premierliga.ru/news/33625/
+X-SOURCE-ID:championat-rpl-r29-spartak-krylya
 STATUS:TENTATIVE
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-rpl30@spartak-calendar
-DTSTAMP:20260802T060000Z
+DTSTAMP:20260809T030800Z
+SEQUENCE:4
+LAST-MODIFIED:20260809T030800Z
 DTSTART;VALUE=DATE:20270529
 DTEND;VALUE=DATE:20270530
-SUMMARY:⏳ Ростов — Спартак — дата и время уточняются
+SUMMARY:⏳ Ростов — Спартак (РПЛ)
 LOCATION:Место проведения уточняется
-DESCRIPTION:Альфа-Банк РПЛ 2026/27\, 30-й тур. Выездной матч. Предварительное окно: 29 мая 2027. Точная дата\, время и стадион ещё не подтверждены. После публикации официального расписания это событие будет обновлено.
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 30-й тур. Выездной матч. Дата и время не подтверждены. Предварительное окно тура: 29 мая 2027. Место проведения уточняется. Источник: https://premierliga.ru/news/33625/
+URL:https://premierliga.ru/news/33625/
+X-SOURCE-ID:championat-rpl-r30-rostov-spartak
 STATUS:TENTATIVE
 TRANSP:TRANSPARENT
 END:VEVENT

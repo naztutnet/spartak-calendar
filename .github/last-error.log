@@ -1,6 +1,6 @@
-UTC: 2026-08-28T01:32:32Z
-Run: https://github.com/naztutnet/spartak-calendar/actions/runs/33133150569
-Commit: 76f883bc950daf689dd82b9f7de2f1595f5c459c
+UTC: 2026-08-28T14:19:54Z
+Run: https://github.com/naztutnet/spartak-calendar/actions/runs/33179551150
+Commit: bb3f9b810a25fff236255ee3ac5e2e91f03715e2
 
 Ошибка обновления календаря: Страница https://www.championat.com/football/_russiapl/tournament/7096/calendar/ не содержит календарь Спартака
 Traceback (most recent call last):

@@ -139,28 +139,18 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260830-spartak-orenburg-rpl@spartak-calendar
-DTSTAMP:20260807T061631Z
-SEQUENCE:2
-LAST-MODIFIED:20260807T061631Z
+DTSTAMP:20260830T191102Z
+SEQUENCE:3
+LAST-MODIFIED:20260830T191102Z
 DTSTART;TZID=Europe/Moscow:20260830T173000
 DTEND;TZID=Europe/Moscow:20260830T194500
-SUMMARY:Спартак — Оренбург (РПЛ)
+SUMMARY:Спартак — Оренбург — 1:1 (РПЛ)
 LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
-DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 6-й тур. Домашний матч. Время московское. Источник: https://www.championat.com/football/_russiapl/tournament/7096/calendar/
-URL:https://www.championat.com/football/_russiapl/tournament/7096/calendar/
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 6-й тур. Результат: ничья 1:1. Гол «Спартака»: Мирлинд Даку\, 76-я минута (пенальти). Официальный отчёт клуба: https://spartak.com/media/news/795654b9-7aa0-45c1-9fd4-6fd8bec548b9 . Протокол РПЛ: https://premierliga.ru/matches/16281/ . Видеообзор: https://matchtv.ru/football/rpl/matchtvvideo_NI2359721_clip_Spartak___Orenburg_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol
+URL:https://matchtv.ru/football/rpl/matchtvvideo_NI2359721_clip_Spartak___Orenburg_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol
 X-SOURCE-ID:championat-rpl-r6-spartak-orenburg
 STATUS:CONFIRMED
-TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT1H
-ACTION:DISPLAY
-DESCRIPTION:Матч Спартака начнётся через 1 час
-END:VALARM
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Матч Спартака начнётся через 5 минут
-END:VALARM
+TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260902-spartak-rodina-cup@spartak-calendar

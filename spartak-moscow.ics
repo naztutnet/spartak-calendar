@@ -179,15 +179,15 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:20260906-dynamo-spartak-rpl@spartak-calendar
-DTSTAMP:20260807T061631Z
-SEQUENCE:2
-LAST-MODIFIED:20260807T061631Z
+DTSTAMP:20260831T143404Z
+SEQUENCE:3
+LAST-MODIFIED:20260831T143404Z
 DTSTART;TZID=Europe/Moscow:20260906T183000
 DTEND;TZID=Europe/Moscow:20260906T204500
 SUMMARY:Динамо — Спартак (РПЛ)
 LOCATION:ВТБ Арена\, Ленинградский проспект\, 36\, Москва
-DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 7-й тур. Выездной матч. Время московское. Источник: https://www.championat.com/football/_russiapl/tournament/7096/calendar/
-URL:https://www.championat.com/football/_russiapl/tournament/7096/calendar/
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 7-й тур. Выездной матч. Время московское. Источники: https://premierliga.ru/matches/16289/\, https://spartak.com/media/news/8118c717-2f56-4fa1-82c7-61c0b1539879
+URL:https://premierliga.ru/matches/16289/
 X-SOURCE-ID:championat-rpl-r7-dynamo-spartak
 STATUS:CONFIRMED
 TRANSP:OPAQUE

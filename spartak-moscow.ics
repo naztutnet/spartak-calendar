@@ -154,28 +154,18 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260902-spartak-rodina-cup@spartak-calendar
-DTSTAMP:20260807T061631Z
-SEQUENCE:1
-LAST-MODIFIED:20260807T061631Z
+DTSTAMP:20260902T205455Z
+SEQUENCE:2
+LAST-MODIFIED:20260902T205455Z
 DTSTART;TZID=Europe/Moscow:20260902T204500
 DTEND;TZID=Europe/Moscow:20260902T231500
-SUMMARY:Спартак — Родина (Кубок России)
+SUMMARY:Спартак 3:1 Родина (Кубок России)
 LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
-DESCRIPTION:FONBET Кубок России 2026/27\, 3-й тур. Домашний матч. Время московское. Источник: https://www.championat.com/football/_russiacup/tournament/7094/calendar/
-URL:https://www.championat.com/football/_russiacup/tournament/7094/calendar/
+DESCRIPTION:FONBET Кубок России 2026/27\, Путь РПЛ\, группа A\, 3-й тур. Домашний матч. Результат: победа Спартака 3:1. Голы Спартака: Роман Зобнин (35')\, Пабло Солари (65'\, 78'). Официальный протокол: https://www.rfs.ru/cup/tournament/match/57179 Видеообзор РФС: https://www.rfs.ru/cup/tournament/match/57179
+URL:https://www.rfs.ru/cup/tournament/match/57179
 X-SOURCE-ID:championat-cup-r3-spartak-rodina
 STATUS:CONFIRMED
-TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT1H
-ACTION:DISPLAY
-DESCRIPTION:Матч Спартака начнётся через 1 час
-END:VALARM
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Матч Спартака начнётся через 5 минут
-END:VALARM
+TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260906-dynamo-spartak-rpl@spartak-calendar

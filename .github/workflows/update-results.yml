@@ -24,7 +24,7 @@ concurrency:
 jobs:
   update:
     name: Check fixtures and results
-    runs-on: ubuntu-slim
+    runs-on: ubuntu-latest
     timeout-minutes: 10
 
     steps:
@@ -103,3 +103,5 @@ jobs:
             git push origin HEAD:main
           fi
           exit 1
+
+# Verification PR: execute updater without publishing calendar changes.

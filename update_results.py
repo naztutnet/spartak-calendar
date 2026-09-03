@@ -90,6 +90,14 @@ CUP_URLS = (
     "https://www.championat.com/football/_russiacup/tournament/7094/calendar/",
     "https://www.championat.ru/football/_russiacup/tournament/7094/calendar/",
 )
+SPORTS_URLS = {
+    "rpl": "https://www.sports.ru/football/club/spartak/calendar/2026-2027/rfpl/",
+    "cup": "https://www.sports.ru/football/club/spartak/calendar/2026-2027/russian-cup/",
+}
+SPORTS_COMPETITION_NAMES = {
+    "rpl": "Россия. Премьер-лига",
+    "cup": "Россия. FONBET Кубок России",
+}
 RFS_CUP_PAST_URL = (
     "https://www.rfs.ru/cup/tournament/matches?"
     "TournamentMatchesFilter%5Bdate%5D=before"
@@ -100,8 +108,9 @@ USER_AGENT = (
 )
 
 TEAM_NAMES = (
-    "Крылья Советов", "Динамо Махачкала", "Локомотив М", "Спартак М",
-    "Динамо Мх", "Динамо М", "Краснодар", "Оренбург", "Балтика",
+    "Крылья Советов", "Динамо Махачкала", "Локомотив М", "Локомотив",
+    "Спартак М", "Спартак", "Динамо Мх", "Динамо М", "Динамо",
+    "Краснодар", "Оренбург", "Балтика",
     "Родина", "Зенит", "Рубин", "Ростов", "Факел", "Ахмат", "Акрон", "ЦСКА",
 )
 TEAM_PATTERN = "|".join(re.escape(name) for name in sorted(TEAM_NAMES, key=len, reverse=True))
@@ -213,11 +222,59 @@ def visible_text(raw_html: str) -> str:
     return parser.text()
 
 
+def parse_sports_calendar(competition: str) -> list[dict[str, Any]]:
+    raw, resolved_url = fetch_text(SPORTS_URLS[competition])
+    text = visible_text(raw)
+    table_header = "Дата Турнир Соперник Счет Зрители"
+    if table_header not in text:
+        raise RuntimeError(f"Страница {resolved_url} не содержит таблицу матчей Спартака")
+    table_text = text.split(table_header, 1)[1]
+    competition_name = re.escape(SPORTS_COMPETITION_NAMES[competition])
+    row_pattern = re.compile(
+        rf"(?P<date>\d{{2}}\.\d{{2}}\.\d{{4}})"
+        rf"(?:\s+\|\s+(?P<time>\d{{2}}:\d{{2}}))?\s+"
+        rf"{competition_name}\s+"
+        rf"(?P<opponent>{TEAM_PATTERN})\s+"
+        rf"(?P<venue>Дома|В гостях)\s+"
+        rf"(?:(?P<home_score>\d+)\s*:\s*(?P<away_score>\d+)|превью)"
+    )
+    events: list[dict[str, Any]] = []
+    for round_number, match in enumerate(row_pattern.finditer(table_text), start=1):
+        opponent = match.group("opponent")
+        if match.group("venue") == "Дома":
+            home_raw, away_raw = "Спартак", opponent
+        else:
+            home_raw, away_raw = opponent, "Спартак"
+        home_key, away_key = canonical_team(home_raw), canonical_team(away_raw)
+        start = datetime.strptime(
+            f'{match.group("date")} {match.group("time") or "03:00"}', "%d.%m.%Y %H:%M"
+        ).replace(tzinfo=MOSCOW)
+        if not (SEASON_START <= start.date() <= SEASON_END):
+            continue
+        score_home, score_away = match.group("home_score"), match.group("away_score")
+        finished = score_home is not None and score_away is not None
+        events.append({
+            "id": f"championat-{competition}-r{round_number}-{home_key}-{away_key}",
+            "start": start, "home_key": home_key, "away_key": away_key,
+            "home_name": DISPLAY.get(home_key, home_raw.replace(" М", "")),
+            "away_name": DISPLAY.get(away_key, away_raw.replace(" М", "")),
+            "competition": competition, "round": round_number,
+            "status": "finished" if finished else "scheduled",
+            "score_home": int(score_home) if finished else None,
+            "score_away": int(score_away) if finished else None,
+            "pen_home": None, "pen_away": None,
+            "source_url": resolved_url, "official_confirmed": False,
+        })
+    if not events:
+        raise RuntimeError(f"Не удалось распознать матчи Спартака на {resolved_url}")
+    return events
+
+
 def parse_championat_calendar(urls: tuple[str, ...], competition: str) -> list[dict[str, Any]]:
     raw, resolved_url = fetch_text(urls)
     text = visible_text(raw)
     if "Спартак М" not in text:
-        raise RuntimeError(f"Страница {resolved_url} не содержит календарь Спартака")
+        return parse_sports_calendar(competition)
     row_pattern = re.compile(
         rf"Тур\s+(?P<round>\d+)\s+"
         rf"(?P<date>\d{{2}}\.\d{{2}}\.\d{{4}})\s+"
@@ -259,7 +316,7 @@ def parse_championat_calendar(urls: tuple[str, ...], competition: str) -> list[d
             "source_url": resolved_url, "official_confirmed": False,
         })
     if not events:
-        raise RuntimeError(f"Не удалось распознать матчи Спартака на {resolved_url}")
+        return parse_sports_calendar(competition)
     return events
 
 

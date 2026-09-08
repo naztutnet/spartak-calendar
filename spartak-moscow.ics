@@ -139,14 +139,14 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260830-spartak-orenburg-rpl@spartak-calendar
-DTSTAMP:20260830T191102Z
-SEQUENCE:3
-LAST-MODIFIED:20260830T191102Z
+DTSTAMP:20260908T111537Z
+SEQUENCE:4
+LAST-MODIFIED:20260908T111537Z
 DTSTART;TZID=Europe/Moscow:20260830T173000
 DTEND;TZID=Europe/Moscow:20260830T194500
-SUMMARY:Спартак — Оренбург — 1:1 (РПЛ)
+SUMMARY:Спартак 1:1 Оренбург (РПЛ)
 LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
-DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 6-й тур. Результат: ничья 1:1. Гол «Спартака»: Мирлинд Даку\, 76-я минута (пенальти). Официальный отчёт клуба: https://spartak.com/media/news/795654b9-7aa0-45c1-9fd4-6fd8bec548b9 . Протокол РПЛ: https://premierliga.ru/matches/16281/ . Видеообзор: https://matchtv.ru/football/rpl/matchtvvideo_NI2359721_clip_Spartak___Orenburg_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 6-й тур. Домашний матч. Результат: ничья 1:1. Видеообзор: https://matchtv.ru/football/rpl/matchtvvideo_NI2359721_clip_Spartak___Orenburg_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol Источник: https://www.sports.ru/football/club/spartak/calendar/
 URL:https://matchtv.ru/football/rpl/matchtvvideo_NI2359721_clip_Spartak___Orenburg_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol
 X-SOURCE-ID:championat-rpl-r6-spartak-orenburg
 STATUS:CONFIRMED
@@ -154,14 +154,14 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260902-spartak-rodina-cup@spartak-calendar
-DTSTAMP:20260903T010114Z
-SEQUENCE:3
-LAST-MODIFIED:20260903T010114Z
+DTSTAMP:20260908T111537Z
+SEQUENCE:4
+LAST-MODIFIED:20260908T111537Z
 DTSTART;TZID=Europe/Moscow:20260902T204500
 DTEND;TZID=Europe/Moscow:20260902T231500
 SUMMARY:Спартак 3:1 Родина (Кубок России)
 LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
-DESCRIPTION:FONBET Кубок России 2026/27\, Путь РПЛ\, группа A\, 3-й тур. Домашний матч. Результат: победа Спартака 3:1. Голы Спартака: Роман Зобнин (36')\, Пабло Солари (65'\, 80'). Официальный протокол: https://www.rfs.ru/cup/tournament/match/57179 Видеообзор РФС: https://www.rfs.ru/cup/tournament/match/57179
+DESCRIPTION:FONBET Кубок России 2026/27\, 3-й тур. Домашний матч. Результат: победа Спартака 3:1. Голы Спартака: Роман Зобнин (36')\, Пабло Солари (65'\, 80') Официальный протокол: https://www.rfs.ru/cup/tournament/match/57179 Источник: https://www.sports.ru/football/club/spartak/calendar/
 URL:https://www.rfs.ru/cup/tournament/match/57179
 X-SOURCE-ID:championat-cup-r3-spartak-rodina
 STATUS:CONFIRMED
@@ -169,14 +169,14 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260906-dynamo-spartak-rpl@spartak-calendar
-DTSTAMP:20260906T191200Z
-SEQUENCE:4
-LAST-MODIFIED:20260906T191200Z
+DTSTAMP:20260908T111537Z
+SEQUENCE:5
+LAST-MODIFIED:20260908T111537Z
 DTSTART;TZID=Europe/Moscow:20260906T183000
 DTEND;TZID=Europe/Moscow:20260906T204500
 SUMMARY:Динамо 2:1 Спартак (РПЛ)
 LOCATION:ВТБ Арена\, Ленинградский проспект\, 36\, Москва
-DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 7-й тур. Выездной матч. Результат: поражение Спартака 1:2. Гол Спартака: Данил Пруцев (21'). Официальный протокол: https://premierliga.ru/matches/16289/ Видеообзор: https://matchtv.ru/football/rpl/matchtvvideo_NI2362661_clip_Dinamo___Spartak_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 7-й тур. Выездной матч. Результат: поражение Спартака 1:2. Гол Спартака: Данил Пруцев (21') Официальный протокол: https://premierliga.ru/matches/16289/ Видеообзор: https://matchtv.ru/football/rpl/matchtvvideo_NI2362661_clip_Dinamo___Spartak_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol Источник: https://www.sports.ru/football/club/spartak/calendar/
 URL:https://matchtv.ru/football/rpl/matchtvvideo_NI2362661_clip_Dinamo___Spartak_Goly_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol
 X-SOURCE-ID:championat-rpl-r7-dynamo-spartak
 STATUS:CONFIRMED

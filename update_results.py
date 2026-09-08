@@ -603,7 +603,7 @@ def duration_for(code: str) -> timedelta:
 
 def media_lines(description: str) -> list[str]:
     output: list[str] = []
-    for label in ("Видеообзор", "Обзор", "Полный матч", "Полная запись"):
+    for label in ("Видеообзор РФС", "Видеообзор", "Обзор", "Полный матч", "Полная запись"):
         for match in re.finditer(rf"{label}:\s*(https?://\S+)", description):
             line = f"{label}: {match.group(1).rstrip('.,;')}"
             if line not in output: output.append(line)
@@ -615,9 +615,9 @@ def preserved_detail_lines(description: str) -> list[str]:
     """Keep verified match metadata that schedule sources do not provide."""
     output: list[str] = []
     patterns = (
-        r"Гол(?:ы)? Спартака:\s*.*?(?=\s+(?:Видеообзор|Обзор|Полный матч|Полная запись|Официальный протокол|Отчёт Спартака|Источник):|$)",
-        r"Официальный протокол:\s*https?://\S+",
-        r"Отчёт Спартака:\s*https?://\S+",
+        r"Гол(?:ы)?\s+[«\"]?Спартака[»\"]?:\s*.*?(?=\s+(?:Видеообзор(?:\s+РФС)?|Обзор|Полный матч|Полная запись|Официальный протокол|Протокол РПЛ|Официальный отчёт клуба|Отчёт Спартака|Источник):|$)",
+        r"(?:Официальный протокол|Протокол РПЛ):\s*https?://\S+",
+        r"(?:Официальный отчёт клуба|Отчёт Спартака):\s*https?://\S+",
     )
     for pattern in patterns:
         match = re.search(pattern, description)
@@ -643,6 +643,19 @@ def result_phrase(event: dict[str, Any]) -> str:
         )
     outcome = "победа Спартака" if spartak_score > opponent_score else "поражение Спартака" if spartak_score < opponent_score else "ничья"
     return f"Результат: {outcome} {spartak_score}:{opponent_score}."
+
+
+def same_finished_score(event: dict[str, Any], old: ExistingEvent | None) -> bool:
+    """Return true when an existing finished event already has this score.
+
+    Schedule-only fallback sources contain less verified metadata than the
+    calendar.  A matching score must not let them replace scorers, official
+    reports, or video links already recorded in the event.
+    """
+    if not old or event.get("status") != "finished":
+        return False
+    score = rf"(?<!\d){event['score_home']}\s*:\s*{event['score_away']}(?!\d)"
+    return re.search(score, old.summary) is not None
 
 def desired_fields(event: dict[str, Any], old: ExistingEvent | None) -> dict[str, Any]:
     start, finished = event["start"], event["status"] == "finished"
@@ -692,12 +705,15 @@ def desired_fields(event: dict[str, Any], old: ExistingEvent | None) -> dict[str
     for line in existing_details: base += " " + line
     for line in existing_media: base += " " + line
     base += f' Источник: {event["source_url"]}'
+    if same_finished_score(event, old):
+        summary = old.summary
+        base = old.description
     if official_fixture: location = official_fixture["location"]
     elif old and old.location and "уточняется" not in old.location.lower(): location = old.location
     elif event["home_key"] == "spartak": location = "Лукойл Арена, Волоколамское шоссе, 69, Москва"
     else: location = old.location if old and old.location else "Место проведения уточняется"
     url = official_fixture["url"] if official_fixture else old.url if old and old.url else event["source_url"]
-    if finished and existing_media:
+    if finished and existing_media and not same_finished_score(event, old):
         media_match = re.search(r"https?://\S+", existing_media[0])
         if media_match: url = media_match.group(0).rstrip(".,;")
     return {

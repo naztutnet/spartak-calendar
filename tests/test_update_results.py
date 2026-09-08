@@ -173,6 +173,36 @@ class UpdaterTests(unittest.TestCase):
         self.assertIn("TRIGGER:-PT1H", new.block)
         self.assertIn("TRIGGER:-PT5M", new.block)
 
+    def test_matching_finished_result_preserves_enriched_metadata(self):
+        event = self.parse(day="06.09.2026", time="18:30", opponent="Динамо", home=False, score="2 : 1")
+        old = next(item for item in self.existing if item.source_id == event["id"])
+        old.description = (
+            "Результат: поражение Спартака 1:2. Гол «Спартака»: Данил Пруцев (21'). "
+            "Официальный протокол: https://premierliga.ru/matches/16289/ "
+            "Видеообзор: https://matchtv.ru/example"
+        )
+        old.url = "https://matchtv.ru/example"
+
+        fields = u.desired_fields(event, old)
+
+        self.assertEqual(fields["summary"], old.summary)
+        self.assertEqual(fields["description"], old.description)
+        self.assertEqual(fields["url"], old.url)
+
+    def test_preservation_recognizes_quoted_scorer_and_source_labels(self):
+        description = (
+            "Гол «Спартака»: Мирлинд Даку, 76-я минута (пенальти). "
+            "Официальный отчёт клуба: https://spartak.com/report . "
+            "Протокол РПЛ: https://premierliga.ru/match . "
+            "Видеообзор РФС: https://rfs.ru/review"
+        )
+        details = u.preserved_detail_lines(description)
+
+        self.assertTrue(any("Мирлинд Даку" in line for line in details))
+        self.assertTrue(any("spartak.com/report" in line for line in details))
+        self.assertTrue(any("premierliga.ru/match" in line for line in details))
+        self.assertEqual(u.media_lines(description), ["Видеообзор РФС: https://rfs.ru/review"])
+
     def test_all_sources_failure_leaves_calendar_and_state_untouched(self):
         with tempfile.TemporaryDirectory() as folder:
             ics, state = Path(folder) / "calendar.ics", Path(folder) / "state.json"

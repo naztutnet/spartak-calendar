@@ -13,12 +13,15 @@ Safety:
 """
 from __future__ import annotations
 
+import argparse
 import hashlib
 import html
 import json
+import os
 import re
 import sys
 import time
+import tempfile
 import urllib.request
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta, timezone
@@ -29,6 +32,8 @@ from zoneinfo import ZoneInfo
 
 ICS_PATH = Path("spartak-moscow.ics")
 STATE_PATH = Path(".github/calendar-state.json")
+SPORTS_URL = "https://www.sports.ru/football/club/spartak/calendar/"
+DIAGNOSTICS: list[dict[str, Any]] = []
 MOSCOW = ZoneInfo("Europe/Moscow")
 SEASON_START = date(2026, 7, 1)
 SEASON_END = date(2027, 6, 30)
@@ -183,12 +188,21 @@ def canonical_team(value: str) -> str:
     return max(candidates)[1] if candidates else key
 
 
+class SourceError(RuntimeError):
+    """A source is unavailable or cannot safely supply calendar data."""
+
+
+def diagnose(**record: Any) -> None:
+    DIAGNOSTICS.append(record)
+    print(json.dumps(record, ensure_ascii=False, sort_keys=True), file=sys.stderr)
+
+
 def fetch_text(urls: tuple[str, ...] | list[str] | str) -> tuple[str, str]:
     if isinstance(urls, str):
         urls = (urls,)
     errors: list[str] = []
     for url in urls:
-        for attempt in range(3):
+        for attempt in range(2):
             try:
                 request = urllib.request.Request(url, headers={
                     "User-Agent": USER_AGENT,
@@ -196,15 +210,32 @@ def fetch_text(urls: tuple[str, ...] | list[str] | str) -> tuple[str, str]:
                     "Accept-Language": "ru-RU,ru;q=0.9,en;q=0.6",
                     "Cache-Control": "no-cache",
                 })
-                with urllib.request.urlopen(request, timeout=35) as response:
-                    raw = response.read()
+                with urllib.request.urlopen(request, timeout=20) as response:
+                    raw = response.read(5_000_001)
+                    if len(raw) > 5_000_000:
+                        raise SourceError("Ответ превышает 5 МБ")
                     encoding = response.headers.get_content_charset() or "utf-8"
-                    return raw.decode(encoding, errors="replace"), response.geturl()
+                    decoded = raw.decode(encoding, errors="replace")
+                    title_match = re.search(r"<title[^>]*>(.*?)</title>", decoded, re.S | re.I)
+                    title = visible_text(title_match.group(1))[:160] if title_match else ""
+                    diagnose(url=url, resolved_url=response.geturl(), status=response.status,
+                             content_type=response.headers.get_content_type(), bytes=len(raw),
+                             title=title, sha256=hashlib.sha256(raw).hexdigest())
+                    if any(marker in title.lower() for marker in
+                           ("sberid", "вы не робот", "captcha", "access denied", "just a moment")):
+                        raise SourceError(f"Вместо данных получена страница доступа: {title}")
+                    if response.headers.get_content_type() not in {"text/html", "application/xhtml+xml"}:
+                        raise SourceError("Источник вернул не HTML")
+                    return decoded, response.geturl()
+            except SourceError as exc:
+                errors.append(f"{url}: {exc}")
+                break  # Do not retry login/challenge pages or attempt to bypass them.
             except Exception as exc:
                 errors.append(f"{url}: {exc}")
-                if attempt < 2:
+                diagnose(url=url, attempt=attempt + 1, error=str(exc))
+                if attempt < 1:
                     time.sleep(2 ** attempt)
-    raise RuntimeError("Не удалось загрузить источник: " + " | ".join(errors[-4:]))
+    raise SourceError("Не удалось загрузить источник: " + " | ".join(errors[-4:]))
 
 
 def visible_text(raw_html: str) -> str:
@@ -214,10 +245,24 @@ def visible_text(raw_html: str) -> str:
 
 
 def parse_championat_calendar(urls: tuple[str, ...], competition: str) -> list[dict[str, Any]]:
-    raw, resolved_url = fetch_text(urls)
+    errors = []
+    for url in urls:
+        try:
+            raw, resolved_url = fetch_text(url)
+            events = parse_championat_html(raw, resolved_url, competition)
+            validate_source_events(events, competition)
+            diagnose(source="championat", competition=competition, parsed=len(events))
+            return events
+        except (SourceError, ValueError) as exc:
+            errors.append(f"{url}: {exc}")
+            diagnose(source="championat", competition=competition, url=url, error=str(exc))
+    raise SourceError(" | ".join(errors))
+
+
+def parse_championat_html(raw: str, resolved_url: str, competition: str) -> list[dict[str, Any]]:
     text = visible_text(raw)
     if "Спартак М" not in text:
-        raise RuntimeError(f"Страница {resolved_url} не содержит календарь Спартака")
+        raise SourceError(f"Страница {resolved_url} не содержит календарь Спартака")
     row_pattern = re.compile(
         rf"Тур\s+(?P<round>\d+)\s+"
         rf"(?P<date>\d{{2}}\.\d{{2}}\.\d{{4}})\s+"
@@ -259,7 +304,101 @@ def parse_championat_calendar(urls: tuple[str, ...], competition: str) -> list[d
             "source_url": resolved_url, "official_confirmed": False,
         })
     if not events:
-        raise RuntimeError(f"Не удалось распознать матчи Спартака на {resolved_url}")
+        raise SourceError(f"Не удалось распознать матчи Спартака на {resolved_url}")
+    return events
+
+
+def validate_source_events(events: list[dict[str, Any]], competition: str) -> None:
+    """Require the entire supported season, not merely a few recognizable rows."""
+    expected = 30 if competition == "rpl" else 6
+    if len(events) != expected or {e["round"] for e in events} != set(range(1, expected + 1)):
+        raise SourceError(f"Неполный календарь {competition}: {len(events)}, ожидается {expected} разных туров")
+    if len({e["id"] for e in events}) != expected:
+        raise SourceError("Повторяющиеся идентификаторы матчей")
+    for event in events:
+        if event["competition"] != competition or not (SEASON_START <= event["start"].date() <= SEASON_END):
+            raise SourceError("Неверный сезон или турнир")
+        if (event["home_key"] == "spartak") == (event["away_key"] == "spartak"):
+            raise SourceError("Неверная пара команд")
+        if event["status"] == "finished" and event["start"] + timedelta(hours=3) > datetime.now(MOSCOW):
+            raise SourceError("Источник сообщает результат ещё не завершившегося матча")
+
+
+def parse_sports_html(raw: str, existing: list[ExistingEvent]) -> list[dict[str, Any]]:
+    """Sports has no round numbers: resolve ONLY against unique existing fixture IDs.
+
+    Missing times, unknown fixtures and Cup draws without penalties never become
+    publishable observations. The backup cannot create new fixtures or playoffs.
+    """
+    anchors: dict[tuple[str, str, str], list[tuple[int, ExistingEvent]]] = {}
+    for old in existing:
+        match = re.fullmatch(r"championat-(rpl|cup)-r(\d+)-([a-z_]+)-([a-z_]+)", old.source_id or "")
+        if match:
+            competition, round_number, home, away = match.groups()
+            anchors.setdefault((competition, home, away), []).append((int(round_number), old))
+    events = []
+    for row in re.findall(r"<tr\b[^>]*>.*?</tr>", raw, re.S | re.I):
+        if "/football/tournament/rfpl/" in row:
+            competition = "rpl"
+        elif "/football/tournament/russian-cup/" in row:
+            competition = "cup"
+        else:
+            continue
+        text = visible_text(row)
+        date_match = re.match(r"(\d{2}\.\d{2}\.\d{4})(?:\s*\|\s*(\d{2}:\d{2}))?", text)
+        if not date_match:
+            raise SourceError("Sports: строка матча без распознаваемой даты")
+        day, kickoff = date_match.groups()
+        start = datetime.strptime(day + " " + (kickoff or "00:00"), "%d.%m.%Y %H:%M").replace(tzinfo=MOSCOW)
+        if not (SEASON_START <= start.date() <= SEASON_END):
+            continue
+        clubs = re.findall(r'<a\b[^>]*href="https://www\.sports\.ru/football/club/[^"/]+/"[^>]*>(.*?)</a>', row, re.S)
+        if len(clubs) != 1:
+            raise SourceError("Sports: неоднозначная команда соперника")
+        opponent = canonical_team(visible_text(clubs[0]))
+        if opponent not in DISPLAY or opponent == "spartak":
+            raise SourceError("Sports: неизвестная команда")
+        if "В гостях" in text:
+            home, away = opponent, "spartak"
+        elif "Дома" in text:
+            home, away = "spartak", opponent
+        else:
+            raise SourceError("Sports: неизвестно, кто играет дома")
+        candidates = anchors.get((competition, home, away), [])
+        if len(candidates) != 1:
+            raise SourceError(f"Sports: матч {competition}/{home}/{away} не сопоставлен однозначно")
+        round_number, old = candidates[0]
+        score_cell = re.search(r'<td\b[^>]*class="score-td"[^>]*>(.*?)</td>', row, re.S)
+        if not score_cell:
+            raise SourceError("Sports: отсутствует ячейка счёта")
+        score_text = visible_text(score_cell.group(1))
+        score = re.fullmatch(r"(\d+)\s*:\s*(\d+)", score_text)
+        if not score and score_text != "превью":
+            raise SourceError(f"Sports: неизвестный статус матча: {score_text}")
+        # A plain score may be live. Do not publish until well after kickoff.
+        if score and start + timedelta(hours=4) > datetime.now(MOSCOW):
+            raise SourceError("Sports: результат может быть промежуточным")
+        score_home, score_away = (int(score[1]), int(score[2])) if score else (None, None)
+        reason = None
+        if not kickoff:
+            reason = "время не опубликовано"
+        elif competition == "cup" and score and score_home == score_away:
+            reason = "нет счёта серии пенальти"
+        override = OFFICIAL_CONFIRMED_FIXTURES.get((competition, round_number))
+        if not score and override and kickoff and start != override["start"]:
+            reason = "дата/время расходятся с подтверждённой официальной публикацией"
+        if score and ("пен." in old.summary or re.search(r"сери[яию]\s+пенальти", old.description, re.I)):
+            reason = "сохраняем подробный результат с серией пенальти"
+        if reason:
+            diagnose(source="sports", source_id=old.source_id, withheld=reason)
+        events.append({
+            "id": old.source_id, "start": start, "home_key": home, "away_key": away,
+            "home_name": DISPLAY[home], "away_name": DISPLAY[away],
+            "competition": competition, "round": round_number,
+            "status": "finished" if score else "scheduled", "score_home": score_home,
+            "score_away": score_away, "pen_home": None, "pen_away": None,
+            "source_url": SPORTS_URL, "official_confirmed": False, "withheld": reason,
+        })
     return events
 
 
@@ -631,35 +770,87 @@ def validate_calendar(text: str) -> None:
         if not item.summary or not item.dtstart_line: raise ValueError(f"Событие {item.uid} без SUMMARY или DTSTART")
 
 
-def main() -> int:
+def atomic_write(path: Path, text: str) -> None:
+    """Replace a complete UTF-8 file; a interrupted write cannot truncate ICS."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fd, name = tempfile.mkstemp(prefix=path.name + ".", suffix=".tmp", dir=path.parent)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as output:
+            output.write(text)
+            output.flush()
+            os.fsync(output.fileno())
+        os.replace(name, path)
+    finally:
+        if os.path.exists(name):
+            os.unlink(name)
+
+
+def collect_events(existing: list[ExistingEvent]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    result = {}
+    backup = None
+    for competition, urls in (("rpl", RPL_URLS), ("cup", CUP_URLS)):
+        try:
+            result[competition] = parse_championat_calendar(urls, competition)
+        except SourceError as primary_error:
+            print(f"::warning::Источник Чемпионат недоступен для {competition}; проверяем независимый резерв Sports.ru", file=sys.stderr)
+            diagnose(competition=competition, fallback="sports", reason=str(primary_error))
+            if backup is None:
+                raw, _ = fetch_text(SPORTS_URL)
+                backup = parse_sports_html(raw, existing)
+            events = [e for e in backup if e["competition"] == competition]
+            validate_source_events(events, competition)
+            result[competition] = events
+            diagnose(source="sports", competition=competition, parsed=len(events),
+                     withheld=sum(bool(e.get("withheld")) for e in events))
+    return result["rpl"], result["cup"]
+
+
+def main(*, dry_run: bool = False) -> int:
     if not ICS_PATH.exists(): raise FileNotFoundError(f"Не найден {ICS_PATH}")
-    rpl = parse_championat_calendar(RPL_URLS, "rpl")
-    cup = parse_championat_calendar(CUP_URLS, "cup")
+    original = ICS_PATH.read_text(encoding="utf-8").replace("\r\n", "\n")
+    validate_calendar(original)
+    existing = parse_existing_events(original)
+    rpl, cup = collect_events(existing)
     official_cup = parse_rfs_cup_results()
     mark_official_cup_results(cup, official_cup)
-    events = rpl + cup
-    if len(rpl) < 20: raise RuntimeError(f"Слишком мало матчей РПЛ: {len(rpl)}")
-    if len(cup) < 4: raise RuntimeError(f"Слишком мало матчей Кубка: {len(cup)}")
+    events = [e for e in rpl + cup if not e.get("withheld")]
+    old_by_id = {e.source_id: e for e in existing if e.source_id}
+    for event in events:
+        old = old_by_id.get(event["id"])
+        if old and re.search(r"\d+\s*:\s*\d+", old.summary) and event["status"] != "finished":
+            raise SourceError(f"Источник потерял ранее опубликованный результат: {event['id']}")
+    if not events:
+        raise SourceError("Нет проверяемых свежих данных; календарь сохранён без изменений")
     state, stable_ids = update_state(load_state(), events)
-    original = ICS_PATH.read_text(encoding="utf-8").replace("\r\n", "\n")
-    updated, changed = apply_events(original, parse_existing_events(original), events, stable_ids)
+    updated, changed = apply_events(original, existing, events, stable_ids)
     validate_calendar(updated)
-    STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    if not {e.uid for e in existing} <= {e.uid for e in parse_existing_events(updated)}:
+        raise ValueError("Обновление удаляет существующие UID")
     state_text = json.dumps(state, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
     previous_state = STATE_PATH.read_text(encoding="utf-8") if STATE_PATH.exists() else ""
-    if state_text != previous_state: STATE_PATH.write_text(state_text, encoding="utf-8")
-    if updated != original: ICS_PATH.write_text(updated, encoding="utf-8")
+    if not dry_run:
+        if state_text != previous_state: atomic_write(STATE_PATH, state_text)
+        if updated != original: atomic_write(ICS_PATH, updated)
     print(f"Матчей РПЛ: {len(rpl)}")
     print(f"Матчей Кубка: {len(cup)}")
     print(f"Результатов Кубка подтверждено РФС: {sum(1 for e in cup if e.get('official_confirmed'))}")
     print(f"Ожидают второй одинаковой проверки: {len(events) - len(stable_ids)}")
+    print(f"Сохранены без обновления из-за неполных или противоречивых данных: {len(rpl) + len(cup) - len(events)}")
     print(f"Изменено событий календаря: {changed}")
+    if dry_run: print("DRY RUN: календарь и состояние не записаны")
     return 0
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--diagnostics", type=Path, help="JSON metadata only; no cookies or response bodies")
+    args = parser.parse_args()
     try:
-        raise SystemExit(main())
+        raise SystemExit(main(dry_run=args.dry_run))
     except Exception as error:
         print(f"Ошибка обновления календаря: {error}", file=sys.stderr)
         raise
+    finally:
+        if args.diagnostics:
+            atomic_write(args.diagnostics, json.dumps(DIAGNOSTICS, ensure_ascii=False, indent=2) + "\n")

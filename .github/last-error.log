@@ -1,0 +1,36 @@
+UTC: 2026-09-16T18:54:29Z
+Run: https://github.com/naztutnet/spartak-calendar/actions/runs/35137180927
+Commit: 572ced78278a466dc03f046ef0932a801968aee9
+
+{"bytes": 653, "content_type": "text/html", "resolved_url": "https://www.championat.com/football/_russiapl/tournament/7096/calendar/", "sha256": "9280dcdd909ccccdb16b3f3f32e31f267548ff9e5298d91d3f7e93192cada146", "status": 200, "title": "Авторизация SberID", "url": "https://www.championat.com/football/_russiapl/tournament/7096/calendar/"}
+{"competition": "rpl", "error": "Не удалось загрузить источник: https://www.championat.com/football/_russiapl/tournament/7096/calendar/: Вместо данных получена страница доступа: Авторизация SberID", "source": "championat", "url": "https://www.championat.com/football/_russiapl/tournament/7096/calendar/"}
+{"bytes": 653, "content_type": "text/html", "resolved_url": "https://www.championat.ru/football/_russiapl/tournament/7096/calendar/", "sha256": "9280dcdd909ccccdb16b3f3f32e31f267548ff9e5298d91d3f7e93192cada146", "status": 200, "title": "Авторизация SberID", "url": "https://www.championat.ru/football/_russiapl/tournament/7096/calendar/"}
+{"competition": "rpl", "error": "Не удалось загрузить источник: https://www.championat.ru/football/_russiapl/tournament/7096/calendar/: Вместо данных получена страница доступа: Авторизация SberID", "source": "championat", "url": "https://www.championat.ru/football/_russiapl/tournament/7096/calendar/"}
+::warning::Источник Чемпионат недоступен для rpl; проверяем независимый резерв Sports.ru
+{"competition": "rpl", "fallback": "sports", "reason": "https://www.championat.com/football/_russiapl/tournament/7096/calendar/: Не удалось загрузить источник: https://www.championat.com/football/_russiapl/tournament/7096/calendar/: Вместо данных получена страница доступа: Авторизация SberID | https://www.championat.ru/football/_russiapl/tournament/7096/calendar/: Не удалось загрузить источник: https://www.championat.ru/football/_russiapl/tournament/7096/calendar/: Вместо данных получена страница доступа: Авторизация SberID"}
+{"bytes": 836706, "content_type": "text/html", "resolved_url": "https://www.sports.ru/football/club/spartak/calendar/", "sha256": "94da4aea139a1109c1dfd1a0abf7d49dcd73c25a06c3af668a4c692d3094d386", "status": 200, "title": "Спартак - расписание и результаты матчей, календарь игр 2026, матчи сегодня, время, когда играет футбольный клуб Спартак на Sports.ru", "url": "https://www.sports.ru/football/club/spartak/calendar/"}
+{"source": "sports", "source_id": "championat-cup-r2-rubin-spartak", "withheld": "сохраняем подробный результат с серией пенальти"}
+Ошибка обновления календаря: Sports: результат может быть промежуточным
+Traceback (most recent call last):
+  File "/home/runner/work/spartak-calendar/spartak-calendar/update_results.py", line 809, in collect_events
+    result[competition] = parse_championat_calendar(urls, competition)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/spartak-calendar/spartak-calendar/update_results.py", line 259, in parse_championat_calendar
+    raise SourceError(" | ".join(errors))
+SourceError: https://www.championat.com/football/_russiapl/tournament/7096/calendar/: Не удалось загрузить источник: https://www.championat.com/football/_russiapl/tournament/7096/calendar/: Вместо данных получена страница доступа: Авторизация SberID | https://www.championat.ru/football/_russiapl/tournament/7096/calendar/: Не удалось загрузить источник: https://www.championat.ru/football/_russiapl/tournament/7096/calendar/: Вместо данных получена страница доступа: Авторизация SberID
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/work/spartak-calendar/spartak-calendar/update_results.py", line 866, in <module>
+    raise SystemExit(main(dry_run=args.dry_run))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/spartak-calendar/spartak-calendar/update_results.py", line 829, in main
+    rpl, cup = collect_events(existing)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/spartak-calendar/spartak-calendar/update_results.py", line 815, in collect_events
+    backup = parse_sports_html(raw, existing)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/spartak-calendar/spartak-calendar/update_results.py", line 380, in parse_sports_html
+    raise SourceError("Sports: результат может быть промежуточным")
+SourceError: Sports: результат может быть промежуточным

@@ -199,28 +199,18 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260916-spartak-fakel-rpl@spartak-calendar
-DTSTAMP:20260908T081031Z
-SEQUENCE:3
-LAST-MODIFIED:20260908T081031Z
+DTSTAMP:20260917T002954Z
+SEQUENCE:4
+LAST-MODIFIED:20260917T002954Z
 DTSTART;TZID=Europe/Moscow:20260916T183000
 DTEND;TZID=Europe/Moscow:20260916T204500
-SUMMARY:Спартак — Факел (РПЛ)
+SUMMARY:Спартак 1:0 Факел (РПЛ)
 LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
-DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 9-й тур. Домашний матч. Время московское. Источник: https://www.sports.ru/football/club/spartak/calendar/
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 9-й тур. Домашний матч. Результат: победа Спартака 1:0. Источник: https://www.sports.ru/football/club/spartak/calendar/
 URL:https://www.championat.com/football/_russiapl/tournament/7096/calendar/
 X-SOURCE-ID:championat-rpl-r9-spartak-fakel
 STATUS:CONFIRMED
-TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT1H
-ACTION:DISPLAY
-DESCRIPTION:Матч Спартака начнётся через 1 час
-END:VALARM
-BEGIN:VALARM
-TRIGGER:-PT5M
-ACTION:DISPLAY
-DESCRIPTION:Матч Спартака начнётся через 5 минут
-END:VALARM
+TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-27-rpl10@spartak-calendar

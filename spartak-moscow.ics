@@ -199,15 +199,15 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:20260916-spartak-fakel-rpl@spartak-calendar
-DTSTAMP:20260917T002954Z
-SEQUENCE:4
-LAST-MODIFIED:20260917T002954Z
+DTSTAMP:20260917T010006Z
+SEQUENCE:5
+LAST-MODIFIED:20260917T010006Z
 DTSTART;TZID=Europe/Moscow:20260916T183000
 DTEND;TZID=Europe/Moscow:20260916T204500
 SUMMARY:Спартак 1:0 Факел (РПЛ)
 LOCATION:Лукойл Арена\, Волоколамское шоссе\, 69\, Москва
-DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 9-й тур. Домашний матч. Результат: победа Спартака 1:0. Источник: https://www.sports.ru/football/club/spartak/calendar/
-URL:https://www.championat.com/football/_russiapl/tournament/7096/calendar/
+DESCRIPTION:Альфа-Банк Российская Премьер-Лига 2026/27\, 9-й тур. Домашний матч. Результат: победа Спартака 1:0. Гол Спартака: Манфред Угальде. Протокол РПЛ: https://premierliga.ru/matches/16305/. Видеообзор: https://matchtv.ru/football/rpl/matchtvvideo_NI2366210_clip_Spartak___Fakel_Gol_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol
+URL:https://matchtv.ru/football/rpl/matchtvvideo_NI2366210_clip_Spartak___Fakel_Gol_i_luchshije_momenty_video_Alfa_Bank_Rossijskaja_Premjer_Liga_Futbol
 X-SOURCE-ID:championat-rpl-r9-spartak-fakel
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
